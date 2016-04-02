@@ -1,0 +1,48 @@
+{
+  "7zip": {
+    "url": "http://www.7-zip.org/download.html",
+    "updater": {
+      "x86":{
+        "rule_type": "advanced"
+      },
+      "x86_64":{
+        "rule_type": "advanced"
+      }
+    }
+  },
+  "geforce-experience": {
+    "url": "http://www.geforce.com/geforce-experience",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": ".downloadgfe > a"
+      }
+    }
+  },
+  "node": {
+    "url": "https://nodejs.org/en/download/stable/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > a"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > a"
+      }
+    }
+  },
+  "vlc": {
+    "url": "https://www.videolan.org/vlc/download-windows.html",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "#downloadButton2"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "ul.dropdown-menu:nth-child(3) > li:nth-child(3) > a:nth-child(1)"
+      }
+    }
+  }
+}
