@@ -15,7 +15,15 @@
     "type": "git",
     "url": "https://github.com/guiweber/just-install-updater.git"
 	},
-"dependencies": {
-    "cheerio": ">=0.20.0"
+	"dependencies": {
+    "cheerio": ">=0.20.0",
+		"url-parse": ">=1.1.1"
+	},
+	"devDependencies": {
+    "jsonschema": ">=1.1.0",
+		"mocha": "latest"
+	},
+	"scripts": {
+  "test": "mocha tests"
 	}
 }
