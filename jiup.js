@@ -1,11 +1,15 @@
-const https = require('https');
-const http = require('http');
 const fs = require('fs');
+const http = require('http');
+const https = require('https');
 const ch = require('cheerio');
+const urlparse = require('url-parse');
 
 var updated = new Array();
 var skipped = new Array();
 var progress = 0;
+
+var args = new Array();
+args['-f'] == false;
 
 if(process.argv[2]){
   var regPath = process.argv[2] + 'just-install.json';
@@ -21,40 +25,23 @@ for(var k in rules) {
 
 function update(k){
   var page = '';
+  var load = function(res){
+    if(res.statusCode != 200){
+      skipped.push(k + ': Status code was ' + res.statusCode);
+      oneDone();
+    }else{
+      res.on('data', (d) => {
+        page += d;
+      });
+      res.on('end', (e) => {
+        parse(page, k)
+      });
+    }
+  };
   if(rules[k].url.match(/^https:/)){
-    https.get(rules[k].url, (res) => {
-      if(res.statusCode != 200){
-        skipped.push(k + ': Status code was ' + res.statusCode);
-        oneDone();
-      }else{
-        res.on('data', (d) => {
-          page += d;
-        });
-
-        res.on('end', (e) => {
-          parse(page, k)
-        });
-      }
-    }).on('error', (e) => {
-      console.error(e);
-    });
+    https.get(rules[k].url, load).on('error', (e) => { console.error(e); });
   }else{
-    http.get(rules[k].url, (res) => {
-      if(res.statusCode != 200){
-        skipped.push(k + ': Status code was ' + res.statusCode);
-        oneDone();
-      }else{
-        res.on('data', (d) => {
-          page += d;
-        });
-
-        res.on('end', (e) => {
-          parse(page, k)
-        });
-      }
-    }).on('error', (e) => {
-      console.error(e);
-    });
+    http.get(rules[k].url, load).on('error', (e) => { console.error(e); });
   }
 }
 
@@ -82,15 +69,18 @@ function parse(page, k){
       console.log('Web: ' + web);
       console.log('Reg: ' + reg);
       if(web == undefined){
-        m = 'Could not match selector. Check update rules.';
+        var m = 'Could not match selector. Check update rules.';
         skipped.push(k + ' ' + arch + ': ' + m);
         console.log(m);
       }else{
-        //Need to checck that the match is made at end of string IMPORTANT!
-        if(reg.match(web)){
+        if(web == reg){
           console.log('Registry is up-to-date');
         }
-        else{
+        else if(isNotSameHost(web, reg) && args['-f'] == false){
+          var m = 'Web link and registry point to different hosts. To force update, call script with "-f" argument.';
+          skipped.push(k + ' ' + arch + ': ' + m);
+          console.log(m);
+        }else{
           updated.push(k + ' ' + arch);
           console.log('Registry will be updated with new link');
         }
@@ -101,7 +91,14 @@ function parse(page, k){
 }
 
 function completeURL(url, k){
-  return url;
+  url = new urlparse(url, rules[k].url);
+  return url.href;
+}
+
+function isNotSameHost(u1, u2){
+  u1 = new urlparse(u1);
+  u2 = new urlparse(u2);
+  return (u1.hostname != u2.hostname);
 }
 
 function oneDone(){
