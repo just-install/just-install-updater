@@ -3,11 +3,12 @@ const http = require('http');
 const https = require('https');
 const assert = require('assert');
 const Validator = require('jsonschema').Validator;
+const jiup = require('./jiup-lib.js');
 
 var rules = JSON.parse(fs.readFileSync('update-rules.json'));
 
 describe('update-rules.js', function () {
-  it('should be validated against tje JSON schema', function () {
+  it('validated against the JSON schema', function () {
     var v = new Validator();
     var schema = JSON.parse(fs.readFileSync('update-rules-schema.json'));
     var res = v.validate(rules, schema);
@@ -35,4 +36,12 @@ describe('Testing update-rules urls', function () {
   for(var k in rules) {
     fcall(k);
   }
+});
+
+
+describe('Testing some juip.js functions...', function () {
+    it('isNotSameHost()', function () {
+      assert(jiup.isNotSameHost('http://a/7z1514.msi', 'http://dl.7-zip.org/7z1514.msi'), 'At isNotSameHost() Test #1');
+      assert(!jiup.isNotSameHost('https://nodejs.org/dist/v5.9.1/node-v5.9.1-x64.msi', 'https://nodejs.org/dist/v5.10.0/node-v5.10.0-x64.msi'), 'At isNotSameHost() Test #2');
+    });
 });
