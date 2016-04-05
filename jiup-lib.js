@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const http = require('http');
 const https = require('https');
 const ch = require('cheerio');
@@ -10,6 +11,7 @@ var progress = 0;
 
 var args = new Array();
 exports.args = args;
+args['-c'] = false;
 args['-f'] = false;
 args['-ns'] = false;
 
@@ -17,10 +19,11 @@ args['-ns'] = false;
 var registry = '';
 var rules = '';
 var regPath = '';
+var regFile = 'just-install.json';
 
 exports.init = function(path){
   regPath = path;
-  registry = JSON.parse(fs.readFileSync(regPath));
+  registry = JSON.parse(fs.readFileSync(regPath + regFile));
   rules = JSON.parse(fs.readFileSync('update-rules.json'));
 }
 
@@ -121,7 +124,22 @@ function conclude(){
   if(args['-ns'] == false){
     console.log(' ');
     console.log('Saving changes to the registry file');
-    fs.writeFile(regPath, JSON.stringify(registry, null, '  '));
+    fs.writeFileSync(regPath + regFile, JSON.stringify(registry, null, '  '));
+  }
+  if(args['-c'] == true && regPath){
+    console.log(' ');
+    console.log('Commiting changes to Git');
+
+    var errFunc = function(error, stdout, stderr){
+      console.log(`stdout: ${stdout}`);
+      console.log(`stderr: ${stderr}`);
+      if (error !== null) {
+        console.log(`exec error: ${error}`);
+      }
+    }
+    const child = require('child_process');
+    var exec = child.execSync('git -C ' + regPath + ' add just-install.json', errFunc);
+    exec = child.execSync('git -C ' + regPath + ' commit -m "just-install-updater automatic commit"', errFunc);
   }
   console.log(' ');
   console.log('========== SUMMARY OF OPERATIONS ==========');
