@@ -3,10 +3,11 @@ const path = require('path');
 const http = require('http');
 const https = require('https');
 const ch = require('cheerio');
-const urlparse = require('url-parse');
+const url = require('url');
 
 var updated = new Array();
 var skipped = new Array();
+var broken = new Array();
 var progress = 0;
 
 var args = new Array();
@@ -75,19 +76,19 @@ function parse(page, k){
           var web = advanced.get_link(page, arch);
       }
 
-      web = completeURL(web, k);
-      console.log('Web: ' + web);
-      console.log('Reg: ' + reg);
       if(web == undefined){
         var m = 'Could not match selector. Check update rules.';
-        skipped.push(k + ' ' + arch + ': ' + m);
+        broken.push(k + ' ' + arch + ': ' + m);
         console.log(m);
       }else{
+        web = url.resolve(rules[k].url, web);
+        console.log('Web: ' + web);
+        console.log('Reg: ' + reg);
         if(web == reg){
           console.log('Registry is up-to-date');
         }
         else if(isNotSameHost(web, reg) && args['-f'] == false){
-          var m = 'Web link and registry point to different hosts. To force update, call script with "-f" argument.';
+          var m = 'Web link and registry point to different hosts';
           skipped.push(k + ' ' + arch + ': ' + m);
           console.log(m);
         }else{
@@ -101,15 +102,10 @@ function parse(page, k){
   oneDone();
 }
 
-function completeURL(url, k){
-  url = new urlparse(url, rules[k].url);
-  return url.href;
-}
-
 exports.isNotSameHost = isNotSameHost;
 function isNotSameHost(u1, u2){
-  u1 = new urlparse(u1);
-  u2 = new urlparse(u2);
+  u1 = url.parse(u1);
+  u2 = url.parse(u2);
   return (u1.hostname != u2.hostname);
 }
 
@@ -121,15 +117,16 @@ function oneDone(){
 }
 
 function conclude(){
-  if(args['-ns'] == false){
-    console.log(' ');
-    console.log('Saving changes to the registry file');
-    fs.writeFileSync(regPath + regFile, JSON.stringify(registry, null, '  '));
-  }
-  if(args['-c'] == true && regPath){
-    console.log(' ');
-    console.log('Commiting changes to Git');
+  var saved = false;
+  var committed = false;
 
+  if(args['-ns'] == false && updated.length != 0){
+    console.log('\n---- Saving changes to just-install.json ----');
+    fs.writeFileSync(regPath + regFile, JSON.stringify(registry, null, '  '));
+    saved = true;
+  }
+  if(args['-c'] == true && regPath && updated.length != 0){
+    console.log('\n---- Committing to Git ----');
     var errFunc = function(error, stdout, stderr){
       console.log(`stdout: ${stdout}`);
       console.log(`stderr: ${stderr}`);
@@ -140,21 +137,34 @@ function conclude(){
     const child = require('child_process');
     var exec = child.execSync('git -C ' + regPath + ' add just-install.json', errFunc);
     exec = child.execSync('git -C ' + regPath + ' commit -m "just-install-updater automatic commit"', errFunc);
+    committed = true;
   }
-  console.log(' ');
-  console.log('========== SUMMARY OF OPERATIONS ==========');
+
+  console.log('\n========== SUMMARY OF OPERATIONS ==========\n');
+
+  if(saved){
+    console.log('-Changes to the registry file have been saved');
+  }
+  if(committed){
+    console.log('-The updated registry file has been committed to Git');
+  }
+
   if(updated.length > 0){
-    console.log(' ');
-    console.log('UPDATED:');
+    console.log('\nUPDATED:');
     for(i in updated){
       console.log("- " + updated[i]);
     }
   }
   if(skipped.length > 0){
-    console.log(' ');
-    console.log('ERRORS:');
+    console.log('\nSKIPPED:  ==>  To force update, call script with "-f" argument');
     for(i in skipped){
       console.log("- " + skipped[i]);
+    }
+  }
+  if(broken.length > 0){
+    console.log('\nERRORS:');
+    for(i in broken){
+      console.log("- " + broken[i]);
     }
   }
 }

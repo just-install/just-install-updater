@@ -6,14 +6,15 @@ registry links to the latest releases
 ### How to use
 
 1. npm install
-* node jiup.js [path to just-install] [packages] [options]
+* node jiup.js path [packages] [options]
 
 
 #### arguments
 
-* path to just-install: absolute path to the just-install development folder.
+* path: absolute path to the just-install development folder.
 * packages: a space separated list of packages to update. By default, all packages are updated.
-* args: a space separated list of options
+* options: a space separated list of options
+  * -c : Commit: Commits the updated registry file to Git.
+  * -ns: No save: Changes to the registry file are not saved.
   * -f : Force mode: forces the update by disabling the following safety checks:
     * The web link and registry link don't point to the same hosts.
-  * -ns: No save: Changes to the registry file are not saved.

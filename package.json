@@ -16,8 +16,7 @@
     "url": "https://github.com/guiweber/just-install-updater.git"
 	},
 	"dependencies": {
-    "cheerio": ">=0.20.0",
-		"url-parse": ">=1.1.1"
+    "cheerio": ">=0.20.0"
 	},
 	"devDependencies": {
     "jsonschema": ">=1.1.0",
