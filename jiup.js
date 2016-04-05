@@ -1,10 +1,15 @@
 const jiup = require('./jiup-lib.js');
+const process = require('process');
 
 if(process.argv[2] && process.argv[2].charAt(0) != '-'){
   var regPath = process.argv[2];
   process.argv.splice(2, 1);
-  if(regPath.charAt(regPath.length-1) != '\\' && regPath.charAt(regPath.length-1) != '/'){
-    throw "The path to the just-install folder should end with \\ on Windows or / on Linux";
+  if(process.platform == 'win32' && regPath.charAt(regPath.length-1) != '\\'){
+    regPath += '\\';
+  }else if(process.platform == 'linux' && regPath.charAt(regPath.length-1) != '/'){
+    regPath += '/';
+  }else if(process.platform != 'linux' && process.platform != 'win32'){
+    throw "Only linux and windows are currently supported.";
   }
 }else{
   var regPath = '';
