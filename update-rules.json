@@ -10,6 +10,33 @@
       }
     }
   },
+  "ccleaner": {
+    "url": "https://www.piriform.com/ccleaner/download/standard",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a.btn"
+      }
+    }
+  },
+  "cmake": {
+    "url": "https://cmake.org/download/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": ".et_pb_text_5 > table:nth-child(6) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > a:nth-child(1)"
+      }
+    }
+  },
+  "defraggler": {
+    "url": "https://www.piriform.com/defraggler/download/standard",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a.btn"
+      }
+    }
+  },
   "geforce-experience": {
     "url": "http://www.geforce.com/geforce-experience",
     "updater": {
@@ -29,6 +56,28 @@
       "x86_64":{
         "rule_type": "css-link",
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > a"
+      }
+    }
+  },
+  "sourcetree": {
+    "url": "https://www.sourcetreeapp.com/download/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": ".win > p:nth-child(1) > a:nth-child(1)"
+      }
+    }
+  },
+  "sublime-text-3": {
+    "url": "https://www.sublimetext.com/3",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "#dl_win_32 > a:nth-child(1)"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "#dl_win_64 > a:nth-child(1)"
       }
     }
   },
