@@ -6,7 +6,7 @@ registry links to the latest releases
 ### How to use
 
 1. npm install
-* node jiup.js path [packages] [options]
+* node jiup.js path [options] [packages]
 
 
 #### arguments
@@ -17,4 +17,5 @@ registry links to the latest releases
   * -c : Commit: Commits the updated registry file to Git.
   * -ns: No save: Changes to the registry file are not saved.
   * -f : Force mode: forces the update by disabling the following safety checks:
-    * The web link and registry link don't point to the same hosts.
+    * Skip if the web link and registry link don't point to the same hosts.
+    * Skip if new version not found for all architectures.

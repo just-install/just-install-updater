@@ -5,6 +5,10 @@ const https = require('https');
 const ch = require('cheerio');
 const url = require('url');
 
+//Indexes used for the different architectures in the json files
+const x86 = 'x86';
+const x64 = 'x86_64';
+
 var updated = new Array();
 var skipped = new Array();
 var broken = new Array();
@@ -59,7 +63,12 @@ function update(k){
 function parse(page, k){
   $ = ch.load(page);
   var app = registry.packages[k];
+  var updateCount = 0;
+  var archCount = 0;
+  var web = new Array();
+  var categorized = false;
   for(var arch in rules[k].updater){
+    archCount ++;
     console.log(' ');
     var updater = rules[k].updater[arch];
     console.log('Updating ' + k + ' ' + arch + '... Rule type: ' + updater.rule_type);
@@ -69,37 +78,56 @@ function parse(page, k){
       var reg = app.installer[arch].replace(/{{.version}}/g, app.version);
       switch(updater.rule_type){
         case "css-link":
-          var web = $(updater.selector).attr('href');
+          web[arch] = $(updater.selector).attr('href');
           break;
         case "advanced":
           var advanced = require("./advanced_rules/" + k + ".js");
-          var web = advanced.get_link(page, arch);
+          web[arch] = advanced.get_link(page, arch);
       }
 
-      if(web == undefined){
+      if(web[arch] == undefined){
         var m = 'Could not match selector. Check update rules.';
         broken.push(k + ' ' + arch + ': ' + m);
+        categorized = true;
         console.log(m);
       }else{
-        web = url.resolve(rules[k].url, web);
-        console.log('Web: ' + web);
+        web[arch] = url.resolve(rules[k].url, web[arch]);
+        console.log('Web: ' + web[arch]);
         console.log('Reg: ' + reg);
-        if(web == reg){
+        if(web[arch] == reg){
           console.log('Registry is up-to-date');
         }
-        else if(isNotSameHost(web, reg) && args['-f'] == false){
+        else if(isNotSameHost(web[arch], reg) && args['-f'] == false){
           var m = 'Web link and registry point to different hosts';
           skipped.push(k + ' ' + arch + ': ' + m);
+          categorized = true;
           console.log(m);
         }else{
-          updated.push(k + ' ' + arch);
-          app.installer[arch] = web;
-          console.log('Registry will be updated with new link');
+          updateCount ++;
+          console.log('New version found!');
         }
       }
     }
   }
+  if(categorized == false){
+    if(updateCount != archCount && args['-f'] == false){
+      if(updateCount != 0){
+        var m = 'New version was found, but not for all architectures';
+        skipped.push(k + ': ' + m);
+        console.log(m);
+      }
+    }else{
+      updated.push(k);
+      app.installer[x86] = web[x86];
+      app.installer[x64] = web[x64];
+      //app.version = updateVersion(page, k);
+    }
+  }
   oneDone();
+}
+
+function updateVersion(page, k){
+  return '0.0.0.0';
 }
 
 exports.isNotSameHost = isNotSameHost;
