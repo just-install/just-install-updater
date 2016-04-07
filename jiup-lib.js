@@ -9,6 +9,7 @@ const url = require('url');
 const x86 = 'x86';
 const x64 = 'x86_64';
 
+//Progress trackers
 var updated = new Array();
 var skipped = new Array();
 var broken = new Array();
@@ -16,6 +17,7 @@ var notFound = new Array();
 var progress = 0;
 var progressTarget = 0;
 
+//Arguments received from the command line
 var appList = new Array();
 exports.appList = appList;
 var args = new Array();
@@ -24,18 +26,32 @@ args['-c'] = false;
 args['-f'] = false;
 args['-ns'] = false;
 
-
+//JSON data files and their paths
 var registry = '';
-var rules = '';
+var rules = JSON.parse(fs.readFileSync('update-rules.json'));
 var regPath = '';
 var regFile = 'just-install.json';
 
+//This function is called by jiup.js to start the update process
 exports.init = function(path){
   regPath = path;
   registry = JSON.parse(fs.readFileSync(regPath + regFile));
-  rules = JSON.parse(fs.readFileSync('update-rules.json'));
+  setProgressTarget();
+  if(appList.length){
+    for(var k in appList) {
+      load(appList[k]);
+    }
+  }else if(notFound.length){
+    conclude();
+  }else{
+    for(var k in rules) {
+      load(k)
+    };
+  }
 }
 
+//Sets the targets for the progress counters for async operations according to
+//the number of packages to be updated
 function setProgressTarget(){
   cleanAppList();
   if(appList.length){
@@ -45,6 +61,7 @@ function setProgressTarget(){
   }
 }
 
+//Removes packages that do not exist from the package list received in argument
 function cleanAppList(){
   if(cleanAppList.done == undefined || cleanAppList.done == false){
     var tmpList = new Array();
@@ -60,21 +77,7 @@ function cleanAppList(){
   }
 }
 
-exports.update = function(){
-  setProgressTarget();
-  if(appList.length){
-    for(var k in appList) {
-      load(appList[k]);
-    }
-  }else if(notFound.length){
-    conclude();
-  }else{
-    for(var k in rules) {
-      load(k)
-    };
-  }
-}
-
+//Loads the page in the update-rules for the app, and calls parse() and update() when done
 function load(k){
   var page = '';
   var load = function(res){
@@ -86,7 +89,7 @@ function load(k){
         page += d;
       });
       res.on('end', (e) => {
-        parse(page, k)
+        update(parse(page, k), k);
       });
     }
   };
@@ -97,12 +100,39 @@ function load(k){
   }
 }
 
+/**
+ * Parses a webpage using the update-rules for the specified package
+ * Returns an array containing the download links for each architecture
+ * as well as the version
+ */
+exports.parse = parse;
 function parse(page, k){
   $ = ch.load(page);
+  var web = new Array();
+  for(var arch in rules[k].updater){
+    var updater = rules[k].updater[arch];
+    switch(updater.rule_type){
+      case "css-link":
+        web[arch] = $(updater.selector).attr('href');
+        break;
+      case "advanced":
+        var advanced = require("./advanced_rules/" + k + ".js");
+        web[arch] = advanced.get_link(page, arch);
+    }
+  }
+  web['version'] = getVersion(page, k);
+  return web;
+}
+
+function getVersion(page, k){
+  return '0.0.0.0';
+}
+
+//Analyses the results from parse() and updates the registry if necessary
+function update(web, k){
   var app = registry.packages[k];
   var updateCount = 0;
   var archCount = 0;
-  var web = new Array();
   var categorized = false;
   for(var arch in rules[k].updater){
     archCount ++;
@@ -113,15 +143,6 @@ function parse(page, k){
       skipped.push(k +": Registry doesn't have entry for architecture "+arch);
     }else{
       var reg = app.installer[arch].replace(/{{.version}}/g, app.version);
-      switch(updater.rule_type){
-        case "css-link":
-          web[arch] = $(updater.selector).attr('href');
-          break;
-        case "advanced":
-          var advanced = require("./advanced_rules/" + k + ".js");
-          web[arch] = advanced.get_link(page, arch);
-      }
-
       if(web[arch] == undefined){
         var m = 'Could not match selector. Check update rules.';
         broken.push(k + ' ' + arch + ': ' + m);
@@ -157,16 +178,13 @@ function parse(page, k){
       updated.push(k);
       app.installer[x86] = web[x86];
       app.installer[x64] = web[x64];
-      //app.version = updateVersion(page, k);
+      //app.version = web['version'];
     }
   }
   oneDone();
 }
 
-function updateVersion(page, k){
-  return '0.0.0.0';
-}
-
+//Checks if two URLs have the same host
 exports.isNotSameHost = isNotSameHost;
 function isNotSameHost(u1, u2){
   u1 = url.parse(u1);
@@ -174,6 +192,7 @@ function isNotSameHost(u1, u2){
   return (u1.hostname != u2.hostname);
 }
 
+//Increments the progress counter for async operations
 function oneDone(){
   progress ++;
   if(progress == progressTarget){
@@ -181,6 +200,7 @@ function oneDone(){
   }
 }
 
+//Outputs a summary and saves to disc
 function conclude(){
   var saved = false;
   var committed = false;

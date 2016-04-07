@@ -35,7 +35,6 @@ if(help == false){
     throw "A path to the just-install dev folder was not specified. Start the script with -h for help.";
   }else{
     jiup.init(regPath);
-    jiup.update();
   }
 }
 

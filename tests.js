@@ -6,8 +6,10 @@ const Validator = require('jsonschema').Validator;
 const jiup = require('./jiup-lib.js');
 
 var rules = JSON.parse(fs.readFileSync('update-rules.json'));
+var pages = new Array();
 
 describe('update-rules.js', function () {
+  this.timeout(5000);
   it('validated against the JSON schema', function () {
     var v = new Validator();
     var schema = JSON.parse(fs.readFileSync('update-rules-schema.json'));
@@ -17,13 +19,15 @@ describe('update-rules.js', function () {
 });
 
 describe('Testing update-rules urls', function () {
-  fcall = function(k){
+  //Need to keep the for loop separated to avoid concurrency issues
+  var fcall = function(k){
     it(rules[k].url, function (done) {
+      pages[k] = '';
       var load = function(res){
         if(res.statusCode != 200){
           throw "Status code for " + rules[k].url + " is: " + res.statusCode
         }
-        res.on('data', function(d){});
+        res.on('data', function(d){ pages[k] += d;});
         res.on('end', done);
       };
       if(rules[k].url.match(/^https:/)){
@@ -37,6 +41,25 @@ describe('Testing update-rules urls', function () {
     fcall(k);
   }
 });
+
+describe('Testing parsing rules and selectors', function () {
+  //Need to keep the for loop separated to avoid concurrency issues
+  var fcall = function(k) {
+    it(k + ' download links', function (){
+      var web = jiup.parse(pages[k], k); //Need to keep this inside the it() block to avoid concurrency issues
+      for(var arch in rules[k].updater){
+        //console.log(web[arch]);
+        assert.notEqual(web[arch], undefined, k + ' ' + arch + ' download link is undefined');
+      }
+    });
+    it(k + ' version number');
+  }
+  for(var k in rules) {
+    fcall(k);
+  }
+});
+
+
 
 
 describe('Testing some juip.js functions...', function () {
