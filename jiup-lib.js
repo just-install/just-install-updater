@@ -12,8 +12,12 @@ const x64 = 'x86_64';
 var updated = new Array();
 var skipped = new Array();
 var broken = new Array();
+var notFound = new Array();
 var progress = 0;
+var progressTarget = 0;
 
+var appList = new Array();
+exports.appList = appList;
 var args = new Array();
 exports.args = args;
 args['-c'] = false;
@@ -32,13 +36,46 @@ exports.init = function(path){
   rules = JSON.parse(fs.readFileSync('update-rules.json'));
 }
 
-exports.updateAll = function(){
-  for(var k in rules) {
-    update(k)
-  };
+function setProgressTarget(){
+  cleanAppList();
+  if(appList.length){
+    progressTarget = appList.length;
+  }else{
+    progressTarget = Object.keys(rules).length;
+  }
 }
 
-function update(k){
+function cleanAppList(){
+  if(cleanAppList.done == undefined || cleanAppList.done == false){
+    var tmpList = new Array();
+    for(var k in appList) {
+      if(rules[appList[k]] != undefined){
+        tmpList.push(appList[k]);
+      }else{
+        notFound.push(appList[k]);
+      }
+    }
+    appList = tmpList;
+    cleanAppList.done = true;
+  }
+}
+
+exports.update = function(){
+  setProgressTarget();
+  if(appList.length){
+    for(var k in appList) {
+      load(appList[k]);
+    }
+  }else if(notFound.length){
+    conclude();
+  }else{
+    for(var k in rules) {
+      load(k)
+    };
+  }
+}
+
+function load(k){
   var page = '';
   var load = function(res){
     if(res.statusCode != 200){
@@ -139,7 +176,7 @@ function isNotSameHost(u1, u2){
 
 function oneDone(){
   progress ++;
-  if(progress == Object.keys(rules).length){
+  if(progress == progressTarget){
     conclude();
   }
 }
@@ -147,13 +184,14 @@ function oneDone(){
 function conclude(){
   var saved = false;
   var committed = false;
+  var allUpToDate = updated.length + skipped.length + broken.length == 0
 
-  if(args['-ns'] == false && updated.length != 0){
+  if(!allUpToDate && args['-ns'] == false && updated.length != 0){
     console.log('\n---- Saving changes to just-install.json ----');
     fs.writeFileSync(regPath + regFile, JSON.stringify(registry, null, '  '));
     saved = true;
   }
-  if(args['-c'] == true && regPath && updated.length != 0){
+  if(!allUpToDate && args['-c'] && regPath && updated.length != 0){
     console.log('\n---- Committing to Git ----');
     var errFunc = function(error, stdout, stderr){
       console.log(`stdout: ${stdout}`);
@@ -169,30 +207,40 @@ function conclude(){
   }
 
   console.log('\n========== SUMMARY OF OPERATIONS ==========\n');
-
-  if(saved){
-    console.log('-Changes to the registry file have been saved');
-  }
-  if(committed){
-    console.log('-The updated registry file has been committed to Git');
-  }
-
-  if(updated.length > 0){
-    console.log('\nUPDATED:');
-    for(i in updated){
-      console.log("- " + updated[i]);
+  if(allUpToDate){
+    console.log('All the packages that were found are already up-to-date!');
+  }else{
+    if(saved){
+      console.log('-Changes to the registry file have been saved');
+    }else if(args['-ns'] && updated.length != 0){
+      console.log('-Option -ns was used, changes to the registry file have NOT been saved');
+    }
+    if(committed){
+      console.log('-The updated registry file has been committed to Git');
+    }
+    if(updated.length > 0){
+      console.log('\nUPDATED:');
+      for(i in updated){
+        console.log("- " + updated[i]);
+      }
+    }
+    if(skipped.length > 0){
+      console.log('\nSKIPPED:  ==>  To force update, call script with "-f" argument');
+      for(i in skipped){
+        console.log("- " + skipped[i]);
+      }
+    }
+    if(broken.length > 0){
+      console.log('\nERRORS:');
+      for(i in broken){
+        console.log("- " + broken[i]);
+      }
     }
   }
-  if(skipped.length > 0){
-    console.log('\nSKIPPED:  ==>  To force update, call script with "-f" argument');
-    for(i in skipped){
-      console.log("- " + skipped[i]);
-    }
-  }
-  if(broken.length > 0){
-    console.log('\nERRORS:');
-    for(i in broken){
-      console.log("- " + broken[i]);
+  if(notFound.length > 0){
+    console.log('\nNOT FOUND:');
+    for(i in notFound){
+      console.log("- " + notFound[i]);
     }
   }
 }

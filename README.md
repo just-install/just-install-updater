@@ -3,19 +3,26 @@
 A nodejs script for updating the [just-install](https://github.com/lvillani/just-install)
 registry links to the latest releases
 
-### How to use
+### Installation
 
-1. npm install
-* node jiup.js path [options] [packages]
+Make sure you have the latest NodeJS version installed on your system. Download the just-install-updater from Github, and `npm install` from the directory where the files are located.
+
+### Usage
+
+From the install directory:
+
+```node jiup path [options] [packages]```
 
 
-#### arguments
+##### arguments
 
-* path: absolute path to the just-install development folder.
-* packages: a space separated list of packages to update. By default, all packages are updated.
-* options: a space separated list of options
-  * -c : Commit: Commits the updated registry file to Git.
-  * -ns: No save: Changes to the registry file are not saved.
-  * -f : Force mode: forces the update by disabling the following safety checks:
+* `path`: Absolute path to the just-install development folder.
+* `packages`: An optional space separated list of packages to update. By default, all packages are updated.
+* `options`: A space separated list of options.
+  * `-c` : Commit: The updated registry file will be commited to Git.
+  * `-ns`: No Save: Changes to the registry file are not saved.
+  * `-f` : Force: Packages that would otherwise be skipped will be processed. The following safety checks are disabled:
     * Skip if the web link and registry link don't point to the same hosts.
     * Skip if new version not found for all architectures.
+
+Finally, starting the script with `-h` or `-help` will discard all other arguments and show basic help.
