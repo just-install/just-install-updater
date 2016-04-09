@@ -24,6 +24,12 @@
             }
           },
           "required": ["x86"]
+        },
+        "versioner": {
+          "properties": {
+            "extractor": {"type": "string"},
+            "pattern": {"type": "string"}
+          }
         }
       },
       "required": ["url", "updater"]

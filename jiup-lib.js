@@ -120,12 +120,30 @@ function parse(page, k){
         web[arch] = advanced.get_link(page, arch);
     }
   }
-  web['version'] = getVersion(page, k);
+  web['version'] = getVersion(web[x86], k);
   return web;
 }
 
-function getVersion(page, k){
-  return '0.0.0.0';
+function getVersion(data, k){
+  var version = '';
+  var versioner = rules[k].versioner;
+  if(versioner){
+    switch(versioner.rule_type){
+      case "from-link":
+        var re = new RegExp(versioner.extractor);
+        var matches = re.exec(data);
+        if(matches != null){
+          for(var i=1; i < matches.length; i++){
+            if(i != 1){
+              version += '.';
+            }
+            version += matches[i];
+          }
+        }
+        break;
+    }
+  }
+  return version;
 }
 
 //Analyses the results from parse() and updates the registry if necessary
@@ -150,8 +168,8 @@ function update(web, k){
         console.log(m);
       }else{
         web[arch] = url.resolve(rules[k].url, web[arch]);
-        console.log('Web: ' + web[arch]);
-        console.log('Reg: ' + reg);
+        console.log('Web: V' + web['version'] + ' '+ web[arch]);
+        console.log('Reg: V' + app.version + ' ' + reg);
         if(web[arch] == reg){
           console.log('Registry is up-to-date');
         }
