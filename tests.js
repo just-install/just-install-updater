@@ -45,14 +45,19 @@ describe('Testing update-rules urls', function () {
 describe('Testing parsing rules and selectors', function () {
   //Need to keep the for loop separated to avoid concurrency issues
   var fcall = function(k) {
-    it(k + ' download links', function (){
+    it(k + ' download links extraction', function (){
       var web = jiup.parse(pages[k], k); //Need to keep this inside the it() block to avoid concurrency issues
       for(var arch in rules[k].updater){
         //console.log(web[arch]);
         assert.notEqual(web[arch], undefined, k + ' ' + arch + ' download link is undefined');
+        assert.notEqual(web[arch], '', k + ' ' + arch + ' download link is empty');
       }
     });
-    it(k + ' version number');
+    it(k + 'version number extraction', function (){
+      var web = jiup.parse(pages[k], k); //Need to keep this inside the it() block to avoid concurrency issues
+      assert.notEqual(web['version'], undefined, k + ' version is undefined');
+      assert.notEqual(web['version'], '', k + ' version is empty');
+    });
   }
   for(var k in rules) {
     fcall(k);

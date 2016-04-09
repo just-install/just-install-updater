@@ -27,12 +27,12 @@
         },
         "versioner": {
           "properties": {
-            "extractor": {"type": "string"},
-            "pattern": {"type": "string"}
+            "rule_type": {"type": "string"},
+            "extractor": {"type": "string"}
           }
         }
       },
-      "required": ["url", "updater"]
+      "required": ["url", "updater", "versioner"]
     }
   }
 }

@@ -11,8 +11,7 @@
     },
     "versioner": {
       "rule_type": "from-link",
-      "extractor": "7z([0-9]{2})([0-9]{2}).{0,4}\\.msi$",
-      "pattern":"[0-9]{2}\\.[0-9]{2}"
+      "extractor": "7z([0-9]{2})([0-9]{2}).{0,4}\\.msi$"
     }
   },
   "ccleaner": {
@@ -22,6 +21,10 @@
         "rule_type": "css-link",
         "selector": "a.btn"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "ccsetup([0-9]{1})([0-9]{2})\\.exe$"
     }
   },
   "cmake": {
@@ -31,6 +34,10 @@
         "rule_type": "css-link",
         "selector": ".et_pb_text_5 > table:nth-child(6) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > a:nth-child(1)"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "cmake-([0-9]\\.[0-9]\\.[0-9])-win.{0,6}\\.msi$"
     }
   },
   "defraggler": {
@@ -40,6 +47,10 @@
         "rule_type": "css-link",
         "selector": "a.btn"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "dfsetup([0-9]{1})([0-9]{2})\\.exe$"
     }
   },
   "geforce-experience": {
@@ -49,6 +60,10 @@
         "rule_type": "css-link",
         "selector": ".downloadgfe > a"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "GeForce_Experience_v([0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*)\\.exe$"
     }
   },
   "node": {
@@ -62,6 +77,10 @@
         "rule_type": "css-link",
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > a"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "node-v([0-9]*\\.[0-9]*\\.[0-9]*).{4}\\.msi$"
     }
   },
   "sourcetree": {
@@ -71,6 +90,10 @@
         "rule_type": "css-link",
         "selector": ".win > p:nth-child(1) > a:nth-child(1)"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "SourceTreeSetup_([0-9]*\\.[0-9]*\\.[0-9]*)\\.exe$"
     }
   },
   "sublime-text-3": {
@@ -84,6 +107,10 @@
         "rule_type": "css-link",
         "selector": "#dl_win_64 > a:nth-child(1)"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
     }
   },
   "vlc": {
@@ -97,6 +124,10 @@
         "rule_type": "css-link",
         "selector": "ul.dropdown-menu:nth-child(3) > li:nth-child(3) > a:nth-child(1)"
       }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "vlc-([0-9]*\\.[0-9]*\\.[0-9]*)-win[0-9]{2}\\.exe$"
     }
   }
 }

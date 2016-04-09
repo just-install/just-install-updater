@@ -113,14 +113,16 @@ function parse(page, k){
     var updater = rules[k].updater[arch];
     switch(updater.rule_type){
       case "css-link":
-        web[arch] = $(updater.selector).attr('href');
+        web[arch] = decodeURI($(updater.selector).attr('href'));
         break;
       case "advanced":
         var advanced = require("./advanced_rules/" + k + ".js");
-        web[arch] = advanced.get_link(page, arch);
+        web[arch] = decodeURI(advanced.get_link(page, arch));
     }
   }
-  web['version'] = getVersion(web[x86], k);
+  if(rules[k].versioner.rule_type == "from-link"){
+    web['version'] = getVersion(web[x86], k);
+  }
   return web;
 }
 
@@ -193,10 +195,12 @@ function update(web, k){
         console.log(m);
       }
     }else{
+      re = new RegExp(web['version'], 'g')
       updated.push(k);
-      app.installer[x86] = web[x86];
-      app.installer[x64] = web[x64];
-      //app.version = web['version'];
+      for(var arch in rules[k].updater){
+        app.installer[arch] = web[arch].replace(re, '{{.version}}');
+      }
+      app.version = web['version'];
     }
   }
   oneDone();
