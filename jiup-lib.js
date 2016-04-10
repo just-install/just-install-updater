@@ -115,6 +115,10 @@ function parse(page, k){
       case "css-link":
         web[arch] = decodeURI($(updater.selector).attr('href'));
         break;
+      case "css-html-version":
+        web['version'] = getVersion($(updater.selector).html(), k);
+        web[arch] = updater.baselink.replace(/{{.version}}/g, web['version']);
+        break;
       case "advanced":
         var advanced = require("./advanced_rules/" + k + ".js");
         web[arch] = decodeURI(advanced.get_link(page, arch));
@@ -132,14 +136,19 @@ function getVersion(data, k){
   if(versioner){
     switch(versioner.rule_type){
       case "from-link":
+      case "from-data":
         var re = new RegExp(versioner.extractor);
         var matches = re.exec(data);
         if(matches != null){
-          for(var i=1; i < matches.length; i++){
-            if(i != 1){
-              version += '.';
+          if(matches.length == 1){
+            version = matches[0];
+          }else{
+            for(var i=1; i < matches.length; i++){
+              if(i != 1){
+                version += '.';
+              }
+              version += matches[i];
             }
-            version += matches[i];
           }
         }
         break;
@@ -154,35 +163,42 @@ function update(web, k){
   var updateCount = 0;
   var archCount = 0;
   var categorized = false;
-  for(var arch in rules[k].updater){
-    archCount ++;
-    console.log(' ');
-    var updater = rules[k].updater[arch];
-    console.log('Updating ' + k + ' ' + arch + '... Rule type: ' + updater.rule_type);
-    if(app == undefined || app.installer[arch] == undefined){
-      skipped.push(k +": Registry doesn't have entry for architecture "+arch);
-    }else{
-      var reg = app.installer[arch].replace(/{{.version}}/g, app.version);
-      if(web[arch] == undefined){
-        var m = 'Could not match selector. Check update rules.';
-        broken.push(k + ' ' + arch + ': ' + m);
-        categorized = true;
-        console.log(m);
+  if(web['version'] == undefined || web['version'] == ''){
+    var m = k + ": Could not parse version number. Check update rules";
+    broken.push(m);
+    categorized = true;
+    console.log('\n'+m);
+  }else{
+    for(var arch in rules[k].updater){
+      archCount ++;
+      console.log(' ');
+      var updater = rules[k].updater[arch];
+      console.log('Updating ' + k + ' ' + arch + '... Rule type: ' + updater.rule_type);
+      if(app == undefined || app.installer[arch] == undefined){
+        skipped.push(k +": Registry doesn't have entry for architecture "+arch);
       }else{
-        web[arch] = url.resolve(rules[k].url, web[arch]);
-        console.log('Web: V' + web['version'] + ' '+ web[arch]);
-        console.log('Reg: V' + app.version + ' ' + reg);
-        if(web[arch] == reg){
-          console.log('Registry is up-to-date');
-        }
-        else if(isNotSameHost(web[arch], reg) && args['-f'] == false){
-          var m = 'Web link and registry point to different hosts';
-          skipped.push(k + ' ' + arch + ': ' + m);
+        var reg = app.installer[arch].replace(/{{.version}}/g, app.version);
+        if(web[arch] == undefined){
+          var m = 'Could not match selector. Check update rules.';
+          broken.push(k + ' ' + arch + ': ' + m);
           categorized = true;
           console.log(m);
         }else{
-          updateCount ++;
-          console.log('New version found!');
+          web[arch] = url.resolve(rules[k].url, web[arch]);
+          console.log('Web: V' + web['version'] + ' '+ web[arch]);
+          console.log('Reg: V' + app.version + ' ' + reg);
+          if(web[arch] == reg){
+            console.log('Registry is up-to-date');
+          }
+          else if(isNotSameHost(web[arch], reg) && args['-f'] == false){
+            var m = 'Web link and registry point to different hosts';
+            skipped.push(k + ' ' + arch + ': ' + m);
+            categorized = true;
+            console.log(m);
+          }else{
+            updateCount ++;
+            console.log('New version found!');
+          }
         }
       }
     }
