@@ -19,7 +19,7 @@ From the install directory:
 * `path`: Absolute path to the just-install development folder.
 * `packages`: An optional space separated list of packages to update. By default, all packages are updated.
 * `options`: A space separated list of options.
-  * `-c` : Commit: The updated registry file will be commited to Git.
+  * `-c` : Commit: If updated packages are found, a prompt will offer the possibility to commit the updated registry file to Git.
   * `-ns`: No Save: Changes to the registry file are not saved.
   * `-f` : Force: Packages that would otherwise be skipped will be processed. The following safety checks are disabled:
     * Skip if the web link and registry link don't point to the same hosts.

@@ -20,25 +20,31 @@ describe('update-rules.js', function () {
 
 describe('Testing update-rules urls', function () {
   //Need to keep the for loop separated to avoid concurrency issues
-  var fcall = function(k){
-    it(rules[k].url, function (done) {
-      pages[k] = '';
-      var load = function(res){
-        if(res.statusCode != 200){
-          throw "Status code for " + rules[k].url + " is: " + res.statusCode
+  var load = function(k, url){
+    it(url, function (done) {
+      var loadme = function(k, url, done){
+        pages[k] = '';
+        var loadres = function(res){
+          if(res.statusCode <= 308 && res.statusCode >= 300 && typeof(res.headers.location != 'undefined') && res.headers.location != ''){
+            loadme(k, res.headers.location,done);
+          }else if(res.statusCode != 200){
+            done("Status code for " + url + " is: " + res.statusCode);
+          }else{
+            res.on('data', function(d){ pages[k] += d;});
+            res.on('end', done);
+          }
+        };
+        if(url.match(/^https:/)){
+          https.get(url, loadres).on('error', done);
+        }else{
+          http.get(url, loadres).on('error', done);
         }
-        res.on('data', function(d){ pages[k] += d;});
-        res.on('end', done);
-      };
-      if(rules[k].url.match(/^https:/)){
-        https.get(rules[k].url, load).on('error', done);
-      }else{
-        http.get(rules[k].url, load).on('error', done);
       }
+      loadme(k,url,done);
     });
   };
   for(var k in rules) {
-    fcall(k);
+    load(k, rules[k].url);
   }
 });
 

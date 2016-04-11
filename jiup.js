@@ -47,7 +47,7 @@ function showHelp(){
   console.log('\npackages:');
   console.log(s+'An optional space separated list of packages to update. By default, all packages are updated.');
   console.log('\noptions:');
-  console.log(s+'-c : Commit: The updated registry file will be commited to Git.');
+  console.log(s+'-c : Commit: A prompt will allow committing the registry file to Git.');
   console.log(s+'-ns: No save: Changes to the registry file are not saved.');
   console.log(s+'-f : Force mode: Packages that would otherwise be skipped will be processed.');
 }

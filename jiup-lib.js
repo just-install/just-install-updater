@@ -4,6 +4,11 @@ const http = require('http');
 const https = require('https');
 const ch = require('cheerio');
 const url = require('url');
+const readline = require('readline');
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 //Indexes used for the different architectures in the json files
 const x86 = 'x86';
@@ -39,13 +44,13 @@ exports.init = function(path){
   setProgressTarget();
   if(appList.length){
     for(var k in appList) {
-      load(appList[k]);
+      load(appList[k], rules[appList[k]].url);
     }
   }else if(notFound.length){
     conclude();
   }else{
     for(var k in rules) {
-      load(k)
+      load(k, rules[k].url);
     };
   }
 }
@@ -78,11 +83,14 @@ function cleanAppList(){
 }
 
 //Loads the page in the update-rules for the app, and calls parse() and update() when done
-function load(k){
+function load(k, url){
   var page = '';
-  var load = function(res){
-    if(res.statusCode != 200){
-      skipped.push(k + ': Status code was ' + res.statusCode);
+  var loadres = function(res){
+    if(res.statusCode <= 308 && res.statusCode >= 300 && typeof(res.headers.location != 'undefined') && res.headers.location != ''){
+      console.log(k + " redirecting to " + res.headers.location);
+      load(k, res.headers.location);
+    }else if(res.statusCode != 200){
+      broken.push(k + ': Status code was ' + res.statusCode);
       oneDone();
     }else{
       res.on('data', (d) => {
@@ -94,9 +102,9 @@ function load(k){
     }
   };
   if(rules[k].url.match(/^https:/)){
-    https.get(rules[k].url, load).on('error', (e) => { console.error(e); });
+    https.get(url, loadres).on('error', (e) => { console.error(e); });
   }else{
-    http.get(rules[k].url, load).on('error', (e) => { console.error(e); });
+    http.get(url, loadres).on('error', (e) => { console.error(e); });
   }
 }
 
@@ -154,6 +162,9 @@ function getVersion(data, k){
         break;
     }
   }
+  if(version == ''){
+    console.log('\n'+ k + ": Could not parse version number from data: \n" + data);
+  }
   return version;
 }
 
@@ -164,10 +175,9 @@ function update(web, k){
   var archCount = 0;
   var categorized = false;
   if(web['version'] == undefined || web['version'] == ''){
-    var m = k + ": Could not parse version number. Check update rules";
+    var m = k + ": Could not parse version number. Check detailed log to see source data.";
     broken.push(m);
     categorized = true;
-    console.log('\n'+m);
   }else{
     for(var arch in rules[k].updater){
       archCount ++;
@@ -185,8 +195,8 @@ function update(web, k){
           console.log(m);
         }else{
           web[arch] = url.resolve(rules[k].url, web[arch]);
-          console.log('Web: V' + web['version'] + ' '+ web[arch]);
-          console.log('Reg: V' + app.version + ' ' + reg);
+          console.log('Web: v.' + web['version'] + ' '+ web[arch]);
+          console.log('Reg: v.' + app.version + ' ' + reg);
           if(web[arch] == reg){
             console.log('Registry is up-to-date');
           }
@@ -241,27 +251,12 @@ function oneDone(){
 //Outputs a summary and saves to disc
 function conclude(){
   var saved = false;
-  var committed = false;
   var allUpToDate = updated.length + skipped.length + broken.length == 0
 
   if(!allUpToDate && args['-ns'] == false && updated.length != 0){
     console.log('\n---- Saving changes to just-install.json ----');
     fs.writeFileSync(regPath + regFile, JSON.stringify(registry, null, '  '));
     saved = true;
-  }
-  if(!allUpToDate && args['-c'] && regPath && updated.length != 0){
-    console.log('\n---- Committing to Git ----');
-    var errFunc = function(error, stdout, stderr){
-      console.log(`stdout: ${stdout}`);
-      console.log(`stderr: ${stderr}`);
-      if (error !== null) {
-        console.log(`exec error: ${error}`);
-      }
-    }
-    const child = require('child_process');
-    var exec = child.execSync('git -C ' + regPath + ' add just-install.json', errFunc);
-    exec = child.execSync('git -C ' + regPath + ' commit -m "just-install-updater automatic commit"', errFunc);
-    committed = true;
   }
 
   console.log('\n========== SUMMARY OF OPERATIONS ==========\n');
@@ -272,9 +267,6 @@ function conclude(){
       console.log('-Changes to the registry file have been saved');
     }else if(args['-ns'] && updated.length != 0){
       console.log('-Option -ns was used, changes to the registry file have NOT been saved');
-    }
-    if(committed){
-      console.log('-The updated registry file has been committed to Git');
     }
     if(updated.length > 0){
       console.log('\nUPDATED:');
@@ -300,5 +292,49 @@ function conclude(){
     for(i in notFound){
       console.log("- " + notFound[i]);
     }
+  }
+  if(updated.length > 0){
+    console.log('\nTEST AND COMMIT TO GIT:');
+    var com = '';
+    for(i in updated){
+      com += " "+updated[i];
+    }
+    console.log("Use the following commands to test your changes before committing them to Git:");
+    console.log("\ncd "+regPath);
+    console.log("just-install -d "+com);
+  }
+  if(!allUpToDate && args['-c'] && regPath && updated.length != 0){
+    rl.question('\nWould you like to commit your changes to Git? [Y/n]: ', commit);
+  }else{
+    rl.close();
+  }
+}
+
+function commit(answer){
+  if(answer == 'Y' || answer == 'y'){
+    console.log('\n...Committing to Git...');
+    var errFunc = function(error, stdout, stderr){
+      console.log(`stdout: ${stdout}`);
+      console.log(`stderr: ${stderr}`);
+      if (error !== null) {
+        console.log(`exec error: ${error}`);
+      }
+    }
+    var m = 'Packages updated:';
+    for(i in updated){
+      m += " "+updated[i];
+    }
+
+    const child = require('child_process');
+    var exec = child.execSync('git -C ' + regPath + ' add just-install.json', errFunc);
+    exec = child.execSync('git -C ' + regPath + ' commit -m "just-install-updater automatic commit" -m "' + m +'"', errFunc);
+    console.log('All Done!')
+    rl.close();
+  }else if(answer == 'N' || answer == 'n'){
+    console.log('\nCommit skipped; you can commit manually later.');
+    rl.close();
+  }else{
+    console.log('Please answer Y or N');
+    rl.question('Would you like to commit your changes to Git? [Y/n]: ', commit);
   }
 }
