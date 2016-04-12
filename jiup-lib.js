@@ -4,6 +4,7 @@ const http = require('http');
 const https = require('https');
 const ch = require('cheerio');
 const url = require('url');
+const cv = require('compare-version');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -174,6 +175,7 @@ function update(web, k){
   var updateCount = 0;
   var archCount = 0;
   var categorized = false;
+  var versionNotNew = false;
   if(web['version'] == undefined || web['version'] == ''){
     var m = k + ": Could not parse version number. Check detailed log to see source data.";
     broken.push(m);
@@ -199,22 +201,22 @@ function update(web, k){
           console.log('Reg: v.' + app.version + ' ' + reg);
           if(web[arch] == reg){
             console.log('Registry is up-to-date');
-          }
-          else if(isNotSameHost(web[arch], reg) && args['-f'] == false){
-            var m = 'Web link and registry point to different hosts';
-            skipped.push(k + ' ' + arch + ': ' + m);
-            categorized = true;
-            console.log(m);
-          }else{
+          }else if(isVersionNewer(app.version, web['version']) || args['-f']){
             updateCount ++;
             console.log('New version found!');
+          }else{
+            versionNotNew = true;
+            console.log('New links found but version '+web['version']+' doesn\'t seem to be newer than '+app.version);
           }
         }
       }
     }
   }
   if(categorized == false){
-    if(updateCount != archCount && args['-f'] == false){
+    if(versionNotNew){
+      var m = 'New links found but version '+web['version']+' doesn\'t seem to be newer than '+app.version;
+      skipped.push(k + ': ' + m);
+    }else if(updateCount != archCount && args['-f'] == false){
       if(updateCount != 0){
         var m = 'New version was found, but not for all architectures';
         skipped.push(k + ': ' + m);
@@ -238,6 +240,19 @@ function isNotSameHost(u1, u2){
   u1 = url.parse(u1);
   u2 = url.parse(u2);
   return (u1.hostname != u2.hostname);
+}
+
+//Attempts to determine if the web version is newer than the registry version.
+//At the moment, letters are ignored.
+exports.isVersionNewer = isVersionNewer;
+function isVersionNewer(regV, webV){
+  regV = regV.split('_').join('.');
+  webV = webV.split('_').join('.');
+  if(cv(webV, regV) == 1){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 //Increments the progress counter for async operations
@@ -264,9 +279,9 @@ function conclude(){
     console.log('All the packages that were found are already up-to-date!');
   }else{
     if(saved){
-      console.log('-Changes to the registry file have been saved');
+      console.log('Changes to the registry file have been saved');
     }else if(args['-ns'] && updated.length != 0){
-      console.log('-Option -ns was used, changes to the registry file have NOT been saved');
+      console.log('Option -ns was used, changes to the registry file have NOT been saved');
     }
     if(updated.length > 0){
       console.log('\nUPDATED:');

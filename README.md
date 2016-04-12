@@ -22,7 +22,7 @@ From the install directory:
   * `-c` : Commit: If updated packages are found, a prompt will offer the possibility to commit the updated registry file to Git.
   * `-ns`: No Save: Changes to the registry file are not saved.
   * `-f` : Force: Packages that would otherwise be skipped will be processed. The following safety checks are disabled:
-    * Skip if the web link and registry link don't point to the same hosts.
+    * Skip if the web version number is not higher than the registry version number
     * Skip if new version not found for all architectures.
 
 Finally, starting the script with `-h` or `-help` will discard all other arguments and show basic help.

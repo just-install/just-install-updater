@@ -9,7 +9,6 @@ var rules = JSON.parse(fs.readFileSync('update-rules.json'));
 var pages = new Array();
 
 describe('update-rules.js', function () {
-  this.timeout(5000);
   it('validated against the JSON schema', function () {
     var v = new Validator();
     var schema = JSON.parse(fs.readFileSync('update-rules-schema.json'));
@@ -19,6 +18,7 @@ describe('update-rules.js', function () {
 });
 
 describe('Testing update-rules urls', function () {
+  this.timeout(5000);
   //Need to keep the for loop separated to avoid concurrency issues
   var load = function(k, url){
     it(url, function (done) {
@@ -73,9 +73,37 @@ describe('Testing parsing rules and selectors', function () {
 
 
 
-describe('Testing some juip.js functions...', function () {
+describe('Testing wrapper functions...', function () {
     it('isNotSameHost()', function () {
       assert(jiup.isNotSameHost('http://a/7z1514.msi', 'http://dl.7-zip.org/7z1514.msi'), 'At isNotSameHost() Test #1');
       assert(!jiup.isNotSameHost('https://nodejs.org/dist/v5.9.1/node-v5.9.1-x64.msi', 'https://nodejs.org/dist/v5.10.0/node-v5.10.0-x64.msi'), 'At isNotSameHost() Test #2');
+    });
+    it('isVersionNewer()', function () {
+      var count = function(){
+        if (count.c == undefined){
+          count.c = 0;
+        }
+        count.c ++;
+        return count.c;
+      }
+      //underscores
+      assert(jiup.isVersionNewer('2_02_3','2_22_3'), 'At isVersionNewer() Test #'+count());
+
+      //Letters are ignored for now
+      assert(jiup.isVersionNewer('0.2.4c.1', '0.2.4.2a'), 'At isVersionNewer() Test #'+count());
+      assert(jiup.isVersionNewer('0.2.4.1a', '0.2.4.10'), 'At isVersionNewer() Test #'+count());
+
+      //Trailing zeros
+      assert(jiup.isVersionNewer('2.2.4','2.2.30'), 'At isVersionNewer() Test #'+count());
+      assert(jiup.isVersionNewer('5.9.1','5.10.1'), 'At isVersionNewer() Test #'+count());
+
+      //Leading zeros5.10.1
+      assert(jiup.isVersionNewer('0.002.4.1', '0.2.4.2'), 'At isVersionNewer() Test #'+count());
+      assert(jiup.isVersionNewer('0.002.4.1', '0.22.4.1'), 'At isVersionNewer() Test #'+count());
+      assert(jiup.isVersionNewer('0.0.2.4.1', '0.2.4.2'), 'At isVersionNewer() Test #'+count());
+
+      //Compatc numbers
+      assert(jiup.isVersionNewer('55322', '55342'), 'At isVersionNewer() Test #'+count());
+
     });
 });
