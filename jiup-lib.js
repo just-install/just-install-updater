@@ -288,6 +288,8 @@ function conclude(){
       for(i in updated){
         console.log("- " + updated[i]);
       }
+    }else{
+      console.log('No updated packages were found!');
     }
     if(skipped.length > 0){
       console.log('\nSKIPPED:  ==>  To force update, call script with "-f" argument');
