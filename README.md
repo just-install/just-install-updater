@@ -5,7 +5,7 @@ registry links to the latest releases
 
 ### Installation
 
-Make sure you have the latest NodeJS version installed on your system. Download the just-install-updater from Github, and `npm install` from the directory where the files are located.
+Make sure you have the latest NodeJS version installed on your system. Download just-install-updater from Github, and `npm install` from the directory where the files are located.
 
 ### Usage
 
