@@ -205,11 +205,11 @@
     }
   },
   "mumble": {
-    "url": "http://www.mumble.com/mumble-download.php",
+    "url": "https://github.com/mumble-voip/mumble/releases/latest",
     "updater": {
       "x86":{
         "rule_type": "css-link",
-        "selector": "a.btn:nth-child(4)"
+        "selector": "[href$='.msi']"
       }
     },
     "versioner": {
@@ -274,19 +274,6 @@
     "versioner": {
       "rule_type": "from-link",
       "extractor": "pycharm-community-([0-9]*(?:\\.[0-9]*)*)\\.exe$"
-    }
-  },
-  "qbittorrent": {
-    "url": "http://www.oldfoss.com/qBittorrent.html",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='.exe']"
-      }
-    },
-    "versioner": {
-      "rule_type": "from-link",
-      "extractor": "qbittorrent_([0-9]*(?:\\.[0-9]*)*)_setup\\.exe$"
     }
   },
   "sourcetree": {
