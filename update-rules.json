@@ -306,6 +306,32 @@
       "extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
     }
   },
+  "virtualbox": {
+    "url": "https://www.virtualbox.org/wiki/Downloads",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "[href$='.exe']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "VirtualBox-([0-9]*(?:\\.[0-9]*)*).*-Win\\.exe$"
+    }
+  },
+  "virtualbox-extpack": {
+    "url": "https://www.virtualbox.org/wiki/Downloads",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "li > a[href$='.vbox-extpack']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "VirtualBox_Extension_Pack-([0-9]*(?:\\.[0-9]*)*)-.*\\.vbox-extpack$"
+    }
+  },
   "vlc": {
     "url": "https://www.videolan.org/vlc/download-windows.html",
     "updater": {
