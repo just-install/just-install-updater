@@ -41,17 +41,16 @@
     }
   },
   "clementine-player": {
-    "url": "https://www.clementine-player.org/",
+    "url": "https://github.com/clementine-player/Clementine/releases/latest",
     "updater": {
       "x86":{
-        "rule_type": "css-html-version",
-        "selector": "#download-version",
-        "baselink": "https://github.com/clementine-player/Clementine/releases/download/{{.version}}/ClementineSetup-{{.version}}.exe"
+        "rule_type": "css-link",
+        "selector": "a[href*='ClementineSetup']"
       }
     },
     "versioner": {
-      "rule_type": "from-data",
-      "extractor": "^([0-9]*(?:\\.[0-9]*)*)$"
+      "rule_type": "from-link",
+      "extractor": "ClementineSetup-([0-9]*(?:\\.[0-9]*)*)\\.exe$"
     }
   },
   "cmake": {
