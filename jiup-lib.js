@@ -122,7 +122,14 @@ function parse(page, k){
     var updater = rules[k].updater[arch];
     switch(updater.rule_type){
       case "css-link":
-        web[arch] = decodeURI($(updater.selector).attr('href'));
+        var highVersion = '0';
+        $(updater.selector).each(function (i, elem) {
+          var thisVersion = getVersion(decodeURI($(this).attr('href')), k);
+          if(thisVersion != undefined && isVersionNewer(highVersion, thisVersion)){
+            highVersion = thisVersion;
+            web[arch] = decodeURI($(this).attr('href'));
+          }
+        });
         break;
       case "css-html-version":
         web['version'] = getVersion($(updater.selector).html(), k);
@@ -216,8 +223,8 @@ function update(web, k){
     if(versionNotNew){
       var m = 'New links found but version '+web['version']+' doesn\'t seem to be newer than '+app.version;
       skipped.push(k + ': ' + m);
-    }else if(updateCount != archCount && args['-f'] == false){
-      if(updateCount != 0){
+    }else if(updateCount != archCount){
+      if(updateCount != 0 && args['-f'] == false){
         var m = 'New version was found, but not for all architectures';
         skipped.push(k + ': ' + m);
         console.log(m);
