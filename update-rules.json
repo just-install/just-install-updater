@@ -29,6 +29,7 @@
   },
   "ccleaner": {
     "url": "https://www.piriform.com/ccleaner/download/standard",
+    "forceHTTPS": true,
     "updater": {
       "x86":{
         "rule_type": "css-link",
@@ -81,6 +82,7 @@
   },
   "defraggler": {
     "url": "https://www.piriform.com/defraggler/download/standard",
+    "forceHTTPS": true,
     "updater": {
       "x86":{
         "rule_type": "css-link",
@@ -185,22 +187,21 @@
     }
   },
   "mercurial": {
-    "url": "https://www.mercurial-scm.org/wiki/",
+    "url": "https://www.mercurial-scm.org/sources.js",
+    "forceHTTPS": true,
     "updater": {
       "x86":{
-        "rule_type": "css-html-version",
-        "selector": "#Mercurial\\.2FNewsItems\\.content > ul:nth-child(8) > li:nth-child(1)",
-        "baselink": "https://mercurial.selenic.com/release/windows/mercurial-{{.version}}-x86.msi"
+        "rule_type": "data-link",
+        "filter": "http.*windows/mercurial-.*-x86\\.msi"
       },
       "x86_64":{
-        "rule_type": "css-html-version",
-        "selector": "#Mercurial\\.2FNewsItems\\.content > ul:nth-child(8) > li:nth-child(1)",
-        "baselink": "https://mercurial.selenic.com/release/windows/mercurial-{{.version}}-x64.msi"
+        "rule_type": "data-link",
+        "filter": "http.*windows/mercurial-.*-x64\\.msi"
       }
     },
     "versioner": {
-      "rule_type": "from-data",
-      "extractor": "([0-9]*(?:\\.[0-9]*)*) released!"
+      "rule_type": "from-link",
+      "extractor": "mercurial-([0-9]*(?:\\.[0-9]*)*)-[a-z0-9]{3}\\.msi$"
     }
   },
   "mumble": {
