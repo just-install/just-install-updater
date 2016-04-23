@@ -6,6 +6,7 @@
       "title": "rule",
       "properties": {
         "url": {"type": "string"},
+        "forceHTTPS": {"type": "boolean"},
         "updater": {
           "properties": {
             "x86": {

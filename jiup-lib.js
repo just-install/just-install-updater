@@ -124,10 +124,31 @@ function parse(page, k){
       case "css-link":
         var highVersion = '0';
         $(updater.selector).each(function (i, elem) {
-          var thisVersion = getVersion(decodeURI($(this).attr('href')), k);
+          var filter_pass = true;
+          var link = decodeURI($(this).attr('href'));
+          if(updater.filter != undefined){
+            var re = new RegExp(updater.filter);
+            filter_pass = re.test(link);
+          }
+          if(filter_pass){
+            var thisVersion = getVersion(link, k);
+            if(thisVersion != undefined && isVersionNewer(highVersion, thisVersion)){
+              highVersion = thisVersion;
+              web[arch] = link;
+            }
+          }
+        });
+        break;
+      case "data-link":
+        var highVersion = '0';
+        var re = new RegExp(updater.filter, 'g');
+        results = page.match(re);
+        results.forEach(function(link){
+          var link = decodeURI(link);
+          var thisVersion = getVersion(link, k);
           if(thisVersion != undefined && isVersionNewer(highVersion, thisVersion)){
             highVersion = thisVersion;
-            web[arch] = decodeURI($(this).attr('href'));
+            web[arch] = link;
           }
         });
         break;
@@ -138,6 +159,9 @@ function parse(page, k){
       case "advanced":
         var advanced = require("./advanced_rules/" + k + ".js");
         web[arch] = decodeURI(advanced.get_link(page, arch));
+    }
+    if(rules[k].forceHTTPS != undefined && rules[k].forceHTTPS){
+      web[arch] = web[arch].replace('http:', 'https:');
     }
   }
   if(rules[k].versioner.rule_type == "from-link"){

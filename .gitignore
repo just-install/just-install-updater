@@ -1,6 +1,9 @@
 #local test registry
 just-install.json
 
+#local batch files
+*.bat
+
 
 ###### Nodejs standard ignore ######
 # Logs
