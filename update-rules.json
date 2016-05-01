@@ -27,6 +27,19 @@
       "extractor": "7z([0-9]{2})([0-9]{2}).{0,4}\\.msi$"
     }
   },
+  "brackets": {
+    "url": "https://github.com/adobe/brackets/releases",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='.msi']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "Brackets\\.Release\\.([0-9]*(?:\\.[0-9]*)*[a-z]?)\\.msi$"
+    }
+  },
   "ccleaner": {
     "url": "https://www.piriform.com/ccleaner/download/standard",
     "forceHTTPS": true,
@@ -78,6 +91,25 @@
     "versioner": {
       "rule_type": "from-link",
       "extractor": "download/v([0-9]*(?:\\.[0-9]*)*[a-z]?)/ConEmuSetup.*\\.exe$"
+    }
+  },
+  "crashplan": {
+    "url": "https://www.crashplan.com/shared/js/cp.download.js",
+    "updater": {
+      "x86":{
+        "rule_type": "regexp-version",
+        "filter": "CPC_CLIENT_VERSION = '[0-9]*(?:\\.[0-9]*)*[a-z]?';",
+        "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan_{{.version}}_Win.exe"
+      },
+      "x86_64":{
+        "rule_type": "regexp-version",
+        "filter": "CPC_CLIENT_VERSION = '[0-9]*(?:\\.[0-9]*)*[a-z]?';",
+        "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan-x64_{{.version}}_Win.exe"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-data",
+      "extractor": "'([0-9]*(?:\\.[0-9]*)*[a-z]?)';"
     }
   },
   "defraggler": {
@@ -191,11 +223,11 @@
     "forceHTTPS": true,
     "updater": {
       "x86":{
-        "rule_type": "data-link",
+        "rule_type": "regexp-link",
         "filter": "http.*windows/mercurial-.*-x86\\.msi"
       },
       "x86_64":{
-        "rule_type": "data-link",
+        "rule_type": "regexp-link",
         "filter": "http.*windows/mercurial-.*-x64\\.msi"
       }
     },
@@ -218,7 +250,7 @@
     }
   },
   "node": {
-    "url": "https://nodejs.org/en/download/stable/",
+    "url": "https://nodejs.org/en/download/current/",
     "updater": {
       "x86":{
         "rule_type": "css-link",
@@ -274,6 +306,20 @@
     "versioner": {
       "rule_type": "from-link",
       "extractor": "pycharm-community-([0-9]*(?:\\.[0-9]*)*)\\.exe$"
+    }
+  },
+  "qbittorrent": {
+    "url": "http://www.qbittorrent.org/download.php",
+    "updater": {
+      "x86":{
+        "rule_type": "css-html-version",
+        "selector": "[href$='qBittorrent.html']",
+        "baselink": "http://iweb.dl.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-data",
+      "extractor": "qBittorrent v([0-9]*(?:\\.[0-9]*)*) installer"
     }
   },
   "sourcetree": {
