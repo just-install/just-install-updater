@@ -24,5 +24,6 @@ From the install directory:
   * `-f` : Force: Packages that would otherwise be skipped will be processed. The following safety checks are disabled:
     * Skip if the web version number is not higher than the registry version number
     * Skip if new version not found for all architectures.
+* `-v` : Verbose: Outputs additional info, best used for debugging a single package.
 
 Finally, starting the script with `-h` or `-help` will discard all other arguments and show basic help.

@@ -31,6 +31,7 @@ exports.args = args;
 args['-c'] = false;
 args['-f'] = false;
 args['-ns'] = false;
+args['-v'] = false;
 
 //JSON data files and their paths
 var registry = '';
@@ -44,14 +45,14 @@ exports.init = function(path){
   registry = JSON.parse(fs.readFileSync(regPath + regFile));
   setProgressTarget();
   if(appList.length){
-    for(var k in appList) {
-      load(appList[k], rules[appList[k]].url);
+    for(var app in appList) {
+      run(appList[app]);
     }
   }else if(notFound.length){
     conclude();
   }else{
-    for(var k in rules) {
-      load(k, rules[k].url);
+    for(var app in rules) {
+      run(app);
     };
   }
 }
@@ -71,11 +72,11 @@ function setProgressTarget(){
 function cleanAppList(){
   if(cleanAppList.done == undefined || cleanAppList.done == false){
     var tmpList = new Array();
-    for(var k in appList) {
-      if(rules[appList[k]] != undefined){
-        tmpList.push(appList[k]);
+    for(var app in appList) {
+      if(rules[appList[app]] != undefined){
+        tmpList.push(appList[app]);
       }else{
-        notFound.push(appList[k]);
+        notFound.push(appList[app]);
       }
     }
     appList = tmpList;
@@ -84,29 +85,37 @@ function cleanAppList(){
 }
 
 //Loads the page in the update-rules for the app, and calls parse() and update() when done
-function load(k, url){
+function load(app, url){
   var page = '';
   var loadres = function(res){
     if(res.statusCode <= 308 && res.statusCode >= 300 && typeof(res.headers.location != 'undefined') && res.headers.location != ''){
-      console.log(k + " redirecting to " + res.headers.location);
-      load(k, res.headers.location);
+      console.log(app + " redirecting to " + res.headers.location);
+      load(app, res.headers.location);
     }else if(res.statusCode != 200){
-      broken.push(k + ': Status code was ' + res.statusCode);
+      broken.push(app + ': Status code was ' + res.statusCode);
       oneDone();
     }else{
       res.on('data', (d) => {
         page += d;
       });
       res.on('end', (e) => {
-        update(parse(page, k), k);
+        loaded(app, page);
       });
     }
   };
-  if(rules[k].url.match(/^https:/)){
+  if(url.match(/^https:/)){
     https.get(url, loadres).on('error', (e) => { console.error(e); });
   }else{
     http.get(url, loadres).on('error', (e) => { console.error(e); });
   }
+}
+
+function run(app){
+  load(app, rules[app].url);
+}
+
+function loaded(app, page){
+  update(parse(page, app), app);
 }
 
 /**
@@ -195,7 +204,7 @@ function getVersion(data, k){
     }
   }
   if(version == ''){
-    console.log('\n'+ k + ": Could not parse version number from data: \n" + data);
+    verbose('\n' + k + ": getVersion() could not parse version number from data: \n" + data);
   }
   return version;
 }
@@ -384,5 +393,11 @@ function commit(answer){
   }else{
     console.log('Please answer Y or N');
     rl.question('Would you like to commit your changes to Git? [Y/n]: ', commit);
+  }
+}
+
+function verbose(msg){
+  if(args['-v']){
+    console.log(msg);
   }
 }
