@@ -8,6 +8,14 @@ const jiup = require('./jiup-lib.js');
 var rules = JSON.parse(fs.readFileSync('update-rules.json'));
 var pages = new Array();
 
+for(var app in rules){
+  if(rules[app].url != undefined){
+    for(var arch in rules[app].updater){
+      rules[app].updater[arch].url = rules[app].url;
+    }
+  }
+}
+
 describe('update-rules.js', function () {
   it('validated against the JSON schema', function () {
     var v = new Validator();
@@ -22,15 +30,17 @@ describe('Testing update-rules urls', function () {
   //Need to keep the for loop separated to avoid concurrency issues
   var load = function(k, url){
     it(url, function (done) {
-      var loadme = function(k, url, done){
-        pages[k] = '';
+      var loadme = function(k, url, done, storageIndex){
+        if(storageIndex == undefined){
+          var storageIndex = url;
+        }
         var loadres = function(res){
           if(res.statusCode <= 308 && res.statusCode >= 300 && typeof(res.headers.location != 'undefined') && res.headers.location != ''){
-            loadme(k, res.headers.location,done);
+            loadme(k, res.headers.location, done, storageIndex);
           }else if(res.statusCode != 200){
             done("Status code for " + url + " is: " + res.statusCode);
           }else{
-            res.on('data', function(d){ pages[k] += d;});
+            res.on('data', function(d){ pages[storageIndex] += d;});
             res.on('end', done);
           }
         };
@@ -43,30 +53,35 @@ describe('Testing update-rules urls', function () {
       loadme(k,url,done);
     });
   };
-  for(var k in rules) {
-    load(k, rules[k].url);
+  for(var app in rules) {
+    for(var arch in rules[app].updater){
+      if(pages[rules[app].updater[arch].url] == undefined){
+        pages[rules[app].updater[arch].url] = '';
+        load(app, rules[app].updater[arch].url);
+      }
+    }
   }
 });
 
 describe('Testing parsing rules and selectors', function () {
   //Need to keep the for loop separated to avoid concurrency issues
-  var fcall = function(k) {
-    it(k + ' download links extraction', function (){
-      var web = jiup.parse(pages[k], k); //Need to keep this inside the it() block to avoid concurrency issues
-      for(var arch in rules[k].updater){
-        //console.log(web[arch]);
-        assert.notEqual(web[arch], undefined, k + ' ' + arch + ' download link is undefined');
-        assert.notEqual(web[arch], '', k + ' ' + arch + ' download link is empty');
-      }
+  var fcall = function(app, arch) {
+    it(app + ' ' + arch + ' download links extraction', function (){
+      var web = jiup.parse(pages[rules[app].updater[arch].url], app, arch); //Need to keep this inside the it() block to avoid concurrency issues
+      //console.log(web[arch]);
+      assert.notEqual(web[arch], undefined, app + ' ' + arch + ' download link is undefined');
+      assert.notEqual(web[arch], '', app + ' ' + arch + ' download link is empty');
     });
-    it(k + ' version number extraction', function (){
-      var web = jiup.parse(pages[k], k); //Need to keep this inside the it() block to avoid concurrency issues
-      assert.notEqual(web['version'], undefined, k + ' version is undefined');
-      assert.notEqual(web['version'], '', k + ' version is empty');
+    it(app + ' ' + arch +' version number extraction', function (){
+      var web = jiup.parse(pages[rules[app].updater[arch].url], app, arch); //Need to keep this inside the it() block to avoid concurrency issues
+      assert.notEqual(web['version'], undefined, app + ' version is undefined');
+      assert.notEqual(web['version'], '', app + ' version is empty');
     });
   }
-  for(var k in rules) {
-    fcall(k);
+  for(var app in rules) {
+    for(var arch in rules[app].updater){
+      fcall(app, arch);
+    }
   }
 });
 

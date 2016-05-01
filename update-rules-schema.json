@@ -11,15 +11,21 @@
           "properties": {
             "x86": {
               "properties": {
+                "url": {"type": "string"},
                 "rule_type": {"type": "string"},
-                "selector": {"type": "string"}
+                "selector": {"type": "string"},
+                "baselink": {"type": "string"},
+                "filter": {"type": "string"}
               },
               "required": ["rule_type"]
             },
             "x86_64": {
               "properties": {
+                "url": {"type": "string"},
                 "rule_type": {"type": "string"},
-                "selector": {"type": "string"}
+                "selector": {"type": "string"},
+                "baselink": {"type": "string"},
+                "filter": {"type": "string"}
               },
               "required": ["rule_type"]
             }
@@ -33,7 +39,7 @@
           }
         }
       },
-      "required": ["url", "updater", "versioner"]
+      "required": ["updater", "versioner"]
     }
   }
 }
