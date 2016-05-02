@@ -112,6 +112,18 @@
       "extractor": "'([0-9]*(?:\\.[0-9]*)*[a-z]?)';"
     }
   },
+  "crystaldisk-info": {
+    "url": "https://osdn.jp/projects/crystaldiskinfo/releases/",
+    "updater": {
+      "x86":{
+        "rule_type": "advanced"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
+    }
+  },
   "defraggler": {
     "url": "https://www.piriform.com/defraggler/download/standard",
     "forceHTTPS": true,
@@ -197,6 +209,19 @@
     "versioner": {
       "rule_type": "from-link",
       "extractor": "inkscape-([0-9]*(?:\\.[0-9]*)*).{0,4}\\.msi$"
+    }
+  },
+  "innosetup": {
+    "url": "http://files.jrsoftware.org/is/5/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='-unicode.exe']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "-([0-9]*(?:\\.[0-9]*)*[a-z]?)-unicode\\.exe$"
     }
   },
   "libreoffice": {
