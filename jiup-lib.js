@@ -4,7 +4,7 @@ const http = require('http');
 const https = require('https');
 const ch = require('cheerio');
 const url = require('url');
-const cv = require('compare-version');
+const helpers = require('./helpers');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -186,7 +186,7 @@ function parse(page, app, arch){
         }
         if(filter_pass){
           var thisVersion = getVersion(link, app);
-          if(thisVersion != undefined && isVersionNewer(highVersion, thisVersion)){
+          if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
             highVersion = thisVersion;
             web[arch] = link;
           }
@@ -200,7 +200,7 @@ function parse(page, app, arch){
       results.forEach(function(link){
         var link = decodeURI(link);
         var thisVersion = getVersion(link, app);
-        if(thisVersion != undefined && isVersionNewer(highVersion, thisVersion)){
+        if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
           highVersion = thisVersion;
           web[arch] = link;
         }
@@ -216,7 +216,7 @@ function parse(page, app, arch){
       verbose('Found ' + results.length + ' regexp matches', app, arch);
       results.forEach(function(match){
         var thisVersion = getVersion(match, app);
-        if(thisVersion != undefined && isVersionNewer(highVersion, thisVersion)){
+        if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
           highVersion = thisVersion;
         }
       });
@@ -299,7 +299,7 @@ function update(web, k){
           console.log('Reg: v.' + app.version + ' ' + reg);
           if(web[arch] == reg){
             console.log('Registry is up-to-date');
-          }else if(isVersionNewer(app.version, web['version']) || args['-f']){
+          }else if(helpers.isVersionNewer(app.version, web['version']) || args['-f']){
             updateCount ++;
             console.log('New version found!');
           }else{
@@ -330,27 +330,6 @@ function update(web, k){
     }
   }
   oneDone();
-}
-
-//Checks if two URLs have the same host
-exports.isNotSameHost = isNotSameHost;
-function isNotSameHost(u1, u2){
-  u1 = url.parse(u1);
-  u2 = url.parse(u2);
-  return (u1.hostname != u2.hostname);
-}
-
-//Attempts to determine if the web version is newer than the registry version.
-//At the moment, letters are ignored.
-exports.isVersionNewer = isVersionNewer;
-function isVersionNewer(regV, webV){
-  regV = regV.split('_').join('.');
-  webV = webV.split('_').join('.');
-  if(cv(webV, regV) == 1){
-    return true;
-  }else{
-    return false;
-  }
 }
 
 //Increments the progress counter for async operations
