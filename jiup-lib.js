@@ -196,15 +196,19 @@ function parse(page, app, arch){
     case "regexp-link":
       var re = new RegExp(updater.filter, 'g');
       results = page.match(re);
-      verbose('Found ' + results.length + ' regexp matches', app, arch);
-      results.forEach(function(link){
-        var link = decodeURI(link);
-        var thisVersion = getVersion(link, app);
-        if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
-          highVersion = thisVersion;
-          web[arch] = link;
-        }
-      });
+      if(results == null){
+        verbose('No regexp matches found', app, arch);
+      }else{
+        verbose('Found ' + results.length + ' regexp matches', app, arch);
+        results.forEach(function(link){
+          var link = decodeURI(link);
+          var thisVersion = getVersion(link, app);
+          if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
+            highVersion = thisVersion;
+            web[arch] = link;
+          }
+        });
+      }
       break;
     case "css-html-version":
       web['version'] = getVersion($(updater.selector).html(), app);
@@ -213,15 +217,19 @@ function parse(page, app, arch){
     case "regexp-version":
       var re = new RegExp(updater.filter, 'g');
       results = page.match(re);
-      verbose('Found ' + results.length + ' regexp matches', app, arch);
-      results.forEach(function(match){
-        var thisVersion = getVersion(match, app);
-        if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
-          highVersion = thisVersion;
-        }
-      });
-      web['version'] = highVersion;
-      web[arch] = updater.baselink.replace(/{{.version}}/g, web['version']);
+      if(results == null){
+        verbose('No regexp matches found', app, arch);
+      }else{
+        verbose('Found ' + results.length + ' regexp matches', app, arch);
+        results.forEach(function(match){
+          var thisVersion = getVersion(match, app);
+          if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
+            highVersion = thisVersion;
+          }
+        });
+        web['version'] = highVersion;
+        web[arch] = updater.baselink.replace(/{{.version}}/g, web['version']);
+      }
       break;
     case "advanced":
       var advanced = require("./advanced_rules/" + app + ".js");
@@ -264,7 +272,7 @@ function getVersion(data, k){
   if(version == ''){
     verbose("getVersion() could not parse version number from data: " + data, k);
   }
-  return version;
+  return version.replace(/_/g, '.');
 }
 
 //Analyses the results from parse() and updates the registry if necessary
