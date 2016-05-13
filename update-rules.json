@@ -377,6 +377,23 @@
       "extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
     }
   },
+  "syncthing": {
+    "url": "https://github.com/syncthing/syncthing/releases/latest",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "[href*='syncthing-windows-386']"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "[href*='syncthing-windows-amd64']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "-v([0-9]*(?:\\.[0-9]*)*[a-z]?)\\.zip$"
+    }
+  },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
     "updater": {
