@@ -99,12 +99,12 @@
       "x86":{
         "rule_type": "regexp-version",
         "filter": "CPC_CLIENT_VERSION = '[0-9]*(?:\\.[0-9]*)*[a-z]?';",
-        "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan_{{.version}}_Win.exe"
+        "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan_{{.version}}_Win.msi"
       },
       "x86_64":{
         "rule_type": "regexp-version",
         "filter": "CPC_CLIENT_VERSION = '[0-9]*(?:\\.[0-9]*)*[a-z]?';",
-        "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan-x64_{{.version}}_Win.exe"
+        "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan_{{.version}}_Win64.msi"
       }
     },
     "versioner": {
