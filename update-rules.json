@@ -339,7 +339,7 @@
       "x86":{
         "rule_type": "css-html-version",
         "selector": "[href$='qBittorrent.html']",
-        "baselink": "http://iweb.dl.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
+        "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
       }
     },
     "versioner": {
