@@ -46,6 +46,7 @@ exports.init = function(path){
   regPath = path;
   registry = JSON.parse(fs.readFileSync(regPath + regFile));
   setArchSettings();
+  cleanAppList();
   process.stdout.write(`\nFetching data`);
   progTimer = setInterval(function(){ process.stdout.write(`.`);}, 250);
   if(appList.length){
@@ -53,6 +54,7 @@ exports.init = function(path){
       loadPages(appList[app]);
     }
   }else if(notFound.length){
+    clearInterval(progTimer);
     conclude();
   }else{
     for(var app in rules) {
