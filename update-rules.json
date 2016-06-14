@@ -72,7 +72,11 @@
     "updater": {
       "x86":{
         "rule_type": "css-link",
-        "selector": ".et_pb_text_5 > table:nth-child(6) > tbody:nth-child(1) > tr:nth-child(2) > td:nth-child(2) > a:nth-child(1)"
+        "selector": "a[href$='-win32-x86.msi']"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='-win64-x64.msi']"
       }
     },
     "versioner": {
