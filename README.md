@@ -11,7 +11,9 @@ Make sure you have the latest NodeJS version installed on your system. Download 
 
 From the install directory:
 
-```node jiup path [options] [packages]```
+```
+node jiup path [options] [packages]
+```
 
 
 ##### arguments
@@ -27,3 +29,6 @@ From the install directory:
 * `-v` : Verbose: Outputs additional info, best used for debugging a single package.
 
 Finally, starting the script with `-h` or `-help` will discard all other arguments and show basic help.
+
+### Contributing
+If you wish to contribute, please read the [documentation on the wiki](https://github.com/guiweber/just-install-updater/wiki)
