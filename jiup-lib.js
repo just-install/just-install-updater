@@ -34,6 +34,7 @@ args['-c'] = false;
 args['-f'] = false;
 args['-ns'] = false;
 args['-v'] = false;
+args['-todo'] = false;
 
 //JSON data files and their paths
 var registry = '';
@@ -45,21 +46,25 @@ var regFile = 'just-install.json';
 exports.init = function(path){
   regPath = path;
   registry = JSON.parse(fs.readFileSync(regPath + regFile));
-  setArchSettings();
-  cleanAppList();
-  process.stdout.write(`\nFetching data`);
-  progTimer = setInterval(function(){ process.stdout.write(`.`);}, 250);
-  if(appList.length){
-    for(var app in appList) {
-      loadPages(appList[app]);
-    }
-  }else if(notFound.length){
-    clearInterval(progTimer);
-    conclude();
+  if(args['-todo']){
+    showTodo();
   }else{
-    for(var app in rules) {
-      loadPages(app);
-    };
+    setArchSettings();
+    cleanAppList();
+    process.stdout.write(`\nFetching data`);
+    progTimer = setInterval(function(){ process.stdout.write(`.`);}, 250);
+    if(appList.length){
+      for(var app in appList) {
+        loadPages(appList[app]);
+      }
+    }else if(notFound.length){
+      clearInterval(progTimer);
+      conclude();
+    }else{
+      for(var app in rules) {
+        loadPages(app);
+      };
+    }
   }
 }
 
@@ -72,6 +77,23 @@ function setArchSettings(){
       }
     }
   }
+}
+
+//Shows which apps in just-install are still not covered by the updater
+function showTodo(){
+  var c = 0
+  console.log('');
+  for(var app in registry.packages){
+    if(registry.packages[app].version != 'latest'){
+      c ++;
+      if(rules[app] == undefined){
+        console.log(app);
+      }
+    }
+  }
+  console.log('=======================');
+  console.log(Math.round(Object.keys(rules).length*100/c)+'% coverage');
+  rl.close();
 }
 
 //Removes packages that do not exist from the package list received in argument

@@ -24,11 +24,13 @@ node jiup path [options] [packages]
   * `-c` : Commit: If updated packages are found, a prompt will offer the possibility to commit the updated registry file to Git.
   * `-ns`: No Save: Changes to the registry file are not saved.
   * `-f` : Force: Packages that would otherwise be skipped will be processed. The following safety checks are disabled:
-    * Skip if the web version number is not higher than the registry version number
+    * Skip if the web version number is not higher than the registry version number.
     * Skip if new version not found for all architectures.
-* `-v` : Verbose: Outputs additional info, best used for debugging a single package.
+  * `-v` : Verbose: Outputs additional info, best used for debugging a single package.
 
-Finally, starting the script with `-h` or `-help` will discard all other arguments and show basic help.
+Finally, starting the script with the following commands will perform a special task
+ * `-h` or `-help` displays basic help.
+ * `-todo` displays the just-install entries for which no update rules exist.
 
 ### Contributing
 If you wish to contribute, please read the [documentation on the wiki](https://github.com/guiweber/just-install-updater/wiki)

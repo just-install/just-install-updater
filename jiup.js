@@ -50,4 +50,6 @@ function showHelp(){
   console.log(s+'-c : Commit: A prompt will allow committing the registry file to Git.');
   console.log(s+'-ns: No save: Changes to the registry file are not saved.');
   console.log(s+'-f : Force mode: Packages that would otherwise be skipped will be processed.');
+  console.log(s+'-v : Verbose: Outputs additional info, best used for debugging a single package.');
+  console.log(s+'-todo : Displays the just-install entries for which no update rules exist.');
 }
