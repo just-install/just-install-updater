@@ -1,9 +1,9 @@
 {
 "name": "just-install-updater",
-"version": "0.0.0",
+"version": "1.0.0",
 "main": "jiup.js",
 "engine": {
-	"node": ">= 5.10.0",
+	"node": ">= 6.1.0",
     "npm": ">= 3.0"
 	},
 "license": "GPL-3.0",
