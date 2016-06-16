@@ -1,4 +1,5 @@
-// Unable to get the 7 zip link with regular CSS selector for unknown reasons...
+// Crystaldisk uses a redirect system from which I haven't been able to get a working link.
+// Easier to just get the build ID and version and plug them in a known URL
 const cheerio = require("cheerio");
 const helpers = require('../helpers');
 
