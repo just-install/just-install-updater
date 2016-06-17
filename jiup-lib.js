@@ -316,10 +316,19 @@ function update(web, k){
       console.log(' ');
       var updater = rules[k].updater[arch];
       console.log('Updating ' + k + ' ' + arch);
-      if(app == undefined || app.installer[arch] == undefined){
+      if(app == undefined){
+        var m = "App is not present in registry file";
+        console.log(m);
+        broken.push(k + ' ' + arch + ': ' + m);
+        categorized = true;
+      }else if(app.installer[arch] == undefined && args["-f"] == false){
         skipped.push(k +": Registry doesn't have entry for architecture "+arch);
       }else{
-        var reg = app.installer[arch].replace(/{{.version}}/g, app.version);
+        if(app.installer[arch] == undefined){
+          var reg = '';
+        }else{
+          var reg = app.installer[arch].replace(/{{.version}}/g, app.version);
+        }
         if(web[arch] == undefined){
           var m = 'Could not get link. Run with verbose (-v) to see what went wrong.';
           broken.push(k + ' ' + arch + ': ' + m);
