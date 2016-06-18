@@ -113,11 +113,16 @@ function cleanAppList(){
 }
 
 //Loads the page in the update-rules for the app, and calls parse() and update() when done
-function load(app, url, storageIndex){
+function load(app, appUrl, storageIndex){
   if(storageIndex == undefined){
-    var storageIndex = url;
+    var storageIndex = appUrl;
   }
   var page = '';
+  var options = url.parse(appUrl);
+  /*options.headers = {
+    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
+  };*/
+
   var loadres = function(res){
     if(res.statusCode <= 308 && res.statusCode >= 300 && typeof(res.headers.location != 'undefined') && res.headers.location != ''){
       verbose("redirecting to " + res.headers.location, app);
@@ -135,10 +140,10 @@ function load(app, url, storageIndex){
       });
     }
   };
-  if(url.match(/^https:/)){
-    https.get(url, loadres).on('error', (e) => { console.error(e); });
+  if(appUrl.match(/^https:/)){
+    https.get(options, loadres).on('error', (e) => { console.error(e); oneDone(); });
   }else{
-    http.get(url, loadres).on('error', (e) => { console.error(e); });
+    http.get(options, loadres).on('error', (e) => { console.error(e); oneDone(); });
   }
 }
 
