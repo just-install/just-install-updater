@@ -208,7 +208,11 @@ function parse(page, app, arch){
       verbose('Found ' + $(updater.selector).get().length + ' CSS selector matches', app, arch);
       $(updater.selector).each(function (i, elem) {
         var filter_pass = true;
-        var link = decodeURI($(this).attr('href'));
+        if(updater.link_attribute == undefined){
+          var link = decodeURI($(this).attr('href'));
+        }else{
+          var link = decodeURI($(this).attr(updater.link_attribute));
+        }
         if(updater.filter != undefined){
           var re = new RegExp(updater.filter);
           filter_pass = re.test(link);
