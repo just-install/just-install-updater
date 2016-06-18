@@ -321,6 +321,19 @@
       "extractor": "npp\\.([0-9]*(?:\\.[0-9]+)*)\\.Installer\\.exe$"
     }
   },
+  "putty": {
+    "url": "http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "div.release a[href^='http'][href$='.msi']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "putty-([0-9]*(?:\\.[0-9]+)*[a-z]?)-installer\\.msi$"
+    }
+  },
   "pycharm-community": {
     "url": "https://data.services.jetbrains.com/products/releases?code=PCP%2CPCC&latest=true",
     "updater": {
