@@ -427,6 +427,25 @@
       "extractor": "-v([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip$"
     }
   },
+  "teamspeak": {
+    "url": "https://www.teamspeak.com/downloads",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "option[value*='win32'][value$='.exe']",
+        "link_attribute": "value"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "option[value*='win64'][value$='.exe']",
+        "link_attribute": "value"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
+    }
+  },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
     "updater": {
