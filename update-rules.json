@@ -199,11 +199,12 @@
     "updater": {
       "x86":{
         "rule_type": "css-link",
-        "selector": ".wrapper > p:nth-child(5) > a:nth-child(2)"
+        "selector": "a[href$='.msi']",
+        "filter": "^((?!x64).)*$"
       },
       "x86_64":{
         "rule_type": "css-link",
-        "selector": ".wrapper > p:nth-child(8) > a:nth-child(2)"
+        "selector": "a[href$='-x64.msi']"
       }
     },
     "versioner": {
