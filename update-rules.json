@@ -224,6 +224,20 @@
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-unicode\\.exe$"
     }
   },
+  "keepass": {
+    "url": "https://sourceforge.net/projects/keepass/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-html-version",
+        "selector": "#download_button small",
+        "baselink": "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/{{.version}}/KeePass-{{.version}}-Setup.exe"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-data",
+      "extractor": "KeePass-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip"
+    }
+  },
   "libreoffice": {
     "url": "https://www.libreoffice.org/download/libreoffice-fresh/?type=win-x86&lang=en-US",
     "updater": {
