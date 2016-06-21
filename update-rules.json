@@ -461,6 +461,23 @@
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
     }
   },
+  "tortoisegit": {
+    "url": "https://tortoisegit.org/download/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='32bit.msi']"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='64bit.msi']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "TortoiseGit-([0-9]*(?:\\.[0-9]+)*[a-z]?)-[2346]{2}bit\\.msi$"
+    }
+  },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
     "updater": {
