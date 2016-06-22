@@ -371,7 +371,7 @@ function update(web, k){
         console.log(m);
       }
     }else{
-      re = new RegExp(web['version'], 'g')
+      re = new RegExp(web['version'].replace(/\./g, "\\."), 'g')
       updated.push(k);
       for(var arch in rules[k].updater){
         app.installer[arch] = web[arch].replace(re, '{{.version}}');
