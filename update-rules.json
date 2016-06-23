@@ -478,6 +478,23 @@
       "extractor": "TortoiseGit-([0-9]*(?:\\.[0-9]+)*[a-z]?)-[2346]{2}bit\\.msi$"
     }
   },
+  "tortoisesvn": {
+    "url": "https://tortoisesvn.net/downloads.html",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href*='win32-svn']"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href*='x64-svn']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "svn-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
+    }
+  },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
     "updater": {
