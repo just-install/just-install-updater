@@ -487,15 +487,10 @@ function commit(answer){
 }
 
 //Outputs additional debug info is the -v option is used
-function verbose(msg, label, sublabel){
+function verbose(msg, label = '', sublabel = ''){
   if(args['-v']){
-    if(sublabel == undefined){
-      sublabel = '';
-    }
-    if(label == undefined){
-      label = '';
-    }else{
-      label += ' '+sublabel+': ';
+    if(label){
+      label += ' ' + sublabel + ': ';
     }
     console.log(label + msg);
   }
