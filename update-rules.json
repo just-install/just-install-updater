@@ -461,6 +461,19 @@
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
     }
   },
+  "tomahawk": {
+    "url": "https://www.tomahawk-player.org/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='.exe']"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "tomahawk-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
+    }
+  },
   "tortoisegit": {
     "url": "https://tortoisegit.org/download/",
     "updater": {
