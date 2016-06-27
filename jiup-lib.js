@@ -122,13 +122,18 @@ function load(app, appUrl, storageIndex){
   /*options.headers = {
     'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
   };*/
+  //User agent is mandatory for github API calls
+  options.headers = {
+    'User-Agent': "just-install updater"
+  };
 
   var loadres = function(res){
     if(res.statusCode <= 308 && res.statusCode >= 300 && typeof(res.headers.location != 'undefined') && res.headers.location != ''){
       verbose("redirecting to " + res.headers.location, app);
       load(app, res.headers.location, storageIndex);
     }else if(res.statusCode != 200){
-      broken.push(app + ': Status code was ' + res.statusCode);
+      verbose('Status code was: ' + res.statusCode);
+      broken.push(app + ': Status code was: ' + res.statusCode);
       oneDone();
     }else{
       res.on('data', (d) => {
@@ -199,12 +204,12 @@ function parseApp(app){
  */
 exports.parse = parse;
 function parse(page, app, arch){
-  $ = ch.load(page);
   var web = new Array();
   var updater = rules[app].updater[arch];
   var highVersion = '0';
   switch(updater.rule_type){
     case "css-link":
+      $ = ch.load(page);
       verbose('Found ' + $(updater.selector).get().length + ' CSS selector matches', app, arch);
       $(updater.selector).each(function (i, elem) {
         var filter_pass = true;
@@ -243,7 +248,27 @@ function parse(page, app, arch){
         });
       }
       break;
+    case "json-link":
+      var matches = traverseJSON(JSON.parse(page), updater.selector);
+      verbose('Found ' + matches.length + ' matches in JSON object', app, arch);
+      matches.forEach(function (val) {
+        var filter_pass = true;
+        var link = decodeURI(val);
+        if(updater.filter != undefined){
+          var re = new RegExp(updater.filter);
+          filter_pass = re.test(link);
+        }
+        if(filter_pass){
+          var thisVersion = getVersion(link, app);
+          if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
+            highVersion = thisVersion;
+            web[arch] = link;
+          }
+        }
+      });
+      break;
     case "css-html-version":
+      $ = ch.load(page);
       web['version'] = getVersion($(updater.selector).html(), app);
       web[arch] = updater.baselink.replace(/{{.version}}/g, web['version']);
       break;
@@ -494,4 +519,16 @@ function verbose(msg, label = '', sublabel = ''){
     }
     console.log(label + msg);
   }
+}
+
+function traverseJSON(obj, targetKey) {
+  var results = new Array();
+  for (var i in obj) {
+    if (obj[i] !== null && typeof(obj[i])=="object") {
+      results = results.concat(traverseJSON(obj[i],targetKey));
+    }else if(i == targetKey){
+      results.push(obj[i]);
+    }
+  }
+  return results;
 }
