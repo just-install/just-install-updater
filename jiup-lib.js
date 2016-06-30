@@ -39,6 +39,18 @@ args['-todo'] = false;
 //JSON data files and their paths
 var registry = '';
 var rules = JSON.parse(fs.readFileSync('update-rules.json'));
+var auth = new Array();
+exports.auth = auth;
+console.log('');
+try{
+  auth.github = fs.readFileSync('githubAuth').toString('utf8');
+}
+catch(err) {
+  auth.github = process.env.githubAuth;
+  if(auth.github == undefined){
+    console.log('Github API token not found. API requests will be unauthenticated and may hit rate limit');
+  }
+}
 var regPath = '';
 var regFile = 'just-install.json';
 
@@ -112,20 +124,25 @@ function cleanAppList(){
   }
 }
 
+function addAuth(appUrl){
+  if(appUrl.indexOf('?') > 0){
+    var separator = '&';
+  }else{
+    var separator = '?';
+  }
+  if(auth.github != undefined && appUrl.startsWith('https://api.github.com')){
+    appUrl += separator + 'access_token=' + auth.github;
+  }
+  return appUrl;
+}
+
 //Loads the page in the update-rules for the app, and calls parse() and update() when done
 function load(app, appUrl, storageIndex){
   if(storageIndex == undefined){
     var storageIndex = appUrl;
   }
   var page = '';
-  var options = url.parse(appUrl);
-  /*options.headers = {
-    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
-  };*/
-  //User agent is mandatory for github API calls
-  options.headers = {
-    'User-Agent': "just-install updater"
-  };
+  var params = getLoadParams(appUrl)
 
   var loadres = function(res){
     if(res.statusCode <= 308 && res.statusCode >= 300 && typeof(res.headers.location != 'undefined') && res.headers.location != ''){
@@ -146,9 +163,9 @@ function load(app, appUrl, storageIndex){
     }
   };
   if(appUrl.match(/^https:/)){
-    https.get(options, loadres).on('error', (e) => { console.error(e); oneDone(); });
+    https.get(params, loadres).on('error', (e) => { console.error(e); oneDone(); });
   }else{
-    http.get(options, loadres).on('error', (e) => { console.error(e); oneDone(); });
+    http.get(params, loadres).on('error', (e) => { console.error(e); oneDone(); });
   }
 }
 
@@ -161,6 +178,19 @@ function loadPages(app){
       load(app, rules[app].updater[arch].url);
     }
   }
+}
+
+exports.getLoadParams = getLoadParams;
+function getLoadParams(appUrl){
+  var params = url.parse(addAuth(appUrl));
+  /*params.headers = {
+    'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
+  };*/
+  //User agent is mandatory for github API calls
+  params.headers = {
+    'User-Agent': "just-install updater"
+  };
+  return params;
 }
 
 //Calls parseApp() for each packages that needs it

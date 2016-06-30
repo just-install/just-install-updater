@@ -45,10 +45,11 @@ describe('Testing update-rules urls', function () {
             res.on('end', done);
           }
         };
+        var params = jiup.getLoadParams(url);
         if(url.match(/^https:/)){
-          https.get(url, loadres).on('error', done);
+          https.get(params, loadres).on('error', done);
         }else{
-          http.get(url, loadres).on('error', done);
+          http.get(params, loadres).on('error', done);
         }
       }
       loadme(k,url,done);

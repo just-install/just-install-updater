@@ -1,8 +1,11 @@
-#local test registry
+# Local test registry
 just-install.json
 
-#local batch files
+# Local batch files
 *.bat
+
+# Access tokens
+githubAuth
 
 
 ###### Nodejs standard ignore ######
