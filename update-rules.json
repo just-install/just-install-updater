@@ -211,6 +211,19 @@
       "extractor": "go([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.windows"
     }
   },
+  "greenshot": {
+    "url": "https://api.github.com/repos/greenshot/greenshot/releases/latest",
+    "updater": {
+      "x86":{
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "INSTALLER-([0-9]*(?:\\.[0-9]+)*[a-z]?)-RELEASE\\.exe"
+    }
+  },
   "inkscape": {
     "url": "https://inkscape.org/en/download/windows/",
     "updater": {
