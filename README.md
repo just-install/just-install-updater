@@ -7,6 +7,8 @@ registry links to the latest releases
 
 Make sure you have the latest NodeJS version installed on your system. Download just-install-updater from Github, and `npm install` from the directory where the files are located.
 
+Placing a [Github API access token](https://github.com/blog/1509-personal-api-tokens) in a file named `githubAuth` at the root of the development folder is also recommended (but not essential). This will ensure you avoid hitting the rate limit of 60 requests per hour for unauthenticated API calls.
+
 ### Usage
 
 From the install directory:
