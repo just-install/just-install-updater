@@ -28,11 +28,11 @@
     }
   },
   "brackets": {
-    "url": "https://github.com/adobe/brackets/releases",
+    "url": "https://api.github.com/repos/adobe/brackets/releases/latest",
     "updater": {
       "x86":{
-        "rule_type": "css-link",
-        "selector": "a[href$='.msi']"
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
       }
     },
     "versioner": {
@@ -55,11 +55,11 @@
     }
   },
   "clementine-player": {
-    "url": "https://github.com/clementine-player/Clementine/releases/latest",
+    "url": "https://api.github.com/repos/clementine-player/Clementine/releases/latest",
     "updater": {
       "x86":{
-        "rule_type": "css-link",
-        "selector": "a[href*='ClementineSetup']"
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
       }
     },
     "versioner": {
@@ -81,11 +81,11 @@
     }
   },
   "conemu": {
-    "url": "https://github.com/Maximus5/ConEmu/releases/latest",
+    "url": "https://api.github.com/repos/Maximus5/ConEmu/releases/latest",
     "updater": {
       "x86":{
-        "rule_type": "css-link",
-        "selector": ".release-downloads > li:nth-child(2) > a:nth-child(1)"
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
       }
     },
     "versioner": {
@@ -307,11 +307,11 @@
     }
   },
   "mumble": {
-    "url": "https://github.com/mumble-voip/mumble/releases/latest",
+    "url": "https://api.github.com/repos/mumble-voip/mumble/releases/latest",
     "updater": {
       "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='.msi']"
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
       }
     },
     "versioner": {
@@ -456,15 +456,17 @@
     }
   },
   "syncthing": {
-    "url": "https://github.com/syncthing/syncthing/releases/latest",
+    "url": "https://api.github.com/repos/syncthing/syncthing/releases/latest",
     "updater": {
       "x86":{
-        "rule_type": "css-link",
-        "selector": "[href*='syncthing-windows-386']"
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": ".*syncthing-windows-386.*"
       },
       "x86_64":{
-        "rule_type": "css-link",
-        "selector": "[href*='syncthing-windows-amd64']"
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": ".*syncthing-windows-amd64.*"
       }
     },
     "versioner": {
