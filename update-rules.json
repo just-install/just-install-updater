@@ -138,6 +138,20 @@
       "extractor": "dfsetup([0-9]{1})([0-9]{2})\\.exe$"
     }
   },
+  "enpass": {
+    "url": "https://www.enpass.io/release-notes/windowspc/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-html-version",
+        "selector": "h2",
+        "baselink": "https://dl.sinew.in/windows/setup/EnpassSetup-{{.version}}.exe"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-data",
+      "extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
+    }
+  },
   "freefilesync": {
     "url": "http://www.freefilesync.org/download.php",
     "updater": {
