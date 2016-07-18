@@ -18,6 +18,6 @@ exports.get_link = function(page, arch){
       highestID = thisID;
     }
   });
-  return `http://tcpdiag.dl.osdn.jp/crystaldiskinfo/${highestID}/CrystalDiskInfo${highestVersion}-en.exe`;
+  return `http://osdn.dl.osdn.jp/crystaldiskinfo/${highestID}/CrystalDiskInfo${highestVersion}-en.exe`;
 
 }
