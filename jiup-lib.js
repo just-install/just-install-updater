@@ -386,7 +386,9 @@ function update(web, k){
         broken.push(k + ' ' + arch + ': ' + m);
         categorized = true;
       }else if(app.installer[arch] == undefined && args["-f"] == false){
-        skipped.push(k +": Registry doesn't have entry for architecture "+arch);
+        var m = "Registry doesn't have entry for architecture " + arch;
+        console.log(m);
+        skipped.push(k +": " + m);
       }else{
         if(app.installer[arch] == undefined){
           var reg = '';
@@ -419,19 +421,19 @@ function update(web, k){
     if(versionNotNew){
       var m = 'New links found but version '+web['version']+' doesn\'t seem to be newer than '+app.version;
       skipped.push(k + ': ' + m);
-    }else if(updateCount != archCount){
-      if(updateCount != 0 && args['-f'] == false){
+    }else if(updateCount != 0){
+      if(updateCount != archCount && args['-f'] == false){
         var m = 'New version was found, but not for all architectures';
         skipped.push(k + ': ' + m);
         console.log(m);
+      }else{
+        re = new RegExp(web['version'].replace(/\./g, "\\."), 'g')
+        updated.push(k);
+        for(var arch in rules[k].updater){
+          app.installer[arch] = web[arch].replace(re, '{{.version}}');
+        }
+        app.version = web['version'];
       }
-    }else{
-      re = new RegExp(web['version'].replace(/\./g, "\\."), 'g')
-      updated.push(k);
-      for(var arch in rules[k].updater){
-        app.installer[arch] = web[arch].replace(re, '{{.version}}');
-      }
-      app.version = web['version'];
     }
   }
   oneDone();
