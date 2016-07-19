@@ -1,14 +1,12 @@
 {
   "1password": {
     "url": "https://agilebits.com/downloads",
+    "version_extractor": "1Password-([0-9]*(?:\\.[0-9]+)*)\\.exe$",
     "updater": {
       "x86":{
         "rule_type": "css-link",
         "selector": "section.box-container:nth-child(4) > div:nth-child(2) > div:nth-child(2) > a:nth-child(5)"
       }
-    },
-    "versioner": {
-      "extractor": "1Password-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
     }
   },
   "7zip": {
@@ -21,9 +19,7 @@
         "rule_type": "advanced"
       }
     },
-    "versioner": {
-      "extractor": "7z([0-9]{2})([0-9]{2}).{0,4}\\.msi$"
-    }
+    "version_extractor": "7z([0-9]{2})([0-9]{2}).{0,4}\\.msi$"
   },
   "android-studio-bundle": {
     "url": "https://developer.android.com/studio/index.html",
@@ -33,9 +29,7 @@
         "selector": "a[href$='windows.exe']"
         }
     },
-    "versioner": {
-      "extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-bundle"
-    }
+    "version_extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-bundle"
   },
   "brackets": {
     "url": "https://api.github.com/repos/adobe/brackets/releases/latest",
@@ -45,9 +39,7 @@
         "selector": "browser_download_url"
       }
     },
-    "versioner": {
-      "extractor": "Brackets\\.Release\\.([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
-    }
+    "version_extractor": "Brackets\\.Release\\.([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
   },
   "calibre": {
     "url": "https://api.github.com/repos/kovidgoyal/calibre/releases/latest",
@@ -63,9 +55,7 @@
         "filter": "calibre-64bit"
       }
     },
-    "versioner": {
-      "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
-    }
+    "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
   },
   "ccleaner": {
     "url": "https://www.piriform.com/ccleaner/download/standard",
@@ -76,9 +66,7 @@
         "selector": "a.btn"
       }
     },
-    "versioner": {
-      "extractor": "ccsetup([0-9]{1})([0-9]{2})\\.exe$"
-    }
+    "version_extractor": "ccsetup([0-9]{1})([0-9]{2})\\.exe$"
   },
   "clementine-player": {
     "url": "https://api.github.com/repos/clementine-player/Clementine/releases/latest",
@@ -88,9 +76,7 @@
         "selector": "browser_download_url"
       }
     },
-    "versioner": {
-      "extractor": "ClementineSetup-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
-    }
+    "version_extractor": "ClementineSetup-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
   },
   "cmake": {
     "url": "https://cmake.org/download/",
@@ -104,9 +90,7 @@
         "selector": "a[href$='-win64-x64.msi']"
       }
     },
-    "versioner": {
-      "extractor": "cmake-([0-9]*(?:\\.[0-9]+)*)-win.{0,6}\\.msi$"
-    }
+    "version_extractor": "cmake-([0-9]*(?:\\.[0-9]+)*)-win.{0,6}\\.msi$"
   },
   "conemu": {
     "url": "https://api.github.com/repos/Maximus5/ConEmu/releases/latest",
@@ -116,9 +100,7 @@
         "selector": "browser_download_url"
       }
     },
-    "versioner": {
-      "extractor": "download/v([0-9]*(?:\\.[0-9]+)*[a-z]?)/ConEmuSetup.*\\.exe$"
-    }
+    "version_extractor": "download/v([0-9]*(?:\\.[0-9]+)*[a-z]?)/ConEmuSetup.*\\.exe$"
   },
   "crashplan": {
     "url": "https://www.crashplan.com/shared/js/cp.download.js",
@@ -134,9 +116,7 @@
         "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan_{{.version}}_Win64.msi"
       }
     },
-    "versioner": {
-      "extractor": "'([0-9]*(?:\\.[0-9]+)*[a-z]?)';"
-    }
+    "version_extractor": "'([0-9]*(?:\\.[0-9]+)*[a-z]?)';"
   },
   "crystaldisk-info": {
     "url": "https://osdn.jp/projects/crystaldiskinfo/releases/",
@@ -145,9 +125,7 @@
         "rule_type": "advanced"
       }
     },
-    "versioner": {
-      "extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
-    }
+    "version_extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
   },
   "crystaldisk-mark": {
     "url": "https://osdn.jp/projects/crystaldiskmark/releases/",
@@ -156,9 +134,7 @@
         "rule_type": "advanced"
       }
     },
-    "versioner": {
-      "extractor": "CrystalDiskMark([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
-    }
+    "version_extractor": "CrystalDiskMark([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
   },
   "defraggler": {
     "url": "https://www.piriform.com/defraggler/download/standard",
@@ -169,9 +145,7 @@
         "selector": "a.btn"
       }
     },
-    "versioner": {
-      "extractor": "dfsetup([0-9]{1})([0-9]{2})\\.exe$"
-    }
+    "version_extractor": "dfsetup([0-9]{1})([0-9]{2})\\.exe$"
   },
   "eac": {
     "url": "http://www.exactaudiocopy.de/en/index.php/weitere-seiten/download-from-alternative-servers-2/",
@@ -181,9 +155,7 @@
         "selector": "a[href$='.exe']"
       }
     },
-    "versioner": {
-      "extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
-    }
+    "version_extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
   },
   "eclipse-android": {
     "url": "https://www.eclipse.org/downloads/eclipse-packages/",
@@ -200,10 +172,8 @@
         "filter": "android"
       }
     },
-    "versioner": {
-      "data": "page",
-      "extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)"
-    }
+    "version_extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$",
+    "version_source": "page"
   },
   "enpass": {
     "url": "https://www.enpass.io/release-notes/windowspc/",
@@ -214,9 +184,7 @@
         "baselink": "https://dl.sinew.in/windows/setup/EnpassSetup-{{.version}}.exe"
       }
     },
-    "versioner": {
-      "extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
-    }
+    "version_extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
   },
   "freefilesync": {
     "url": "http://www.freefilesync.org/download.php",
@@ -226,9 +194,7 @@
         "selector": "a.direct-download-link:nth-child(1)"
       }
     },
-    "versioner": {
-      "extractor": "FreeFileSync_(.*)_Windows_Setup\\.exe$"
-    }
+    "version_extractor": "FreeFileSync_(.*)_Windows_Setup\\.exe$"
   },
   "geforce-experience": {
     "url": "http://www.geforce.com/geforce-experience",
@@ -238,9 +204,7 @@
         "selector": ".downloadgfe > a"
       }
     },
-    "versioner": {
-      "extractor": "GeForce_Experience_v([0-9]*(?:\\.[0-9]+)*)\\.exe$"
-    }
+    "version_extractor": "GeForce_Experience_v([0-9]*(?:\\.[0-9]+)*)\\.exe$"
   },
   "gimp": {
     "url": "https://www.gimp.org/downloads/",
@@ -250,9 +214,7 @@
         "selector": "#win-download-link"
       }
     },
-    "versioner": {
-      "extractor": "gimp-([0-9]*(?:\\.[0-9]+)*)-setup.*\\.exe$"
-    }
+    "version_extractor": "gimp-([0-9]*(?:\\.[0-9]+)*)-setup.*\\.exe$"
   },
   "git": {
     "url": "https://git-scm.com/download/win",
@@ -266,9 +228,7 @@
         "selector": "div.callout:nth-child(2) > p:nth-child(7) > strong:nth-child(1) > a:nth-child(1)"
       }
     },
-    "versioner": {
-      "extractor": "Git-([0-9]*(?:\\.[0-9]+)*)-[0-9]{2}-bit\\.exe$"
-    }
+    "version_extractor": "Git-([0-9]*(?:\\.[0-9]+)*)-[0-9]{2}-bit\\.exe$"
   },
   "go": {
     "url": "https://golang.org/dl/",
@@ -282,9 +242,7 @@
         "selector": "a[href$='windows-386.msi']"
       }
     },
-    "versioner": {
-      "extractor": "go([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.windows"
-    }
+    "version_extractor": "go([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.windows"
   },
   "greenshot": {
     "url": "https://api.github.com/repos/greenshot/greenshot/releases/latest",
@@ -294,9 +252,7 @@
         "selector": "browser_download_url"
       }
     },
-    "versioner": {
-      "extractor": "INSTALLER-([0-9]*(?:\\.[0-9]+)*[a-z]?)-RELEASE\\.exe"
-    }
+    "version_extractor": "INSTALLER-([0-9]*(?:\\.[0-9]+)*[a-z]?)-RELEASE\\.exe"
   },
   "inkscape": {
     "url": "https://inkscape.org/en/download/windows/",
@@ -311,9 +267,7 @@
         "selector": "a[href$='-x64.msi']"
       }
     },
-    "versioner": {
-      "extractor": "inkscape-([0-9]*(?:\\.[0-9]+)*).{0,4}\\.msi$"
-    }
+    "version_extractor": "inkscape-([0-9]*(?:\\.[0-9]+)*).{0,4}\\.msi$"
   },
   "innosetup": {
     "url": "http://files.jrsoftware.org/is/5/",
@@ -323,9 +277,7 @@
         "selector": "a[href$='-unicode.exe']"
       }
     },
-    "versioner": {
-      "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-unicode\\.exe$"
-    }
+    "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-unicode\\.exe$"
   },
   "keepass": {
     "url": "https://sourceforge.net/projects/keepass/",
@@ -336,9 +288,7 @@
         "baselink": "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/{{.version}}/KeePass-{{.version}}-Setup.exe"
       }
     },
-    "versioner": {
-      "extractor": "KeePass-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip"
-    }
+    "version_extractor": "KeePass-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip"
   },
   "libreoffice": {
     "url": "https://www.libreoffice.org/download/libreoffice-fresh/?type=win-x86&lang=en-US",
@@ -354,9 +304,7 @@
         "baselink": "http://download.documentfoundation.org/libreoffice/stable/{{.version}}/win/x86_64/LibreOffice_{{.version}}_Win_x64.msi"
       }
     },
-    "versioner": {
-      "extractor": "Version ([0-9]*(?:\\.[0-9]+)*)$"
-    }
+    "version_extractor": "Version ([0-9]*(?:\\.[0-9]+)*)$"
   },
   "mercurial": {
     "url": "https://www.mercurial-scm.org/sources.js",
@@ -371,9 +319,7 @@
         "filter": "http.*windows/mercurial-.*-x64\\.msi"
       }
     },
-    "versioner": {
-      "extractor": "mercurial-([0-9]*(?:\\.[0-9]+)*)-[a-z0-9]{3}\\.msi$"
-    }
+    "version_extractor": "mercurial-([0-9]*(?:\\.[0-9]+)*)-[a-z0-9]{3}\\.msi$"
   },
   "mumble": {
     "url": "https://api.github.com/repos/mumble-voip/mumble/releases/latest",
@@ -383,9 +329,7 @@
         "selector": "browser_download_url"
       }
     },
-    "versioner": {
-      "extractor": "mumble-([0-9]*(?:\\.[0-9]+)*)\\.msi$"
-    }
+    "version_extractor": "mumble-([0-9]*(?:\\.[0-9]+)*)\\.msi$"
   },
   "node": {
     "url": "https://nodejs.org/en/download/current/",
@@ -399,9 +343,7 @@
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > a"
       }
     },
-    "versioner": {
-      "extractor": "node-v([0-9]*(?:\\.[0-9]+)*).{4}\\.msi$"
-    }
+    "version_extractor": "node-v([0-9]*(?:\\.[0-9]+)*).{4}\\.msi$"
   },
   "node-lts": {
     "url": "https://nodejs.org/en/download/",
@@ -415,9 +357,7 @@
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > a"
       }
     },
-    "versioner": {
-      "extractor": "node-v([0-9]*(?:\\.[0-9]+)*).{4}\\.msi$"
-    }
+    "version_extractor": "node-v([0-9]*(?:\\.[0-9]+)*).{4}\\.msi$"
   },
   "notepad++": {
     "url": "https://notepad-plus-plus.org/download/v6.9.1.html",
@@ -427,9 +367,7 @@
         "selector": "[href$='.exe']"
       }
     },
-    "versioner": {
-      "extractor": "npp\\.([0-9]*(?:\\.[0-9]+)*)\\.Installer\\.exe$"
-    }
+    "version_extractor": "npp\\.([0-9]*(?:\\.[0-9]+)*)\\.Installer\\.exe$"
   },
   "npackd": {
     "url": "https://api.github.com/repos/tim-lebedkov/npackd-cpp/releases/latest",
@@ -445,9 +383,7 @@
         "filter": "Npackd64"
       }
     },
-    "versioner": {
-      "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
-    }
+    "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
   },
   "npackdcl": {
     "url": "https://api.github.com/repos/tim-lebedkov/npackd-cpp/releases/latest",
@@ -458,9 +394,7 @@
         "filter": "NpackdCL"
       }
     },
-    "versioner": {
-      "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
-    }
+    "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
   },
   "putty": {
     "url": "http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html",
@@ -470,9 +404,7 @@
         "selector": "div.release a[href^='http'][href$='.msi']"
       }
     },
-    "versioner": {
-      "extractor": "putty-([0-9]*(?:\\.[0-9]+)*[a-z]?)-installer\\.msi$"
-    }
+    "version_extractor": "putty-([0-9]*(?:\\.[0-9]+)*[a-z]?)-installer\\.msi$"
   },
   "pycharm-community": {
     "url": "https://data.services.jetbrains.com/products/releases?code=PCP%2CPCC&latest=true",
@@ -481,9 +413,7 @@
         "rule_type": "advanced"
       }
     },
-    "versioner": {
-      "extractor": "pycharm-community-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
-    }
+    "version_extractor": "pycharm-community-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
   },
   "qbittorrent": {
     "url": "http://www.qbittorrent.org/download.php",
@@ -494,9 +424,7 @@
         "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
       }
     },
-    "versioner": {
-      "extractor": "qBittorrent v([0-9]*(?:\\.[0-9]+)*) installer"
-    }
+    "version_extractor": "qBittorrent v([0-9]*(?:\\.[0-9]+)*) installer"
   },
   "ruby": {
     "url": "https://rubyinstaller.org/downloads/",
@@ -513,9 +441,7 @@
         "filter": "^.*rubyinstaller-(?:[0-9]*(?:\\.[0-9]+)*[a-z]?)-x64\\.exe"
       }
     },
-    "versioner": {
-      "extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
-    }
+    "version_extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "sourcetree": {
     "url": "https://www.sourcetreeapp.com/download/",
@@ -525,9 +451,7 @@
         "selector": ".win > p:nth-child(1) > a:nth-child(1)"
       }
     },
-    "versioner": {
-      "extractor": "SourceTreeSetup_([0-9]*(?:\\.[0-9]+)*)\\.exe$"
-    }
+    "version_extractor": "SourceTreeSetup_([0-9]*(?:\\.[0-9]+)*)\\.exe$"
   },
   "sublime-text-3": {
     "url": "https://www.sublimetext.com/3",
@@ -541,9 +465,7 @@
         "selector": "#dl_win_64 > a:nth-child(1)"
       }
     },
-    "versioner": {
-      "extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
-    }
+    "version_extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
   },
   "syncthing": {
     "url": "https://api.github.com/repos/syncthing/syncthing/releases/latest",
@@ -559,9 +481,7 @@
         "filter": ".*syncthing-windows-amd64.*"
       }
     },
-    "versioner": {
-      "extractor": "-v([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip$"
-    }
+    "version_extractor": "-v([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip$"
   },
   "teamspeak": {
     "url": "https://www.teamspeak.com/downloads",
@@ -577,9 +497,7 @@
         "link_attribute": "value"
       }
     },
-    "versioner": {
-      "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
-    }
+    "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
   },
   "tomahawk": {
     "url": "https://www.tomahawk-player.org/",
@@ -589,9 +507,7 @@
         "selector": "a[href$='.exe']"
       }
     },
-    "versioner": {
-      "extractor": "tomahawk-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
-    }
+    "version_extractor": "tomahawk-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
   },
   "tortoisegit": {
     "url": "https://tortoisegit.org/download/",
@@ -605,9 +521,7 @@
         "selector": "a[href$='64bit.msi']"
       }
     },
-    "versioner": {
-      "extractor": "TortoiseGit-([0-9]*(?:\\.[0-9]+)*[a-z]?)-[2346]{2}bit\\.msi$"
-    }
+    "version_extractor": "TortoiseGit-([0-9]*(?:\\.[0-9]+)*[a-z]?)-[2346]{2}bit\\.msi$"
   },
   "tortoisesvn": {
     "url": "https://tortoisesvn.net/downloads.html",
@@ -621,9 +535,7 @@
         "selector": "a[href*='x64-svn']"
       }
     },
-    "versioner": {
-      "extractor": "svn-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
-    }
+    "version_extractor": "svn-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
   },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
@@ -633,9 +545,7 @@
         "selector": "[href$='.exe']"
       }
     },
-    "versioner": {
-      "extractor": "VirtualBox-([0-9]*(?:\\.[0-9]+)*).*-Win\\.exe$"
-    }
+    "version_extractor": "VirtualBox-([0-9]*(?:\\.[0-9]+)*).*-Win\\.exe$"
   },
   "virtualbox-extpack": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
@@ -645,9 +555,7 @@
         "selector": "li > a[href$='.vbox-extpack']"
       }
     },
-    "versioner": {
-      "extractor": "VirtualBox_Extension_Pack-([0-9]*(?:\\.[0-9]+)*)-.*\\.vbox-extpack$"
-    }
+    "version_extractor": "VirtualBox_Extension_Pack-([0-9]*(?:\\.[0-9]+)*)-.*\\.vbox-extpack$"
   },
   "vlc": {
     "url": "https://www.videolan.org/vlc/download-windows.html",
@@ -661,8 +569,6 @@
         "selector": "ul.dropdown-menu:nth-child(3) > li:nth-child(3) > a:nth-child(1)"
       }
     },
-    "versioner": {
-      "extractor": "vlc-([0-9]*(?:\\.[0-9]+)*)-win[0-9]{2}\\.exe$"
-    }
+    "version_extractor": "vlc-([0-9]*(?:\\.[0-9]+)*)-win[0-9]{2}\\.exe$"
   }
 }

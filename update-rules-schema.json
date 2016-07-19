@@ -32,14 +32,10 @@
           },
           "required": ["x86"]
         },
-        "versioner": {
-          "properties": {
-            "rule_type": {"type": "string"},
-            "extractor": {"type": "string"}
-          }
-        }
+        "version_extractor": {"type": "string"},
+        "version_source": {"type": "string"}
       },
-      "required": ["updater", "versioner"]
+      "required": ["updater", "version_extractor"]
     }
   }
 }
