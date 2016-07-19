@@ -358,32 +358,29 @@ function applyMods(link, app, updater){
 getVersion.savedVersions = new Array();
 function getVersion(data, app){
   var version = '';
-  var versioner = rules[app].versioner;
-  if(versioner){
-    switch(versioner.rule_type){
-      case "from-page":
-        if(getVersion.savedVersions[app] != undefined){
-          return getVersion.savedVersions[app];
+  switch(rules[app].version_source){
+    case "page":
+      if(getVersion.savedVersions[app] != undefined){
+        return getVersion.savedVersions[app];
+      }else{
+        data = pages[rules[app].url];
+      }
+    default:
+      var re = new RegExp(rules[app].version_extractor);
+      var matches = re.exec(data);
+      if(matches != null){
+        if(matches.length == 1){
+          version = matches[0];
         }else{
-          data = pages[rules[app].url];
-        }
-      default:
-        var re = new RegExp(versioner.extractor);
-        var matches = re.exec(data);
-        if(matches != null){
-          if(matches.length == 1){
-            version = matches[0];
-          }else{
-            for(var i=1; i < matches.length; i++){
-              if(i != 1){
-                version += '.';
-              }
-              version += matches[i];
+          for(var i=1; i < matches.length; i++){
+            if(i != 1){
+              version += '.';
             }
+            version += matches[i];
           }
         }
-        break;
-    }
+      }
+      break;
   }
   if(version == ''){
     verbose("getVersion() could not parse version number from data: " + data, app);
@@ -391,7 +388,7 @@ function getVersion(data, app){
 
   version = version.replace(/_/g, '.');
 
-  if(versioner.rule_type == "from-page"){
+  if(rules[app].version_source == "page"){
     getVersion.savedVersions[app] = version;
   }
 

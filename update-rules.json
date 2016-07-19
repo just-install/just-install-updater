@@ -8,7 +8,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "1Password-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
     }
   },
@@ -23,7 +22,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "7z([0-9]{2})([0-9]{2}).{0,4}\\.msi$"
     }
   },
@@ -36,7 +34,6 @@
         }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-bundle"
     }
   },
@@ -49,7 +46,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "Brackets\\.Release\\.([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
     }
   },
@@ -68,7 +64,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
     }
   },
@@ -82,7 +77,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "ccsetup([0-9]{1})([0-9]{2})\\.exe$"
     }
   },
@@ -95,7 +89,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "ClementineSetup-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
     }
   },
@@ -112,7 +105,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "cmake-([0-9]*(?:\\.[0-9]+)*)-win.{0,6}\\.msi$"
     }
   },
@@ -125,7 +117,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "download/v([0-9]*(?:\\.[0-9]+)*[a-z]?)/ConEmuSetup.*\\.exe$"
     }
   },
@@ -144,7 +135,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-data",
       "extractor": "'([0-9]*(?:\\.[0-9]+)*[a-z]?)';"
     }
   },
@@ -156,7 +146,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
     }
   },
@@ -168,7 +157,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "CrystalDiskMark([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
     }
   },
@@ -182,7 +170,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "dfsetup([0-9]{1})([0-9]{2})\\.exe$"
     }
   },
@@ -195,7 +182,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
     }
   },
@@ -215,7 +201,7 @@
       }
     },
     "versioner": {
-      "rule_type": "from-page",
+      "data": "page",
       "extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)"
     }
   },
@@ -229,7 +215,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-data",
       "extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
     }
   },
@@ -242,7 +227,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "FreeFileSync_(.*)_Windows_Setup\\.exe$"
     }
   },
@@ -255,7 +239,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "GeForce_Experience_v([0-9]*(?:\\.[0-9]+)*)\\.exe$"
     }
   },
@@ -268,7 +251,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "gimp-([0-9]*(?:\\.[0-9]+)*)-setup.*\\.exe$"
     }
   },
@@ -285,7 +267,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "Git-([0-9]*(?:\\.[0-9]+)*)-[0-9]{2}-bit\\.exe$"
     }
   },
@@ -302,7 +283,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "go([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.windows"
     }
   },
@@ -315,7 +295,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "INSTALLER-([0-9]*(?:\\.[0-9]+)*[a-z]?)-RELEASE\\.exe"
     }
   },
@@ -333,7 +312,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "inkscape-([0-9]*(?:\\.[0-9]+)*).{0,4}\\.msi$"
     }
   },
@@ -346,7 +324,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-unicode\\.exe$"
     }
   },
@@ -360,7 +337,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-data",
       "extractor": "KeePass-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip"
     }
   },
@@ -379,7 +355,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-data",
       "extractor": "Version ([0-9]*(?:\\.[0-9]+)*)$"
     }
   },
@@ -397,7 +372,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "mercurial-([0-9]*(?:\\.[0-9]+)*)-[a-z0-9]{3}\\.msi$"
     }
   },
@@ -410,7 +384,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "mumble-([0-9]*(?:\\.[0-9]+)*)\\.msi$"
     }
   },
@@ -427,7 +400,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "node-v([0-9]*(?:\\.[0-9]+)*).{4}\\.msi$"
     }
   },
@@ -444,7 +416,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "node-v([0-9]*(?:\\.[0-9]+)*).{4}\\.msi$"
     }
   },
@@ -457,7 +428,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "npp\\.([0-9]*(?:\\.[0-9]+)*)\\.Installer\\.exe$"
     }
   },
@@ -476,7 +446,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
     }
   },
@@ -490,7 +459,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
     }
   },
@@ -503,7 +471,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "putty-([0-9]*(?:\\.[0-9]+)*[a-z]?)-installer\\.msi$"
     }
   },
@@ -515,7 +482,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "pycharm-community-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
     }
   },
@@ -529,7 +495,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-data",
       "extractor": "qBittorrent v([0-9]*(?:\\.[0-9]+)*) installer"
     }
   },
@@ -549,7 +514,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
     }
   },
@@ -562,7 +526,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "SourceTreeSetup_([0-9]*(?:\\.[0-9]+)*)\\.exe$"
     }
   },
@@ -579,7 +542,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
     }
   },
@@ -598,7 +560,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "-v([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip$"
     }
   },
@@ -617,7 +578,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
     }
   },
@@ -630,7 +590,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "tomahawk-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
     }
   },
@@ -647,7 +606,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "TortoiseGit-([0-9]*(?:\\.[0-9]+)*[a-z]?)-[2346]{2}bit\\.msi$"
     }
   },
@@ -664,7 +622,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "svn-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
     }
   },
@@ -677,7 +634,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "VirtualBox-([0-9]*(?:\\.[0-9]+)*).*-Win\\.exe$"
     }
   },
@@ -690,7 +646,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "VirtualBox_Extension_Pack-([0-9]*(?:\\.[0-9]+)*)-.*\\.vbox-extpack$"
     }
   },
@@ -707,7 +662,6 @@
       }
     },
     "versioner": {
-      "rule_type": "from-link",
       "extractor": "vlc-([0-9]*(?:\\.[0-9]+)*)-win[0-9]{2}\\.exe$"
     }
   }
