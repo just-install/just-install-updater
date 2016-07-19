@@ -172,7 +172,97 @@
         "filter": "android"
       }
     },
-    "version_extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$",
+    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
+    "version_source": "page"
+  },
+  "eclipse-committers": {
+    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "append": "&r=1",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32.zip']",
+        "filter": "committers"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32-x86_64.zip']",
+        "filter": "committers"
+      }
+    },
+    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
+    "version_source": "page"
+  },
+  "eclipse-cpp": {
+    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "append": "&r=1",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32.zip']",
+        "filter": "cpp"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32-x86_64.zip']",
+        "filter": "cpp"
+      }
+    },
+    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
+    "version_source": "page"
+  },
+  "eclipse-java": {
+    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "append": "&r=1",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32.zip']",
+        "filter": "java"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32-x86_64.zip']",
+        "filter": "java"
+      }
+    },
+    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
+    "version_source": "page"
+  },
+  "eclipse-jee": {
+    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "append": "&r=1",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32.zip']",
+        "filter": "jee"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32-x86_64.zip']",
+        "filter": "jee"
+      }
+    },
+    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
+    "version_source": "page"
+  },
+  "eclipse-php": {
+    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "append": "&r=1",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32.zip']",
+        "filter": "php"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32-x86_64.zip']",
+        "filter": "php"
+      }
+    },
+    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
   "enpass": {
