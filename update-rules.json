@@ -199,6 +199,26 @@
       "extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
     }
   },
+  "eclipse-android": {
+    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "append": "&r=1",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32.zip']",
+        "filter": "android"
+      },
+      "x86_64":{
+        "rule_type": "css-link",
+        "selector": "a[href$='win32-x86_64.zip']",
+        "filter": "android"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-page",
+      "extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)"
+    }
+  },
   "enpass": {
     "url": "https://www.enpass.io/release-notes/windowspc/",
     "updater": {
