@@ -40,6 +40,25 @@
       "extractor": "Brackets\\.Release\\.([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
     }
   },
+  "calibre": {
+    "url": "https://api.github.com/repos/kovidgoyal/calibre/releases/latest",
+    "updater": {
+      "x86":{
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "^((?!64bit).)*$"
+      },
+      "x86_64":{
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "calibre-64bit"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
+    }
+  },
   "ccleaner": {
     "url": "https://www.piriform.com/ccleaner/download/standard",
     "forceHTTPS": true,
