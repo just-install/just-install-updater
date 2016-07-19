@@ -216,7 +216,7 @@ function parseApp(app){
     verbose('Processing ' + rules[app].updater[arch].rule_type + ' rule on data from ' + rules[app].updater[arch].url, app, arch);
     var temp = parse(pages[rules[app].updater[arch].url], app, arch);
     verbose('Found link '+ temp[arch], app, arch);
-    verbose('Found version '+ temp.version, app, arch);
+    verbose('Found version: '+ temp.version, app, arch);
     if(!result){
       result = temp;
     }else if(result.version == temp.version){
@@ -260,6 +260,7 @@ function parse(page, app, arch){
           }
         }
       });
+      web['version'] = highVersion;
       break;
     case "regexp-link":
       var re = new RegExp(updater.filter, 'g');
@@ -276,6 +277,7 @@ function parse(page, app, arch){
             web[arch] = link;
           }
         });
+        web['version'] = highVersion;
       }
       break;
     case "json-link":
@@ -296,6 +298,7 @@ function parse(page, app, arch){
           }
         }
       });
+      web['version'] = highVersion;
       break;
     case "css-html-version":
       $ = ch.load(page);
@@ -322,24 +325,49 @@ function parse(page, app, arch){
     case "advanced":
       var advanced = require("./advanced_rules/" + app + ".js");
       web[arch] = decodeURI(advanced.get_link(page, arch));
+      web['version'] = getVersion(web[arch], app);
   }
-  if(rules[app].forceHTTPS != undefined && rules[app].forceHTTPS){
-    web[arch] = web[arch].replace('http:', 'https:');
-  }
-  if(web['version'] == undefined && rules[app].versioner.rule_type == "from-link"){
-    web['version'] = getVersion(web[arch], app);
-  }
+
+  web[arch] = applyMods(web[arch], app, updater);
+
   return web;
 }
 
+//Applies modifiers to the download link
+function applyMods(link, app, updater){
+  if(rules[app].forceHTTPS != undefined && rules[app].forceHTTPS){
+    link = link.replace('http:', 'https:');
+  }
+
+  if(updater.forceHTTPS != undefined && updater.forceHTTPS){
+    link = link.replace('http:', 'https:');
+  }
+
+  if(rules[app].append != undefined){
+    link += rules[app].append;
+  }
+
+  if(updater.append != undefined){
+    link += updater.append;
+  }
+
+  return link
+}
+
 //Parses the version number from the provided data using the package rule
-function getVersion(data, k){
+getVersion.savedVersions = new Array();
+function getVersion(data, app){
   var version = '';
-  var versioner = rules[k].versioner;
+  var versioner = rules[app].versioner;
   if(versioner){
     switch(versioner.rule_type){
-      case "from-link":
-      case "from-data":
+      case "from-page":
+        if(getVersion.savedVersions[app] != undefined){
+          return getVersion.savedVersions[app];
+        }else{
+          data = pages[rules[app].url];
+        }
+      default:
         var re = new RegExp(versioner.extractor);
         var matches = re.exec(data);
         if(matches != null){
@@ -358,9 +386,16 @@ function getVersion(data, k){
     }
   }
   if(version == ''){
-    verbose("getVersion() could not parse version number from data: " + data, k);
+    verbose("getVersion() could not parse version number from data: " + data, app);
   }
-  return version.replace(/_/g, '.');
+
+  version = version.replace(/_/g, '.');
+
+  if(versioner.rule_type == "from-page"){
+    getVersion.savedVersions[app] = version;
+  }
+
+  return version;
 }
 
 //Analyses the results from parse() and updates the registry if necessary
