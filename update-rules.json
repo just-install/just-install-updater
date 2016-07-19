@@ -147,6 +147,18 @@
       "extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
     }
   },
+  "crystaldisk-mark": {
+    "url": "https://osdn.jp/projects/crystaldiskmark/releases/",
+    "updater": {
+      "x86":{
+        "rule_type": "advanced"
+      }
+    },
+    "versioner": {
+      "rule_type": "from-link",
+      "extractor": "CrystalDiskMark([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
+    }
+  },
   "defraggler": {
     "url": "https://www.piriform.com/defraggler/download/standard",
     "forceHTTPS": true,
