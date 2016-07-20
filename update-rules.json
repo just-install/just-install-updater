@@ -158,108 +158,108 @@
     "version_extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
   },
   "eclipse-android": {
-    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
       "x86":{
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
-        "filter": "android"
+        "filter": "eclipse-android"
       },
       "x86_64":{
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "android"
+        "filter": "eclipse-android"
       }
     },
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
   "eclipse-committers": {
-    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
       "x86":{
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
-        "filter": "committers"
+        "filter": "eclipse-committers"
       },
       "x86_64":{
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "committers"
+        "filter": "eclipse-committers"
       }
     },
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
   "eclipse-cpp": {
-    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
       "x86":{
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
-        "filter": "cpp"
+        "filter": "eclipse-cpp"
       },
       "x86_64":{
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "cpp"
+        "filter": "eclipse-cpp"
       }
     },
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
   "eclipse-java": {
-    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
       "x86":{
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
-        "filter": "java"
+        "filter": "eclipse-java"
       },
       "x86_64":{
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "java"
+        "filter": "eclipse-java"
       }
     },
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
   "eclipse-jee": {
-    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
       "x86":{
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
-        "filter": "jee"
+        "filter": "eclipse-jee"
       },
       "x86_64":{
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "jee"
+        "filter": "eclipse-jee"
       }
     },
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
   "eclipse-php": {
-    "url": "https://www.eclipse.org/downloads/eclipse-packages/",
+    "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
       "x86":{
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
-        "filter": "php"
+        "filter": "eclipse-php"
       },
       "x86_64":{
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "php"
+        "filter": "eclipse-php"
       }
     },
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
