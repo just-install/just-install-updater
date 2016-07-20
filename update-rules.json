@@ -31,6 +31,16 @@
     },
     "version_extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-bundle"
   },
+  "android-studio-ide": {
+    "url": "https://developer.android.com/studio/index.html",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='windows.exe']"
+        }
+    },
+    "version_extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-ide"
+  },
   "brackets": {
     "url": "https://api.github.com/repos/adobe/brackets/releases/latest",
     "updater": {
