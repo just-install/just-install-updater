@@ -21,6 +21,7 @@ var skipped = new Array();
 var broken = new Array();
 var notFound = new Array();
 var pages = new Array();
+exports.pages = pages;
 var progress = 0;
 var progressTarget = 0;
 var progTimer = '';

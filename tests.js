@@ -3,11 +3,18 @@ const http = require('http');
 const https = require('https');
 const assert = require('assert');
 const Validator = require('jsonschema').Validator;
-const jiup = require('./jiup-lib.js');
 const helpers = require('./helpers');
+var jiup = require('./jiup-lib.js');
 
 var rules = JSON.parse(fs.readFileSync('update-rules.json'));
-var pages = new Array();
+
+//Uncomment to test specific rules or add arguments
+/*
+jiup.args["-v"] = true;
+var temp = rules["jre"];
+rules = new Array();
+rules["jre"] = temp;
+*/
 
 for(var app in rules){
   if(rules[app].url != undefined){
@@ -41,7 +48,7 @@ describe('Testing update-rules urls', function () {
           }else if(res.statusCode != 200){
             done("Status code for " + url + " is: " + res.statusCode);
           }else{
-            res.on('data', function(d){ pages[storageIndex] += d;});
+            res.on('data', function(d){ jiup.pages[storageIndex] += d;});
             res.on('end', done);
           }
         };
@@ -57,27 +64,25 @@ describe('Testing update-rules urls', function () {
   };
   for(var app in rules) {
     for(var arch in rules[app].updater){
-      if(pages[rules[app].updater[arch].url] == undefined){
-        pages[rules[app].updater[arch].url] = '';
+      if(jiup.pages[rules[app].updater[arch].url] == undefined){
+        jiup.pages[rules[app].updater[arch].url] = '';
         load(app, rules[app].updater[arch].url);
       }
     }
   }
 });
 
-describe('Testing parsing rules and selectors', function () {
+describe('Testing extraction of download link and version number', function () {
   //Need to keep the for loop separated to avoid concurrency issues
   var fcall = function(app, arch) {
-    it(app + ' ' + arch + ' download links extraction', function (){
-      var web = jiup.parse(pages[rules[app].updater[arch].url], app, arch); //Need to keep this inside the it() block to avoid concurrency issues
-      //console.log(web[arch]);
+    it(app + ' ' + arch, function (){
+      var web = jiup.parse(jiup.pages[rules[app].updater[arch].url], app, arch); //Need to keep this inside the it() block to avoid concurrency issues
       assert.notEqual(web[arch], undefined, app + ' ' + arch + ' download link is undefined');
       assert.notEqual(web[arch], '', app + ' ' + arch + ' download link is empty');
-    });
-    it(app + ' ' + arch +' version number extraction', function (){
-      var web = jiup.parse(pages[rules[app].updater[arch].url], app, arch); //Need to keep this inside the it() block to avoid concurrency issues
       assert.notEqual(web['version'], undefined, app + ' version is undefined');
       assert.notEqual(web['version'], '', app + ' version is empty');
+      assert.notEqual(web['version'], '0', app + ' version is zero');
+      assert.notEqual(web['version'], 0, app + ' version is zero');
     });
   }
   for(var app in rules) {
