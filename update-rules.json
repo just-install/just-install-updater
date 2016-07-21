@@ -286,6 +286,17 @@
     },
     "version_extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
   },
+  "filezilla-server": {
+    "url": "https://sourceforge.net/projects/filezilla/files/FileZilla%20Server/",
+    "updater": {
+      "x86":{
+        "rule_type": "regexp-version",
+        "filter": "href=\"/projects/filezilla/files/FileZilla%20Server/[0-9]*(?:\\.[0-9]+)*[a-z]?/",
+        "baselink": "https://downloads.sourceforge.net/project/filezilla/FileZilla%20Server/{{.version}}/FileZilla_Server-{{.version_}}.exe"
+      }
+    },
+    "version_extractor": "Server/([0-9]*(?:\\.[0-9]+)*[a-z]?)/"
+  },
   "freefilesync": {
     "url": "http://www.freefilesync.org/download.php",
     "updater": {
