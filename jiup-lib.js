@@ -303,8 +303,16 @@ function parse(page, app, arch){
       break;
     case "css-html-version":
       $ = ch.load(page);
-      web['version'] = getVersion($(updater.selector).html(), app);
-      web[arch] = updater.baselink.replace(/{{.version}}/g, web['version']);
+      verbose('Found ' + $(updater.selector).get().length + ' CSS selector matches', app, arch);
+      $(updater.selector).each(function (i, elem) {
+        var thisVersion = getVersion($(this).html(), app);
+        if(thisVersion != undefined && helpers.isVersionNewer(highVersion, thisVersion)){
+          highVersion = thisVersion;
+        }
+        web['version'] = highVersion;
+        web[arch] = updater.baselink.replace(/{{\.version}}/g, web['version']);
+        web[arch] = web[arch].replace(/{{\.version_}}/g, web['version'].replace(/\./g, "_"));
+      });
       break;
     case "regexp-version":
       var re = new RegExp(updater.filter, 'g');
@@ -320,7 +328,8 @@ function parse(page, app, arch){
           }
         });
         web['version'] = highVersion;
-        web[arch] = updater.baselink.replace(/{{.version}}/g, web['version']);
+        web[arch] = updater.baselink.replace(/{{\.version}}/g, web['version']);
+        web[arch] = web[arch].replace(/{{\.version_}}/g, web['version'].replace(/\./g, "_"));
       }
       break;
     case "advanced":
