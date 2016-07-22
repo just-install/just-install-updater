@@ -552,6 +552,17 @@
     },
     "version_extractor": "qBittorrent v([0-9]*(?:\\.[0-9]+)*) installer"
   },
+  "recuva": {
+    "url": "https://www.piriform.com/recuva/download/standard",
+    "forceHTTPS": true,
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a.btn"
+      }
+    },
+    "version_extractor": "rcsetup([0-9]{1})([0-9]{2})\\.exe$"
+  },
   "ruby": {
     "url": "https://rubyinstaller.org/downloads/",
     "forceHTTPS": true,
