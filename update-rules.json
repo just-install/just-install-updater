@@ -546,7 +546,7 @@
     "updater": {
       "x86":{
         "rule_type": "css-html-version",
-        "selector": "[href$='qBittorrent.html']",
+        "selector": "[href$='.exe/download']",
         "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
       }
     },
