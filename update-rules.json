@@ -281,7 +281,7 @@
       "x86":{
         "rule_type": "css-html-version",
         "selector": "h2",
-        "baselink": "https://dl.sinew.in/windows/setup/EnpassSetup-{{.version}}.exe"
+        "baselink": "https://dl.sinew.in/windows/setup/{{.version-}}/Enpass_Setup.exe"
       }
     },
     "version_extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
