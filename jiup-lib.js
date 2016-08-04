@@ -310,8 +310,7 @@ function parse(page, app, arch){
           highVersion = thisVersion;
         }
         web['version'] = highVersion;
-        web[arch] = updater.baselink.replace(/{{\.version}}/g, web['version']);
-        web[arch] = web[arch].replace(/{{\.version_}}/g, web['version'].replace(/\./g, "_"));
+        web[arch] = removePlaceholders(updater.baselink, web['version'])
       });
       break;
     case "regexp-version":
@@ -328,8 +327,7 @@ function parse(page, app, arch){
           }
         });
         web['version'] = highVersion;
-        web[arch] = updater.baselink.replace(/{{\.version}}/g, web['version']);
-        web[arch] = web[arch].replace(/{{\.version_}}/g, web['version'].replace(/\./g, "_"));
+        web[arch] = removePlaceholders(updater.baselink, web['version'])
       }
       break;
     case "advanced":
@@ -362,6 +360,14 @@ function applyMods(link, app, updater){
   }
 
   return link
+}
+
+//Replaces the placeholders in the baselink and returns the resulting link
+function removePlaceholders(baselink, version){
+  var final = baselink.replace(/{{\.version}}/g, version);
+  final = final.replace(/{{\.version_}}/g, version.replace(/\./g, "_"));
+  final = final.replace(/{{\.version-}}/g, version.replace(/\./g, "-"));
+  return final;
 }
 
 //Parses the version number from the provided data using the package rule
