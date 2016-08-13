@@ -39,12 +39,12 @@ args['-todo'] = false;
 
 //JSON data files and their paths
 var registry = '';
-var rules = JSON.parse(fs.readFileSync('update-rules.json'));
+var rules = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'update-rules.json')));
 var auth = new Array();
 exports.auth = auth;
 console.log('');
 try{
-  auth.github = fs.readFileSync('githubAuth').toString('utf8');
+  auth.github = fs.readFileSync(path.resolve(__dirname, 'githubAuth')).toString('utf8');
 }
 catch(err) {
   auth.github = process.env.githubAuth;
