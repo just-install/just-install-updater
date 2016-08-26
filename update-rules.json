@@ -365,6 +365,16 @@
     },
     "version_extractor": "INSTALLER-([0-9]*(?:\\.[0-9]+)*[a-z]?)-RELEASE\\.exe"
   },
+  "hashcheck": {
+    "url": "https://api.github.com/repos/gurnec/HashCheck/releases/latest",
+    "updater": {
+      "x86":{
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "HashCheckSetup-v([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
+  },
   "inkscape": {
     "url": "https://inkscape.org/en/download/windows/",
     "updater": {
