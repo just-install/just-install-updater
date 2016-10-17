@@ -591,11 +591,11 @@
     "version_extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "sourcetree": {
-    "url": "https://www.sourcetreeapp.com/download/",
+    "url": "https://www.sourcetreeapp.com",
     "updater": {
       "x86":{
         "rule_type": "css-link",
-        "selector": ".win > p:nth-child(1) > a:nth-child(1)"
+        "selector": "[href$='.exe']"
       }
     },
     "version_extractor": "SourceTreeSetup_([0-9]*(?:\\.[0-9]+)*)\\.exe$"
