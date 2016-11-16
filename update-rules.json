@@ -78,6 +78,16 @@
     },
     "version_extractor": "ccsetup([0-9]{1})([0-9]{2})\\.exe$"
   },
+  "classic-shell": {
+    "url": "http://www.classicshell.net/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "a[href$='.exe']"
+        }
+    },
+    "version_extractor": "ClassicShellSetup_([0-9]{1,}(?:_[0-9]+)*[a-z]?)\\.exe"
+  },
   "clementine-player": {
     "url": "https://api.github.com/repos/clementine-player/Clementine/releases/latest",
     "updater": {
