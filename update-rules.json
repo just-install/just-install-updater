@@ -668,7 +668,7 @@
         "selector": "a[href$='64bit.msi']"
       }
     },
-    "version_extractor": "tightvnc-([0-9]*(?:\\.[0-9]+)*[a-z]?)-gpl-setup"
+    "version_extractor": "tightvnc-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
   "tomahawk": {
     "url": "https://www.tomahawk-player.org/",
