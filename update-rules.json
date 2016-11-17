@@ -694,6 +694,16 @@
     },
     "version_extractor": "svn-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
   },
+  "vagrant": {
+    "url": "https://www.vagrantup.com/downloads.html",
+    "updater": {
+      "x86":{
+        "rule_type": "css-link",
+        "selector": "[href$='.msi']"
+      }
+    },
+    "version_extractor": "vagrant_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
+  },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
     "updater": {
