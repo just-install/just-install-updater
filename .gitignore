@@ -1,8 +1,9 @@
 # Local test registry
 just-install.json
 
-# Local batch files
-*.bat
+# Local config files
+just_install_path.txt
+just_install_path
 
 # Access tokens
 githubAuth
