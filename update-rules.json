@@ -734,6 +734,18 @@
     },
     "version_extractor": "svn-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
   },
+  "upx": {
+    "url": "https://api.github.com/repos/upx/upx/releases/latest",
+    "updater": {
+      "x86":{
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "upx([0-9]*(?:\\.[0-9]+)*[a-z]?)w\\.zip"
+      }
+    },
+    "version_source": "page",
+    "version_extractor": "\"name\":\"UPX ([0-9]*(?:\\.[0-9]+)*[a-z]?)\""
+  },
   "vagrant": {
     "url": "https://www.vagrantup.com/downloads.html",
     "updater": {
