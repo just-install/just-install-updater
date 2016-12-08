@@ -390,11 +390,12 @@
     "updater": {
       "x86":{
         "rule_type": "css-link",
-	"selector": "[href$='.exe']",
+	      "selector": "[href$='.exe']",
         "filter": "^.*gvim([^\\\"]*)\\.exe"
       }
     },
-    "version_extractor": "gvim([^.]*).exe"
+    "replace": [["ftp:","http:"]],
+    "version_extractor": "gvim([0-9])([0-9]{1,2})(?:-([0-9]*))?.exe"
   },
   "hashcheck": {
     "url": "https://api.github.com/repos/gurnec/HashCheck/releases/latest",
