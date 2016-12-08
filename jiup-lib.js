@@ -359,7 +359,19 @@ function applyMods(link, app, updater){
     link += updater.append;
   }
 
-  return link
+  if(rules[app].replace != undefined){
+    for(key in rules[app].replace){
+      link = link.replace(rules[app].replace[key][0], rules[app].replace[key][1]);
+    }
+  }
+
+  if(updater.replace != undefined){
+    for(key in updater.replace){
+      link = link.replace(updater.replace[key][0], updater.replace[key][1]);
+    }
+  }
+
+  return link;
 }
 
 //Replaces the placeholders in the baselink and returns the resulting link
