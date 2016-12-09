@@ -646,6 +646,7 @@
         "selector": "[href$='.exe']"
       }
     },
+    "forceHTTPS": true,
     "version_extractor": "SourceTreeSetup_([0-9]*(?:\\.[0-9]+)*)\\.exe$"
   },
   "sublime-text-3": {
