@@ -2,8 +2,8 @@
 just-install.json
 
 # Local config files
-just_install_path.txt
-just_install_path
+registry_path.txt
+registry_path
 
 # Access tokens
 githubAuth

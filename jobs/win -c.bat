@@ -1,3 +1,3 @@
-SET /P JUST_INSTALL_PATH=<just_install_path.txt
-node ../jiup %JUST_INSTALL_PATH% -c
+SET /P REGISTRY_PATH=<registry_path.txt
+node ../jiup %REGISTRY_PATH% -c
 PAUSE
