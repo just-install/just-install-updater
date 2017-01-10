@@ -379,6 +379,7 @@ function removePlaceholders(baselink, version){
   var final = baselink.replace(/{{\.version}}/g, version);
   final = final.replace(/{{\.version_}}/g, version.replace(/\./g, "_"));
   final = final.replace(/{{\.version-}}/g, version.replace(/\./g, "-"));
+  final = final.replace(/{{\.version#}}/g, version.replace(/\./g, ""));
   return final;
 }
 
