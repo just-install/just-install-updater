@@ -992,7 +992,7 @@
         "selector": "[href$='_Setup.exe']"
       }
     },
-	"version_extractor": "([.\\d]+[.]\\d{1,5})"	
+	"version_extractor": "([.\\d]+[.]\\d{1,5})"
    },
    "veracrypt": {
     "url": "https://sourceforge.net/projects/veracrypt/files/",
@@ -1003,7 +1003,7 @@
 		"baselink": "https://sourceforge.net/projects/veracrypt/files/VeraCrypt%20{{.version}}/VeraCrypt%20Setup%20{{version}}.exe/download"
       }
     },
-	"version_extractor": "([.\\d]+[.]\\d{1,5})"  
+	"version_extractor": "([.\\d]+[.]\\d{1,5})"
 	},
 	"openssh": {
     "url": "https://www.mls-software.com/opensshd.html",
@@ -1076,7 +1076,7 @@
     "version_extractor": "([.\\d]+[.]\\d){1,5}"
   },
     "emacs": {
-    "url": "http://ftp.gnu.org/gnu/emacs/windows/",
+    "url": "https://ftp.gnu.org/gnu/emacs/windows/",
     "updater": {
       "x86":{
         "rule_type": "css-link",
@@ -1087,7 +1087,7 @@
         "selector": "[href$='x86_64-w64-mingw32.zip']"
       }
     },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})([-]\\d)?"
+    "version_extractor": "([.\\d]+[.]\\d{1,5})(?:[-](\\d))?"
   },
     "cryptomator": {
     "url": "https://cryptomator.org/de/downloads/",
