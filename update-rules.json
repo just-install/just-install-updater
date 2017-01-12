@@ -701,7 +701,7 @@
     "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
   },
   "tightvnc": {
-    "url": "https://tightvnc.com/download.php",
+    "url": "http://tightvnc.com/download.php",
     "updater": {
       "x86":{
         "rule_type": "css-link",
