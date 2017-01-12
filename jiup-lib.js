@@ -10,6 +10,11 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
+const rootCas = require('ssl-root-cas/latest');
+
+//Adds additional certificates not bundeled with Node
+rootCas.addFile(__dirname + '/certs/letsencrypt.crt');
+https.globalAgent.options.ca = rootCas;
 
 //Indexes used for the different architectures in the json files
 const x86 = 'x86';
