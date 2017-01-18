@@ -924,18 +924,7 @@
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
-  "windirstat": {
-    "url": "https://windirstat.net/download.html",
-    "updater": {
-      "x86":{
-        "rule_type": "css-html-version",
-        "selector": "li.download",
-        "baselink": "https://www.fosshub.com/WinDirStat.html/windirstat{{.version_}}_setup.exe"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-   "sumatrapdf": {
+  "sumatrapdf": {
     "url": "https://www.sumatrapdfreader.org/news.html",
     "updater": {
       "x86":{
@@ -951,7 +940,7 @@
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
-   "kodi": {
+  "kodi": {
     "url": "http://mirrors.kodi.tv/releases/win32/",
     "updater": {
       "x86":{
@@ -961,8 +950,8 @@
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
-   },
-   "ynab": {
+  },
+  "ynab": {
     "url": "http://classic.youneedabudget.com/download",
     "updater": {
       "x86":{
@@ -971,8 +960,8 @@
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
-   },
-   "veracrypt": {
+  },
+  "veracrypt": {
     "url": "https://sourceforge.net/projects/veracrypt/files/",
     "updater": {
       "x86":{
@@ -992,8 +981,8 @@
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
-   },
-   "sublime-text-dev": {
+  },
+  "sublime-text-dev": {
     "url": "https://www.sublimetext.com/3",
     "updater": {
       "x86":{
