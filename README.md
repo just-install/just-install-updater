@@ -1,6 +1,6 @@
-# just-install-updater [![Build Status](https://travis-ci.org/guiweber/just-install-updater.svg?branch=master)](https://travis-ci.org/guiweber/just-install-updater)
+# just-install-updater [![Build Status](https://travis-ci.org/just-install/just-install-updater.svg?branch=master)](https://travis-ci.org/just-install/just-install-updater)
 
-A nodejs script for updating the [just-install](https://github.com/lvillani/just-install)
+A nodejs script for updating the [just-install](https://github.com/just-install/just-install)
 registry links to the latest releases
 
 ### Installation
@@ -35,4 +35,4 @@ Finally, starting the script with the following commands will perform a special 
  * `-todo` displays the just-install entries for which no update rules exist.
 
 ### Contributing
-If you wish to contribute, please read the [documentation on the wiki](https://github.com/guiweber/just-install-updater/wiki)
+If you wish to contribute, please read the [documentation on the wiki](https://github.com/just-install/just-install-updater/wiki)
