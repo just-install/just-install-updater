@@ -348,34 +348,35 @@ function parse(page, app, arch){
 
 //Applies modifiers to the download link
 function applyMods(link, app, updater){
-  if(rules[app].forceHTTPS != undefined && rules[app].forceHTTPS){
-    link = link.replace('http:', 'https:');
-  }
+  if(link){
+    if(rules[app].forceHTTPS != undefined && rules[app].forceHTTPS){
+      link = link.replace('http:', 'https:');
+    }
 
-  if(updater.forceHTTPS != undefined && updater.forceHTTPS){
-    link = link.replace('http:', 'https:');
-  }
+    if(updater.forceHTTPS != undefined && updater.forceHTTPS){
+      link = link.replace('http:', 'https:');
+    }
 
-  if(rules[app].append != undefined){
-    link += rules[app].append;
-  }
+    if(rules[app].append != undefined){
+      link += rules[app].append;
+    }
 
-  if(updater.append != undefined){
-    link += updater.append;
-  }
+    if(updater.append != undefined){
+      link += updater.append;
+    }
 
-  if(rules[app].replace != undefined){
-    for(key in rules[app].replace){
-      link = link.replace(rules[app].replace[key][0], rules[app].replace[key][1]);
+    if(rules[app].replace != undefined){
+      for(key in rules[app].replace){
+        link = link.replace(rules[app].replace[key][0], rules[app].replace[key][1]);
+      }
+    }
+
+    if(updater.replace != undefined){
+      for(key in updater.replace){
+        link = link.replace(updater.replace[key][0], updater.replace[key][1]);
+      }
     }
   }
-
-  if(updater.replace != undefined){
-    for(key in updater.replace){
-      link = link.replace(updater.replace[key][0], updater.replace[key][1]);
-    }
-  }
-
   return link;
 }
 
