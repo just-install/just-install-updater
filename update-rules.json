@@ -307,6 +307,28 @@
     },
     "version_extractor": "Server/([0-9]*(?:\\.[0-9]+)*[a-z]?)/"
   },
+  "flash-player": {
+    "url": "https://www.adobe.com/software/flash/about/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-html-version",
+        "selector": "#content-body > table > tbody > tr:nth-child(5) > td:nth-child(2)",
+        "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_24_plugin.msi"
+      }
+    },
+    "version_extractor": "^([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
+    "flash-player-ie": {
+    "url": "https://www.adobe.com/software/flash/about/",
+    "updater": {
+      "x86":{
+        "rule_type": "css-html-version",
+        "selector": "#content-body > table > tbody > tr:nth-child(2) > td:nth-child(3)",
+        "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_24_active_x.msi"
+      }
+    },
+    "version_extractor": "^([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
   "freefilesync": {
     "url": "http://www.freefilesync.org/download.php",
     "updater": {
