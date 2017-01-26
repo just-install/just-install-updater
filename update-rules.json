@@ -3,7 +3,7 @@
     "url": "https://agilebits.com/downloads",
     "version_extractor": "1Password-([0-9]*(?:\\.[0-9]+)*)\\.exe$",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "section.box-container:nth-child(4) > div:nth-child(2) > div:nth-child(2) > a:nth-child(5)"
       }
@@ -12,10 +12,10 @@
   "7zip": {
     "url": "http://www.7-zip.org/download.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "advanced"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "advanced"
       }
     },
@@ -24,27 +24,27 @@
   "android-studio-bundle": {
     "url": "https://developer.android.com/studio/index.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='windows.exe']"
-        }
+      }
     },
     "version_extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-bundle"
   },
   "android-studio-ide": {
     "url": "https://developer.android.com/studio/index.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='windows.exe']"
-        }
+      }
     },
     "version_extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-ide"
   },
   "brackets": {
     "url": "https://api.github.com/repos/adobe/brackets/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url"
       }
@@ -54,12 +54,12 @@
   "calibre": {
     "url": "https://api.github.com/repos/kovidgoyal/calibre/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": "^((?!64bit).)*$"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": "calibre-64bit"
@@ -71,7 +71,7 @@
     "url": "https://www.piriform.com/ccleaner/download/standard",
     "forceHTTPS": true,
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a.btn"
       }
@@ -81,17 +81,17 @@
   "classic-shell": {
     "url": "http://www.classicshell.net/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='.exe']"
-        }
+      }
     },
     "version_extractor": "ClassicShellSetup_([0-9]{1,}(?:_[0-9]+)*[a-z]?)\\.exe"
   },
   "clementine-player": {
     "url": "https://api.github.com/repos/clementine-player/Clementine/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url"
       }
@@ -101,21 +101,31 @@
   "cmake": {
     "url": "https://cmake.org/download/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='-win32-x86.msi']"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='-win64-x64.msi']"
       }
     },
     "version_extractor": "cmake-([0-9]*(?:\\.[0-9]+)*)-win.{0,6}\\.msi$"
   },
+  "colemak": {
+    "url": "https://colemak.com/Windows",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='Caps-Lock-Unchanged.zip']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "conemu": {
     "url": "https://api.github.com/repos/Maximus5/ConEmu/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url"
       }
@@ -125,12 +135,12 @@
   "crashplan": {
     "url": "https://www.crashplan.com/shared/js/cp.download.js",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "regexp-version",
         "filter": "CPC_CLIENT_VERSION = '[0-9]*(?:\\.[0-9]*)*[a-z]?';",
         "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan_{{.version}}_Win.msi"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "regexp-version",
         "filter": "CPC_CLIENT_VERSION = '[0-9]*(?:\\.[0-9]*)*[a-z]?';",
         "baselink": "https://download.code42.com/installs/win/install/CrashPlan/jre/CrashPlan_{{.version}}_Win64.msi"
@@ -138,10 +148,24 @@
     },
     "version_extractor": "'([0-9]*(?:\\.[0-9]+)*[a-z]?)';"
   },
+  "cryptomator": {
+    "url": "https://cryptomator.org/de/downloads/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='-x86.exe']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "[href$='-x64.exe']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "crystaldisk-info": {
     "url": "https://osdn.jp/projects/crystaldiskinfo/releases/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "advanced"
       }
     },
@@ -150,7 +174,7 @@
   "crystaldisk-mark": {
     "url": "https://osdn.jp/projects/crystaldiskmark/releases/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "advanced"
       }
     },
@@ -160,17 +184,43 @@
     "url": "https://www.piriform.com/defraggler/download/standard",
     "forceHTTPS": true,
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a.btn"
       }
     },
     "version_extractor": "dfsetup([0-9]{1})([0-9]{2})\\.exe$"
   },
+  "deluge": {
+    "url": "http://download.deluge-torrent.org/windows/?C=N;O=D;F=0",
+    "updater": {
+      "x86": {
+        "rule_type": "regexp-link",
+        "filter": "(?!\">) (deluge-([.\\d]+[.]\\d{1,5})-win32-py(.*).exe)"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
+  "dependency-walker": {
+    "url": "http://www.dependencywalker.com",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": "body > font > div",
+        "baselink": "http://www.dependencywalker.com/depends{{.version#}}_x86.zip"
+      },
+      "x86_64": {
+        "rule_type": "css-html-version",
+        "selector": "body > font > div",
+        "baselink": "http://www.dependencywalker.com/depends{{.version#}}_x64.zip"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d){1,5}"
+  },
   "eac": {
     "url": "http://www.exactaudiocopy.de/en/index.php/weitere-seiten/download-from-alternative-servers-2/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='.exe']"
       }
@@ -181,12 +231,12 @@
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
         "filter": "eclipse-android"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
         "filter": "eclipse-android"
@@ -199,12 +249,12 @@
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
         "filter": "eclipse-committers"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
         "filter": "eclipse-committers"
@@ -217,12 +267,12 @@
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
         "filter": "eclipse-cpp"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
         "filter": "eclipse-cpp"
@@ -235,12 +285,12 @@
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
         "filter": "eclipse-java"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
         "filter": "eclipse-java"
@@ -253,12 +303,12 @@
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
         "filter": "eclipse-jee"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
         "filter": "eclipse-jee"
@@ -271,12 +321,12 @@
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='win32.zip']",
         "filter": "eclipse-php"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='win32-x86_64.zip']",
         "filter": "eclipse-php"
@@ -285,10 +335,34 @@
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
+  "eig": {
+    "url": "https://api.github.com/repos/EvilInsultGenerator/c-sharp-desktop/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "v([.\\d]+[.]\\d{1,5})/EvilInsultGenerator_Setup.exe$"
+  },
+  "emacs": {
+    "url": "https://ftp.gnu.org/gnu/emacs/windows/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='i686-w64-mingw32.zip']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "[href$='x86_64-w64-mingw32.zip']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})(?:[-](\\d))?"
+  },
   "enpass": {
     "url": "https://www.enpass.io/release-notes/windowspc/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-html-version",
         "selector": "h2",
         "baselink": "https://dl.sinew.in/windows/setup/{{.version-}}/Enpass_Setup.exe"
@@ -296,10 +370,24 @@
     },
     "version_extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
   },
+  "everything-search": {
+    "url": "https://www.voidtools.com/downloads/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='x86.Multilingual-Setup.exe']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href$='x64.Multilingual-Setup.exe']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "filezilla-server": {
     "url": "https://sourceforge.net/projects/filezilla/files/FileZilla%20Server/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "regexp-version",
         "filter": "href=\"/projects/filezilla/files/FileZilla%20Server/[0-9]*(?:\\.[0-9]+)*[a-z]?/",
         "baselink": "https://downloads.sourceforge.net/project/filezilla/FileZilla%20Server/{{.version}}/FileZilla_Server-{{.version_}}.exe"
@@ -310,7 +398,7 @@
   "flash-player": {
     "url": "https://www.adobe.com/software/flash/about/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-html-version",
         "selector": "#content-body > table > tbody > tr:nth-child(5) > td:nth-child(2)",
         "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_24_plugin.msi"
@@ -318,10 +406,10 @@
     },
     "version_extractor": "^([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
-    "flash-player-ie": {
+  "flash-player-ie": {
     "url": "https://www.adobe.com/software/flash/about/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-html-version",
         "selector": "#content-body > table > tbody > tr:nth-child(2) > td:nth-child(3)",
         "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_24_active_x.msi"
@@ -332,7 +420,7 @@
   "freefilesync": {
     "url": "http://www.freefilesync.org/download.php",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a.direct-download-link:nth-child(1)"
       }
@@ -342,7 +430,7 @@
   "geforce-experience": {
     "url": "http://www.geforce.com/geforce-experience",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='.exe']"
       }
@@ -352,7 +440,7 @@
   "gimp": {
     "url": "https://www.gimp.org/downloads/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "#win-download-link"
       }
@@ -362,11 +450,11 @@
   "git": {
     "url": "https://git-scm.com/download/win",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "div.callout:nth-child(2) > p:nth-child(6) > strong:nth-child(1) > a:nth-child(1)"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "div.callout:nth-child(2) > p:nth-child(7) > strong:nth-child(1) > a:nth-child(1)"
       }
@@ -376,7 +464,7 @@
   "git-lfs": {
     "url": "https://api.github.com/repos/git-lfs/git-lfs/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url"
       }
@@ -386,11 +474,11 @@
   "go": {
     "url": "https://golang.org/dl/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='windows-amd64.msi']"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='windows-386.msi']"
       }
@@ -400,7 +488,7 @@
   "greenshot": {
     "url": "https://api.github.com/repos/greenshot/greenshot/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url"
       }
@@ -410,19 +498,40 @@
   "gvim": {
     "url": "http://www.vim.org/download.php",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
-	      "selector": "[href$='.exe']",
+        "selector": "[href$='.exe']",
         "filter": "^.*gvim([^\\\"]*)\\.exe"
       }
     },
-    "replace": [["ftp:","http:"]],
+    "replace": [
+      [
+        "ftp:",
+        "http:"
+      ]
+    ],
     "version_extractor": "gvim([0-9])([0-9]{1,2})(?:-([0-9]*))?.exe"
+  },
+  "handbrake": {
+    "url": "https://handbrake.fr/downloads.php",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='.exe']",
+        "filter": "HandBrake-([.\\d]+[.]\\d{1,5})-i686-Win_GUI(.*).exe"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href$='.exe']",
+        "filter": "HandBrake-([.\\d]+[.]\\d{1,5})-x86_64-Win_GUI(.*).exe"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
   "hashcheck": {
     "url": "https://api.github.com/repos/gurnec/HashCheck/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url"
       }
@@ -432,12 +541,12 @@
   "inkscape": {
     "url": "https://inkscape.org/en/download/windows/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='.msi']",
         "filter": "^((?!x64).)*$"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='-x64.msi']"
       }
@@ -447,7 +556,7 @@
   "innosetup": {
     "url": "http://files.jrsoftware.org/is/5/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='-unicode.exe']"
       }
@@ -457,11 +566,11 @@
   "jre": {
     "url": "https://www.java.com/en/download/manual.jsp",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[title='Download Java software for Windows Offline']"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[title='Download Java software for Windows (64-bit)']"
       }
@@ -472,7 +581,7 @@
   "keepass": {
     "url": "https://sourceforge.net/projects/keepass/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-html-version",
         "selector": "#download_button small",
         "baselink": "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/{{.version}}/KeePass-{{.version}}-Setup.exe"
@@ -480,15 +589,26 @@
     },
     "version_extractor": "KeePass-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip"
   },
+  "kodi": {
+    "url": "http://mirrors.kodi.tv/releases/win32/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='.exe']",
+        "filter": "-[a-zA-Z]*\\.exe$"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "libreoffice": {
     "url": "https://www.libreoffice.org/download/libreoffice-fresh/?type=win-x86&lang=en-US",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-html-version",
         "selector": ".btn-main",
         "baselink": "https://download.documentfoundation.org/libreoffice/stable/{{.version}}/win/x86/LibreOffice_{{.version}}_Win_x86.msi"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-html-version",
         "selector": ".btn-main",
         "baselink": "https://download.documentfoundation.org/libreoffice/stable/{{.version}}/win/x86_64/LibreOffice_{{.version}}_Win_x64.msi"
@@ -496,25 +616,50 @@
     },
     "version_extractor": "Version ([0-9]*(?:\\.[0-9]+)*)$"
   },
+  "lockhunter": {
+    "url": "http://lockhunter.com/download.htm",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": ".download_comment",
+        "baselink": "http://lockhunter.com/exe/lockhuntersetup_{{.version-}}.exe"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "mercurial": {
     "url": "https://www.mercurial-scm.org/sources.js",
     "forceHTTPS": true,
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "regexp-link",
         "filter": "http.*windows/mercurial-.*-x86\\.msi"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "regexp-link",
         "filter": "http.*windows/mercurial-.*-x64\\.msi"
       }
     },
     "version_extractor": "mercurial-([0-9]*(?:\\.[0-9]+)*)-[a-z0-9]{3}\\.msi$"
   },
+  "mpc-hc": {
+    "url": "https://mpc-hc.org/downloads/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='.x86.exe']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href$='.x64.exe']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "mumble": {
     "url": "https://api.github.com/repos/mumble-voip/mumble/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url"
       }
@@ -524,12 +669,12 @@
   "mysql-workbench": {
     "url": "https://dev.mysql.com/downloads/workbench/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-html-version",
         "selector": "h1",
         "baselink": "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-{{.version}}-win32.msi"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-html-version",
         "selector": "h1",
         "baselink": "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-{{.version}}-winx64.msi"
@@ -540,11 +685,11 @@
   "node": {
     "url": "https://nodejs.org/en/download/current/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > a"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > a"
       }
@@ -554,11 +699,11 @@
   "node-lts": {
     "url": "https://nodejs.org/en/download/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(2) > a"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "table.download-matrix:nth-child(4) > tbody:nth-child(1) > tr:nth-child(1) > td:nth-child(3) > a"
       }
@@ -568,7 +713,7 @@
   "notepad++": {
     "url": "https://notepad-plus-plus.org/download/v6.9.1.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "[href$='.exe']"
       }
@@ -578,12 +723,12 @@
   "npackd": {
     "url": "https://api.github.com/repos/tim-lebedkov/npackd-cpp/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": "Npackd32"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": "Npackd64"
@@ -594,7 +739,7 @@
   "npackdcl": {
     "url": "https://api.github.com/repos/tim-lebedkov/npackd-cpp/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": "NpackdCL"
@@ -602,10 +747,40 @@
     },
     "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
   },
+  "obs-studio": {
+    "url": "https://obsproject.com/download",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='Full-Installer.exe']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
+  "openssh": {
+    "url": "https://www.mls-software.com/opensshd.html",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='.exe']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
+  "processhacker": {
+    "url": "http://processhacker.sourceforge.net/downloads.php",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='setup.exe']"
+      }
+    },
+    "version_extractor": "([0-9].[0-9]{1,4})"
+  },
   "putty": {
     "url": "http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "span.downloadfile a[href^='https'][href$='.msi']"
       }
@@ -615,7 +790,7 @@
   "pycharm-community": {
     "url": "https://data.services.jetbrains.com/products/releases?code=PCP%2CPCC&latest=true",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "advanced"
       }
     },
@@ -624,12 +799,12 @@
   "qbittorrent": {
     "url": "http://www.qbittorrent.org/download.php",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-html-version",
         "selector": "[href$='.exe/download']",
         "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-html-version",
         "selector": "[href$='.exe/download']",
         "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_x64_setup.exe"
@@ -641,7 +816,7 @@
     "url": "https://www.piriform.com/recuva/download/standard",
     "forceHTTPS": true,
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a.btn"
       }
@@ -652,12 +827,12 @@
     "url": "https://rubyinstaller.org/downloads/",
     "forceHTTPS": true,
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "[href$='.exe']",
         "filter": "^.*rubyinstaller-(?:[0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "[href$='.exe']",
         "filter": "^.*rubyinstaller-(?:[0-9]*(?:\\.[0-9]+)*[a-z]?)-x64\\.exe"
@@ -665,10 +840,20 @@
     },
     "version_extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
+  "sharex": {
+    "url": "https://github.com/ShareX/ShareX/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='setup.exe']"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "sourcetree": {
     "url": "https://www.sourcetreeapp.com",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "[href$='.exe']"
       }
@@ -676,29 +861,89 @@
     "forceHTTPS": true,
     "version_extractor": "SourceTreeSetup-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
   },
-  "sublime-text-3": {
-    "url": "https://www.sublimetext.com/3",
+  "sublime-text": {
+    "url": "https://www.sublimetext.com/2",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "#dl_win_32 > a:nth-child(1)"
       },
-      "x86_64":{
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "#dl_win_64 > a:nth-child(1)"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5}[a-z])"
+  },
+  "sublime-text-3": {
+    "url": "https://www.sublimetext.com/3",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "#dl_win_32 > a:nth-child(1)"
+      },
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "#dl_win_64 > a:nth-child(1)"
       }
     },
     "version_extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
   },
+  "sublime-text-dev": {
+    "url": "https://www.sublimetext.com/3",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "#dl_win_32 > a:nth-child(1)"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "#dl_win_64 > a:nth-child(1)"
+      }
+    },
+    "version_extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
+  },
+  "subversion": {
+    "url": "https://sliksvn.com/download/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "baselink": "https://sliksvn.com/pub/Slik-Subversion-{{.version}}-win32.msi",
+        "selector": "div.actions"
+      },
+      "x86_64": {
+        "rule_type": "css-html-version",
+        "baselink": "https://sliksvn.com/pub/Slik-Subversion-{{.version}}-x64.msi",
+        "selector": "div.actions"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d){1,5}"
+  },
+  "sumatrapdf": {
+    "url": "https://www.sumatrapdfreader.org/news.html",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": ".content > b",
+        "baselink": "https://www.sumatrapdfreader.org/dl/SumatraPDF-{{.version}}-install.exe"
+      },
+      "x86_64": {
+        "rule_type": "css-html-version",
+        "selector": ".content > b",
+        "baselink": "https://www.sumatrapdfreader.org/dl/SumatraPDF-{{.version}}-64-install.exe"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "syncthing": {
     "url": "https://api.github.com/repos/syncthing/syncthing/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": ".*syncthing-windows-386.*"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": ".*syncthing-windows-amd64.*"
@@ -709,12 +954,12 @@
   "teamspeak": {
     "url": "https://www.teamspeak.com/downloads",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "option[value*='win32'][value$='.exe']",
         "link_attribute": "value"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "option[value*='win64'][value$='.exe']",
         "link_attribute": "value"
@@ -725,11 +970,11 @@
   "tightvnc": {
     "url": "http://tightvnc.com/download.php",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='32bit.msi']"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='64bit.msi']"
       }
@@ -739,7 +984,7 @@
   "tomahawk": {
     "url": "https://www.tomahawk-player.org/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='.exe']"
       }
@@ -749,11 +994,11 @@
   "tortoisegit": {
     "url": "https://tortoisegit.org/download/",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='32bit.msi']"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href$='64bit.msi']"
       }
@@ -763,11 +1008,11 @@
   "tortoisesvn": {
     "url": "https://tortoisesvn.net/downloads.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "a[href*='win32-svn']"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "a[href*='x64-svn']"
       }
@@ -777,7 +1022,7 @@
   "upx": {
     "url": "https://api.github.com/repos/upx/upx/releases/latest",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "json-link",
         "selector": "browser_download_url",
         "filter": "upx([0-9]*(?:\\.[0-9]+)*[a-z]?)w\\.zip"
@@ -789,17 +1034,28 @@
   "vagrant": {
     "url": "https://www.vagrantup.com/downloads.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "[href$='.msi']"
       }
     },
     "version_extractor": "vagrant_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
   },
+  "veracrypt": {
+    "url": "https://sourceforge.net/projects/veracrypt/files/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": "#files > div.download-bar",
+        "baselink": "https://sourceforge.net/projects/veracrypt/files/VeraCrypt%20{{.version}}/VeraCrypt%20Setup%20{{version}}.exe/download"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "[href$='.exe']"
       }
@@ -809,7 +1065,7 @@
   "virtualbox-extpack": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "li > a[href$='.vbox-extpack']"
       }
@@ -819,11 +1075,11 @@
   "vlc": {
     "url": "https://www.videolan.org/vlc/download-windows.html",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "#downloadButton2"
       },
-      "x86_64":{
+      "x86_64": {
         "rule_type": "css-link",
         "selector": "ul.dropdown-menu:nth-child(3) > li:nth-child(3) > a:nth-child(1)"
       }
@@ -833,7 +1089,7 @@
   "winscp": {
     "url": "https://winscp.net/eng/download.php",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "regexp-version",
         "filter": "WinSCP ([.\\d]+[.]\\d{1,5})",
         "baselink": "https://downloads.sourceforge.net/project/winscp/WinSCP/{{.version}}/WinSCP-{{.version}}-Setup.exe"
@@ -841,265 +1097,14 @@
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
-  "processhacker": {
-    "url": "http://processhacker.sourceforge.net/downloads.php",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='setup.exe']"
-      }
-    },
-    "version_extractor": "([0-9].[0-9]{1,4})"
-  },
-  "everything-search": {
-    "url": "https://www.voidtools.com/downloads/",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "a[href$='x86.Multilingual-Setup.exe']"
-      },
-      "x86_64":{
-        "rule_type": "css-link",
-        "selector": "a[href$='x64.Multilingual-Setup.exe']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "mpc-hc": {
-    "url": "https://mpc-hc.org/downloads/",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "a[href$='.x86.exe']"
-      },
-      "x86_64":{
-        "rule_type": "css-link",
-        "selector": "a[href$='.x64.exe']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "deluge": {
-    "url": "http://download.deluge-torrent.org/windows/?C=N;O=D;F=0",
-    "updater": {
-      "x86":{
-        "rule_type": "regexp-link",
-        "filter": "(?!\">) (deluge-([.\\d]+[.]\\d{1,5})-win32-py(.*).exe)"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "sharex": {
-    "url": "https://github.com/ShareX/ShareX/releases/latest",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='setup.exe']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "lockhunter": {
-    "url": "http://lockhunter.com/download.htm",
-    "updater": {
-      "x86":{
-        "rule_type": "css-html-version",
-        "selector": ".download_comment",
-        "baselink": "http://lockhunter.com/exe/lockhuntersetup_{{.version-}}.exe"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "obs-studio": {
-    "url": "https://obsproject.com/download",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='Full-Installer.exe']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "colemak": {
-    "url": "https://colemak.com/Windows",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='Caps-Lock-Unchanged.zip']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "handbrake": {
-    "url": "https://handbrake.fr/downloads.php",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='.exe']",
-        "filter": "HandBrake-([.\\d]+[.]\\d{1,5})-i686-Win_GUI(.*).exe"
-      },
-      "x86_64":{
-        "rule_type": "css-link",
-        "selector": "a[href$='.exe']",
-        "filter": "HandBrake-([.\\d]+[.]\\d{1,5})-x86_64-Win_GUI(.*).exe"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "sumatrapdf": {
-    "url": "https://www.sumatrapdfreader.org/news.html",
-    "updater": {
-      "x86":{
-        "rule_type": "css-html-version",
-        "selector": ".content > b",
-        "baselink": "https://www.sumatrapdfreader.org/dl/SumatraPDF-{{.version}}-install.exe"
-      },
-      "x86_64":{
-        "rule_type": "css-html-version",
-        "selector": ".content > b",
-        "baselink": "https://www.sumatrapdfreader.org/dl/SumatraPDF-{{.version}}-64-install.exe"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "kodi": {
-    "url": "http://mirrors.kodi.tv/releases/win32/",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='.exe']",
-        "filter": "-[a-zA-Z]*\\.exe$"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
   "ynab": {
     "url": "http://classic.youneedabudget.com/download",
     "updater": {
-      "x86":{
+      "x86": {
         "rule_type": "css-link",
         "selector": "[href$='_Setup.exe']"
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "veracrypt": {
-    "url": "https://sourceforge.net/projects/veracrypt/files/",
-    "updater": {
-      "x86":{
-        "rule_type": "css-html-version",
-        "selector": "#files > div.download-bar",
-        "baselink": "https://sourceforge.net/projects/veracrypt/files/VeraCrypt%20{{.version}}/VeraCrypt%20Setup%20{{version}}.exe/download"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "openssh": {
-    "url": "https://www.mls-software.com/opensshd.html",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='.exe']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "sublime-text-dev": {
-    "url": "https://www.sublimetext.com/3",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "#dl_win_32 > a:nth-child(1)"
-      },
-      "x86_64":{
-        "rule_type": "css-link",
-        "selector": "#dl_win_64 > a:nth-child(1)"
-      }
-    },
-    "version_extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
-  },
-  "sublime-text": {
-    "url": "https://www.sublimetext.com/2",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "#dl_win_32 > a:nth-child(1)"
-      },
-      "x86_64":{
-        "rule_type": "css-link",
-        "selector": "#dl_win_64 > a:nth-child(1)"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5}[a-z])"
-  },
-  "subversion": {
-    "url": "https://sliksvn.com/download/",
-    "updater": {
-      "x86":{
-        "rule_type": "css-html-version",
-        "baselink": "https://sliksvn.com/pub/Slik-Subversion-{{.version}}-win32.msi",
-        "selector": "div.actions"
-      },
-      "x86_64":{
-        "rule_type": "css-html-version",
-        "baselink": "https://sliksvn.com/pub/Slik-Subversion-{{.version}}-x64.msi",
-        "selector": "div.actions"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d){1,5}"
-  },
-  "dependency-walker": {
-    "url": "http://www.dependencywalker.com",
-    "updater": {
-      "x86":{
-        "rule_type": "css-html-version",
-        "selector": "body > font > div",
-        "baselink": "http://www.dependencywalker.com/depends{{.version#}}_x86.zip"
-      },
-      "x86_64":{
-        "rule_type": "css-html-version",
-        "selector": "body > font > div",
-        "baselink": "http://www.dependencywalker.com/depends{{.version#}}_x64.zip"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d){1,5}"
-  },
-  "emacs": {
-    "url": "https://ftp.gnu.org/gnu/emacs/windows/",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='i686-w64-mingw32.zip']"
-      },
-      "x86_64":{
-        "rule_type": "css-link",
-        "selector": "[href$='x86_64-w64-mingw32.zip']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})(?:[-](\\d))?"
-  },
-  "cryptomator": {
-    "url": "https://cryptomator.org/de/downloads/",
-    "updater": {
-      "x86":{
-        "rule_type": "css-link",
-        "selector": "[href$='-x86.exe']"
-      },
-      "x86_64":{
-        "rule_type": "css-link",
-        "selector": "[href$='-x64.exe']"
-      }
-    },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
-  },
-  "eig": {
-    "url": "https://api.github.com/repos/EvilInsultGenerator/c-sharp-desktop/releases/latest",
-    "updater": {
-      "x86":{
-        "rule_type": "json-link",
-        "selector": "browser_download_url"
-      }
-    },
-    "version_extractor": "v([.\\d]+[.]\\d{1,5})/EvilInsultGenerator_Setup.exe$"
   }
 }
