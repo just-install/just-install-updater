@@ -801,16 +801,16 @@
     "updater": {
       "x86": {
         "rule_type": "css-html-version",
-        "selector": "[href$='.exe/download']",
+        "selector": "[href$='download.php']",
         "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
       },
       "x86_64": {
         "rule_type": "css-html-version",
-        "selector": "[href$='.exe/download']",
+        "selector": "[href$='download.php']",
         "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_x64_setup.exe"
       }
     },
-    "version_extractor": "qBittorrent v([0-9]*(?:\\.[0-9]+)*) "
+    "version_extractor": "Latest: v([0-9]*(?:\\.[0-9]+)*)"
   },
   "recuva": {
     "url": "https://www.piriform.com/recuva/download/standard",
