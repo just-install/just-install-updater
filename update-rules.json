@@ -401,7 +401,7 @@
       "x86": {
         "rule_type": "css-html-version",
         "selector": "#content-body > table > tbody > tr:nth-child(5) > td:nth-child(2)",
-        "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_24_plugin.msi"
+        "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_25_plugin.msi"
       }
     },
     "version_extractor": "^([0-9]*(?:\\.[0-9]+)*[a-z]?)"
@@ -412,7 +412,7 @@
       "x86": {
         "rule_type": "css-html-version",
         "selector": "#content-body > table > tbody > tr:nth-child(2) > td:nth-child(3)",
-        "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_24_active_x.msi"
+        "baselink": "https://fpdownload.macromedia.com/get/flashplayer/pdc/{{.version}}/install_flash_player_25_active_x.msi"
       }
     },
     "version_extractor": "^([0-9]*(?:\\.[0-9]+)*[a-z]?)"
