@@ -69,8 +69,10 @@ exports.init = function(path){
   }else{
     setArchSettings();
     cleanAppList();
-    process.stdout.write(`\nFetching data`);
-    progTimer = setInterval(function(){ process.stdout.write(`.`);}, 250);
+    if(!args['-v']){
+      process.stdout.write(`\nFetching data`);
+      progTimer = setInterval(function(){ process.stdout.write(`.`);}, 250);
+    }
     if(appList.length){
       for(var app in appList) {
         loadPages(appList[app]);
@@ -130,6 +132,7 @@ function cleanAppList(){
   }
 }
 
+//Adds the API authentication tokens to the requested URL if needed
 function addAuth(appUrl){
   if(appUrl.indexOf('?') > 0){
     var separator = '&';
@@ -169,9 +172,9 @@ function load(app, appUrl, storageIndex){
     }
   };
   if(appUrl.match(/^https:/)){
-    https.get(params, loadres).on('error', (e) => { console.error(e); oneDone(); });
+    https.get(params, loadres).on('error', (e) => { verbose(e, app); oneDone(); });
   }else{
-    http.get(params, loadres).on('error', (e) => { console.error(e); oneDone(); });
+    http.get(params, loadres).on('error', (e) => { verbose(e, app); oneDone(); });
   }
 }
 
@@ -437,14 +440,13 @@ function update(web, k){
   var archCount = 0;
   var categorized = false;
   var versionNotNew = false;
-  var msg = '\n';
   if(web['version'] == undefined || web['version'] == ''){
     msg += k + ": No version number. Run with verbose (-v) to see what went wrong.";
     broken.push(msg);
     categorized = true;
   }else{
     for(var arch in rules[k].updater){
-      msg += '\n' + 'Updating ' + k + ' ' + arch + '\n';
+      msg = '\n' + 'Updating ' + k + ' ' + arch + '\n';
       archCount ++;
       var updater = rules[k].updater[arch];
       if(app == undefined){
@@ -495,7 +497,6 @@ function update(web, k){
       if(updateCount != archCount && args['-f'] == false){
         var m = 'New version was found, but not for all architectures';
         skipped.push(k + ': ' + m);
-        console.log(m);
       }else{
         re = new RegExp(web['version'].replace(/\./g, "\\."), 'g')
         updated.push(k);
@@ -506,7 +507,6 @@ function update(web, k){
       }
     }
   }
-  oneDone();
 }
 
 //Increments the progress counter for async operations
@@ -530,7 +530,7 @@ function conclude(){
     saved = true;
   }
 
-  console.log('\n========== SUMMARY OF OPERATIONS ==========\n');
+  console.log('\n\n========== SUMMARY OF OPERATIONS ==========\n');
   if(allUpToDate){
     console.log('All the packages that were found are already up-to-date!');
   }else{
@@ -623,6 +623,7 @@ function verbose(msg, label = '', sublabel = ''){
   }
 }
 
+//Returns the values assigned associated with the targetKey in a JSON object
 function traverseJSON(obj, targetKey) {
   var results = new Array();
   for (var i in obj) {
