@@ -8,12 +8,12 @@
 	},
 "license": "GPL-3.0",
 "description": "A nodejs script for updating the just-install registry links to the latest releases",
-"homepage": "https://github.com/guiweber/just-install-updater",
+"homepage": "https://github.com/just-install/just-install-updater",
 "keywords": ["just-install"],
-"bugs": { "url": "https://github.com/guiweber/just-install-updater/issues"},
+"bugs": { "url": "https://github.com/just-install/just-install-updater/issues"},
 "repository": {
     "type": "git",
-    "url": "https://github.com/guiweber/just-install-updater.git"
+    "url": "https://github.com/just-install/just-install-updater.git"
 	},
 	"dependencies": {
     "cheerio": ">=0.20.0",
