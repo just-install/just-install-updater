@@ -437,24 +437,24 @@ function update(web, k){
   var archCount = 0;
   var categorized = false;
   var versionNotNew = false;
+  var msg = '\n';
   if(web['version'] == undefined || web['version'] == ''){
-    var m = k + ": No version number. Run with verbose (-v) to see what went wrong.";
-    broken.push(m);
+    msg += k + ": No version number. Run with verbose (-v) to see what went wrong.";
+    broken.push(msg);
     categorized = true;
   }else{
     for(var arch in rules[k].updater){
+      msg += '\n' + 'Updating ' + k + ' ' + arch + '\n';
       archCount ++;
-      console.log(' ');
       var updater = rules[k].updater[arch];
-      console.log('Updating ' + k + ' ' + arch);
       if(app == undefined){
         var m = "App is not present in registry file";
-        console.log(m);
+        msg += m;
         broken.push(k + ' ' + arch + ': ' + m);
         categorized = true;
       }else if(app.installer[arch] == undefined && args["-f"] == false){
         var m = "Registry doesn't have entry for architecture " + arch;
-        console.log(m);
+        msg += m;
         skipped.push(k +": " + m);
       }else{
         if(app.installer[arch] == undefined){
@@ -464,20 +464,23 @@ function update(web, k){
         }
         if(web[arch] == undefined){
           var m = 'Could not get link. Run with verbose (-v) to see what went wrong.';
+          msg += m;
           broken.push(k + ' ' + arch + ': ' + m);
           categorized = true;
-          console.log(m);
         }else{
           web[arch] = url.resolve(rules[k].updater[arch].url, web[arch]);
-          console.log('Web: v.' + web['version'] + ' '+ web[arch]);
-          console.log('Reg: v.' + app.version + ' ' + reg);
+          msg += 'Web: v.' + web['version'] + ' '+ web[arch];
+          msg += '\n' + 'Reg: v.' + app.version + ' ' + reg;
           if(web[arch] == reg){
-            console.log('Registry is up-to-date');
+            verbose(msg);
+            verbose('Registry is up-to-date');
           }else if(helpers.isVersionNewer(app.version, web['version']) || args['-f']){
             updateCount ++;
+            console.log(msg);
             console.log('New version found!');
           }else{
             versionNotNew = true;
+            console.log(msg);
             console.log('New links found but version '+web['version']+' doesn\'t seem to be newer than '+app.version);
           }
         }
