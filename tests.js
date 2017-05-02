@@ -16,10 +16,28 @@ rules = new Array();
 rules["jre"] = temp;
 */
 
+// Copies the app url to each architecture to simplify loops
 for(var app in rules){
   if(rules[app].url != undefined){
     for(var arch in rules[app].updater){
       rules[app].updater[arch].url = rules[app].url;
+    }
+  }
+}
+
+// Skip tests for apps using authentified links if the auth token is not avaialable
+if(jiup.auth.github == undefined){
+  console.log("Tests for rules using the github API will be skipped");
+  for(var app in rules){
+    var remove = false;
+    for(var arch in rules[app].updater){
+      if(rules[app].updater[arch].url.startsWith('https://api.github.com')){
+        remove = true;
+        break;
+      }
+    }
+    if(remove){
+      delete rules[app];
     }
   }
 }
