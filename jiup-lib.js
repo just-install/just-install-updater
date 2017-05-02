@@ -69,7 +69,10 @@ exports.init = function(path){
   }else{
     setArchSettings();
     cleanAppList();
-    if(!args['-v']){
+    if(args['-v']){
+      console.log('Fetching data...');
+      console.log('Progress bar not shown in verbose mode, please be patient...');
+    }else{
       process.stdout.write(`\nFetching data`);
       progTimer = setInterval(function(){ process.stdout.write(`.`);}, 250);
     }
