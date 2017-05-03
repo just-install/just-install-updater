@@ -859,6 +859,22 @@
     },
     "version_extractor": "pycharm-community-([0-9]*(?:\\.[0-9]+)*)\\.exe$"
   },
+  "python3": {
+    "url": "https://www.python.org/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": "a[href^='/downloads/release/python-3']",
+        "baselink": "https://www.python.org/ftp/python/{{.version}}/python-{{.version}}.exe"
+      },
+      "x86_64": {
+        "rule_type": "css-html-version",
+        "selector": "a[href^='/downloads/release/python-3']",
+        "baselink": "https://www.python.org/ftp/python/{{.version}}/python-{{.version}}-amd64.exe"
+      }
+    },
+    "version_extractor": "Python ([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
   "qbittorrent": {
     "url": "http://www.qbittorrent.org/download.php",
     "updater": {
