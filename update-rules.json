@@ -831,14 +831,15 @@
     "version_extractor": "Plex-Media-Server-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
   "processhacker": {
-    "url": "http://processhacker.sourceforge.net/downloads.php",
+    "url": "https://api.github.com/repos/processhacker2/processhacker2/releases/latest",
     "updater": {
       "x86": {
-        "rule_type": "css-link",
-        "selector": "a[href$='setup.exe']"
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "setup\\.exe"
       }
     },
-    "version_extractor": "([0-9].[0-9]{1,4})"
+    "version_extractor": "processhacker-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
   "putty": {
     "url": "http://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html",
