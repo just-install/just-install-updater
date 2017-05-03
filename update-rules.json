@@ -777,6 +777,17 @@
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
+  "plex-media-server": {
+    "url": "https://plex.tv/api/downloads/1.json",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "url",
+        "filter": "exe$"
+      }
+    },
+    "version_extractor": "Plex-Media-Server-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
+  },
   "processhacker": {
     "url": "http://processhacker.sourceforge.net/downloads.php",
     "updater": {
