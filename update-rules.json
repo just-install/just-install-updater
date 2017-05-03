@@ -921,14 +921,14 @@
     "version_extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "sharex": {
-    "url": "https://github.com/ShareX/ShareX/releases/latest",
+    "url": "https://api.github.com/repos/ShareX/ShareX/releases/latest",
     "updater": {
       "x86": {
-        "rule_type": "css-link",
-        "selector": "a[href$='setup.exe']"
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
       }
     },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+    "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-setup.exe"
   },
   "sourcetree": {
     "url": "https://www.sourcetreeapp.com",
