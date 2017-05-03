@@ -444,12 +444,11 @@ function update(web, k){
   var categorized = false;
   var versionNotNew = false;
   if(web['version'] == undefined || web['version'] == ''){
-    msg += k + ": No version number. Run with verbose (-v) to see what went wrong.";
-    broken.push(msg);
+    broken.push(k + ": No version number. Run with verbose (-v) to see what went wrong.");
     categorized = true;
   }else{
     for(var arch in rules[k].updater){
-      msg = '\n' + 'Updating ' + k + ' ' + arch + '\n';
+      var msg = '\n' + 'Updating ' + k + ' ' + arch + '\n';
       archCount ++;
       var updater = rules[k].updater[arch];
       if(app == undefined){
