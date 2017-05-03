@@ -767,6 +767,20 @@
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
+  "octave": {
+    "url": "https://ftp.gnu.org/gnu/octave/windows/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "[href$='w32-installer.exe']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "[href$='w64-installer.exe']"
+      }
+    },
+    "version_extractor": "octave-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
+  },
   "openssh": {
     "url": "https://www.mls-software.com/opensshd.html",
     "updater": {
