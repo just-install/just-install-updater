@@ -63,6 +63,9 @@ var regFile = 'just-install.json';
 //This function is called by jiup.js to start the update process
 exports.init = function(path){
   regPath = path;
+  if(args['-c']){
+    pull();
+  }
   registry = JSON.parse(fs.readFileSync(regPath + regFile));
   if(args['-todo']){
     showTodo();
@@ -585,24 +588,38 @@ function conclude(){
     console.log("\ncd "+regPath);
     console.log("just-install -d "+com);
   }
-  if(!allUpToDate && args['-c'] && regPath && updated.length != 0){
-    rl.question('\nWould you like to commit your changes to Git? [Y/n]: ', commit);
+  if(!allUpToDate && args['-c'] && updated.length != 0){
+    if(args['-y']){
+        commit('y');
+    }else{
+        rl.question('\nWould you like to commit your changes to Git? [Y/n]: ', commit);
+    }
   }else{
     rl.close();
   }
+}
+
+//Output callback for child processes
+function errFunc(error, stdout, stderr){
+  console.log(`stdout: ${stdout}`);
+  console.log(`stderr: ${stderr}`);
+  if (error !== null) {
+    console.log(`exec error: ${error}`);
+  }
+}
+
+//Pulls the latest version of the registry from git
+function pull(){
+  console.log('\n...Pulling latest version from Git...');
+  const child = require('child_process');
+  var exec = child.execSync('git -C ' + regPath + ' pull', errFunc);
+  console.log('Pull Done!');
 }
 
 //Prompts the user to commit the updated registry file to Git if the -c option is used
 function commit(answer){
   if(answer == 'Y' || answer == 'y'){
     console.log('\n...Committing to Git...');
-    var errFunc = function(error, stdout, stderr){
-      console.log(`stdout: ${stdout}`);
-      console.log(`stderr: ${stderr}`);
-      if (error !== null) {
-        console.log(`exec error: ${error}`);
-      }
-    }
     var m = 'Packages updated:';
     for(i in updated){
       m += " "+updated[i];
@@ -611,7 +628,7 @@ function commit(answer){
     const child = require('child_process');
     var exec = child.execSync('git -C ' + regPath + ' add just-install.json', errFunc);
     exec = child.execSync('git -C ' + regPath + ' commit -m "just-install-updater automatic commit" -m "' + m +'"', errFunc);
-    console.log('All Done!')
+    console.log('All Done!');
     rl.close();
   }else if(answer == 'N' || answer == 'n'){
     console.log('\nCommit skipped; you can commit manually later.');

@@ -1,7 +1,6 @@
 # just-install-updater [![Build Status](https://travis-ci.org/just-install/just-install-updater.svg?branch=master)](https://travis-ci.org/just-install/just-install-updater)
 
-A nodejs script for updating the [just-install](https://github.com/just-install/just-install)
-registry links to the latest releases
+A nodejs script for updating the [just-install](https://github.com/just-install/just-install) registry links to the latest releases
 
 ### Installation
 
@@ -20,15 +19,16 @@ node jiup path [options] [packages]
 
 ##### arguments
 
-* `path`: Absolute path to the just-install development folder.
+* `path`: Absolute path to the [just-install registry](https://github.com/just-install/registry) folder on your PC.
 * `packages`: An optional space separated list of packages to update. By default, all packages are updated.
 * `options`: A space separated list of options.
-  * `-c` : Commit: If updated packages are found, a prompt will offer the possibility to commit the updated registry file to Git.
+  * `-c` : Commit: The latest version of the registry if pull from Git. If updated packages are found, a prompt will offer the possibility of committing the updated registry file to Git.
   * `-ns`: No Save: Changes to the registry file are not saved.
   * `-f` : Force: Packages that would otherwise be skipped will be processed. The following safety checks are disabled:
     * Skip if the web version number is not higher than the registry version number.
     * Skip if new version not found for all architectures.
   * `-v` : Verbose: Outputs additional info, best used for debugging a single package.
+  * `-y` : Yes: Answers Yes to all prompts automatically
 
 Finally, starting the script with the following commands will perform a special task
  * `-h` or `-help` displays basic help.

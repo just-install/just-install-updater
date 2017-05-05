@@ -32,7 +32,7 @@ process.argv.slice(2+argUsed).forEach(function (val, index, array) {
 
 if(help == false){
   if(regPath == ''){
-    throw "A path to the just-install dev folder was not specified. Start the script with -h for help.";
+    throw "A path to the just-install registry folder was not specified. Start the script with -h for help.";
   }else{
     jiup.init(regPath);
   }
@@ -47,9 +47,10 @@ function showHelp(){
   console.log('\npackages:');
   console.log(s+'An optional space separated list of packages to update. By default, all packages are updated.');
   console.log('\noptions:');
-  console.log(s+'-c : Commit: A prompt will allow committing the registry file to Git.');
+  console.log(s+'-c : Commit: Pulls the latest version of the registry and prompts to commit the registry file to Git.');
   console.log(s+'-ns: No save: Changes to the registry file are not saved.');
   console.log(s+'-f : Force mode: Packages that would otherwise be skipped will be processed.');
   console.log(s+'-v : Verbose: Outputs additional info, best used for debugging a single package.');
+  console.log(s+'-y : Yes: Answers Yes to all prompts automatically');
   console.log(s+'-todo : Displays the just-install entries for which no update rules exist.');
 }
