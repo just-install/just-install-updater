@@ -388,10 +388,17 @@ function applyMods(link, app, updater){
 
 //Replaces the placeholders in the baselink and returns the resulting link
 function removePlaceholders(baselink, version){
+
   var final = baselink.replace(/{{\.version}}/g, version);
   final = final.replace(/{{\.version_}}/g, version.replace(/\./g, "_"));
   final = final.replace(/{{\.version-}}/g, version.replace(/\./g, "-"));
   final = final.replace(/{{\.version#}}/g, version.replace(/\./g, ""));
+
+  var splitVersion = version.split(".");
+  final = final.replace(/{{\.version\[0\]}}/g, splitVersion[0]);
+  final = final.replace(/{{\.version\[1\]}}/g, splitVersion[1]);
+  final = final.replace(/{{\.version\[2\]}}/g, splitVersion[2]);
+
   return final;
 }
 
