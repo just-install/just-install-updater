@@ -55,6 +55,17 @@
     },
     "version_extractor": "install/([0-9]*(?:\\.[0-9]+)*[a-z]?)/android-studio-ide"
   },
+  "arduino": {
+    "url": "https://www.arduino.cc/en/Main/Software",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": "p.link-paragr",
+        "baselink": "https://downloads.arduino.cc/arduino-{{.version}}-windows.exe"
+      }
+    },
+    "version_extractor": "arduino-([0-9]*(?:\\.[0-9]+)*[a-z]?)-windows.exe"
+  },
   "brackets": {
     "url": "https://api.github.com/repos/adobe/brackets/releases/latest",
     "updater": {
