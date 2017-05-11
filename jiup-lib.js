@@ -6,10 +6,6 @@ const ch = require('cheerio');
 const url = require('url');
 const helpers = require('./helpers');
 const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
 const rootCas = require('ssl-root-cas/latest');
 
 //Adds additional certificates not bundeled with Node
@@ -39,6 +35,7 @@ exports.args = args;
 args['-c'] = false;
 args['-f'] = false;
 args['-ns'] = false;
+args['-p'] = false;
 args['-v'] = false;
 args['-todo'] = false;
 
@@ -589,13 +586,10 @@ function conclude(){
     console.log("just-install -d "+com);
   }
   if(!allUpToDate && args['-c'] && updated.length != 0){
-    if(args['-y']){
-        commit('y');
-    }else{
-        rl.question('\nWould you like to commit your changes to Git? [Y/n]: ', commit);
-    }
-  }else{
-    rl.close();
+    commit();
+  }
+  if(args['-p']){
+    push();
   }
 }
 
@@ -617,26 +611,25 @@ function pull(){
 }
 
 //Prompts the user to commit the updated registry file to Git if the -c option is used
-function commit(answer){
-  if(answer == 'Y' || answer == 'y'){
-    console.log('\n...Committing to Git...');
-    var m = 'Packages updated:';
-    for(i in updated){
-      m += " "+updated[i];
-    }
-
-    const child = require('child_process');
-    var exec = child.execSync('git -C ' + regPath + ' add just-install.json', errFunc);
-    exec = child.execSync('git -C ' + regPath + ' commit -m "just-install-updater automatic commit" -m "' + m +'"', errFunc);
-    console.log('All Done!');
-    rl.close();
-  }else if(answer == 'N' || answer == 'n'){
-    console.log('\nCommit skipped; you can commit manually later.');
-    rl.close();
-  }else{
-    console.log('Please answer Y or N');
-    rl.question('Would you like to commit your changes to Git? [Y/n]: ', commit);
+function commit(){
+  console.log('\n...Committing to Git...');
+  var m = 'Packages updated:';
+  for(i in updated){
+    m += " "+updated[i];
   }
+
+  const child = require('child_process');
+  var exec = child.execSync('git -C ' + regPath + ' add just-install.json', errFunc);
+  exec = child.execSync('git -C ' + regPath + ' commit -m "just-install-updater automatic commit" -m "' + m +'"', errFunc);
+  console.log('Commit completed!');
+}
+
+//Prompts the user to push the changes to github if the -p option is used
+function push(answer){
+  console.log('\n...Pushing to Github...');
+  const child = require('child_process');
+  var exec = child.execSync('git -C ' + regPath + ' push origin master', errFunc);
+  console.log('Push to github completed!');
 }
 
 //Outputs additional debug info is the -v option is used

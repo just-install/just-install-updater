@@ -48,9 +48,9 @@ function showHelp(){
   console.log(s+'An optional space separated list of packages to update. By default, all packages are updated.');
   console.log('\noptions:');
   console.log(s+'-c : Commit: Pulls the latest version of the registry and prompts to commit the registry file to Git.');
-  console.log(s+'-ns: No save: Changes to the registry file are not saved.');
+  console.log(s+'-p : Push: Pushes the changes to github using stored credentials')
   console.log(s+'-f : Force mode: Packages that would otherwise be skipped will be processed.');
+  console.log(s+'-ns: No save: Changes to the registry file are not saved.');
   console.log(s+'-v : Verbose: Outputs additional info, best used for debugging a single package.');
-  console.log(s+'-y : Yes: Answers Yes to all prompts automatically');
   console.log(s+'-todo : Displays the just-install entries for which no update rules exist.');
 }

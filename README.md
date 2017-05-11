@@ -24,11 +24,11 @@ node jiup path [options] [packages]
 * `options`: A space separated list of options.
   * `-c` : Commit: The latest version of the registry if pull from Git. If updated packages are found, a prompt will offer the possibility of committing the updated registry file to Git.
   * `-ns`: No Save: Changes to the registry file are not saved.
+  * `-p` : Push: Pushes the changes to github. Git credential storage needs to be configured beforehand.
   * `-f` : Force: Packages that would otherwise be skipped will be processed. The following safety checks are disabled:
     * Skip if the web version number is not higher than the registry version number.
     * Skip if new version not found for all architectures.
   * `-v` : Verbose: Outputs additional info, best used for debugging a single package.
-  * `-y` : Yes: Answers Yes to all prompts automatically
 
 Finally, starting the script with the following commands will perform a special task
  * `-h` or `-help` displays basic help.
