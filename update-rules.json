@@ -1186,7 +1186,7 @@
     "updater": {
       "x86": {
         "rule_type": "regexp-version",
-        "filter": "WinSCP ([.\\d]+[.]\\d{1,5})",
+        "filter": "WinSCP ([.\\d]+[.]\\d{1,5})<",
         "baselink": "https://downloads.sourceforge.net/project/winscp/WinSCP/{{.version}}/WinSCP-{{.version}}-Setup.exe"
       }
     },
