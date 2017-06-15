@@ -453,7 +453,7 @@
     "version_extractor": "FreeFileSync_(.*)_Windows_Setup\\.exe$"
   },
   "geforce-experience": {
-    "url": "http://www.geforce.com/geforce-experience",
+    "url": "https://www.nvidia.com/en-us/geforce/geforce-experience/",
     "updater": {
       "x86": {
         "rule_type": "css-link",
