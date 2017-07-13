@@ -1131,10 +1131,14 @@
     "updater": {
       "x86": {
         "rule_type": "css-link",
-        "selector": "a[href$='.msi']"
+        "selector": "a[href$='_i686.msi']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href$='_x86_64.msi']"
       }
     },
-    "version_extractor": "vagrant_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
+    "version_extractor": "vagrant_([0-9]*(?:\\.[0-9]+)*[a-z]?)_"
   },
   "veracrypt": {
     "url": "https://sourceforge.net/projects/veracrypt/files/",
