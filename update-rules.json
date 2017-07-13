@@ -389,7 +389,7 @@
     "updater": {
       "x86": {
         "rule_type": "css-html-version",
-        "selector": "h2",
+        "selector": "h2, h3",
         "baselink": "https://dl.sinew.in/windows/setup/{{.version-}}/Enpass_Setup.exe"
       }
     },
