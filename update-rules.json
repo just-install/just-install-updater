@@ -252,24 +252,6 @@
     },
     "version_extractor": "eac-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
   },
-  "eclipse-android": {
-    "url": "https://eclipse.org/downloads/eclipse-packages/",
-    "append": "&r=1",
-    "updater": {
-      "x86": {
-        "rule_type": "css-link",
-        "selector": "a[href$='win32.zip']",
-        "filter": "eclipse-android"
-      },
-      "x86_64": {
-        "rule_type": "css-link",
-        "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "eclipse-android"
-      }
-    },
-    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
-    "version_source": "page"
-  },
   "eclipse-committers": {
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
