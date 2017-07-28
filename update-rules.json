@@ -425,20 +425,20 @@
     "version_extractor": "^([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "freecad": {
-    "url": "https://api.github.com/repos/FreeCAD/FreeCAD/releases/latest",
+    "url": "https://www.freecadweb.org/wiki/Download",
     "updater": {
       "x86": {
-        "rule_type": "json-link",
-        "selector": "browser_download_url",
-        "filter": "x86.*\\.exe$"
+        "rule_type": "css-link",
+        "selector": "a.external",
+        "filter": "WIN-x86"
       },
       "x86_64": {
-        "rule_type": "json-link",
-        "selector": "browser_download_url",
-        "filter": "x64.*\\.exe$"
+        "rule_type": "css-link",
+        "selector": "a.external",
+        "filter": "WIN-x64"
       }
     },
-    "version_extractor": "/download/([0-9]*(?:\\.[0-9]+)*[a-z]?)/FreeCAD"
+    "version_extractor": "FreeCAD.([0-9]+(?:\\.[0-9]+)*[a-z]?).*\\.exe$"
   },
   "freefilesync": {
     "url": "http://www.freefilesync.org/download.php",
