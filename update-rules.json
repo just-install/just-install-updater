@@ -747,6 +747,16 @@
     },
     "version_extractor": "^MySQL Workbench ([0-9]*(?:\\.[0-9]+)*)"
   },
+  "nextcloud": {
+    "url": "https://nextcloud.com/install/#install-clients",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "#client-download-win"
+      }
+    },
+    "version_extractor": "Nextcloud-([0-9]*(?:\\.[0-9]+)*[a-z]?)-setup\\.exe$"
+  },
   "node": {
     "url": "https://nodejs.org/en/download/current/",
     "updater": {
