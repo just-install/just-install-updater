@@ -66,6 +66,16 @@
     },
     "version_extractor": "arduino-([0-9]*(?:\\.[0-9]+)*[a-z]?)-windows.exe"
   },
+  "bcuninstaller": {
+    "url": "https://api.github.com/repos/Klocman/Bulk-Crap-Uninstaller/releases",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "BCUninstaller_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\_setup\\.exe$"
+  },  
   "brackets": {
     "url": "https://api.github.com/repos/adobe/brackets/releases/latest",
     "updater": {
