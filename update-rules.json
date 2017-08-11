@@ -392,11 +392,11 @@
     "updater": {
       "x86": {
         "rule_type": "css-link",
-        "selector": "a[href$='x86.Multilingual-Setup.exe']"
+        "selector": "a[href$='x86-Setup.exe']"
       },
       "x86_64": {
         "rule_type": "css-link",
-        "selector": "a[href$='x64.Multilingual-Setup.exe']"
+        "selector": "a[href$='x64-Setup.exe']"
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
