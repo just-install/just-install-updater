@@ -509,11 +509,11 @@
     "updater": {
       "x86": {
         "rule_type": "css-link",
-        "selector": "a[href$='windows-amd64.msi']"
+        "selector": "a[href$='windows-386.msi']"
       },
       "x86_64": {
         "rule_type": "css-link",
-        "selector": "a[href$='windows-386.msi']"
+        "selector": "a[href$='windows-amd64.msi']"
       }
     },
     "version_extractor": "go([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.windows"
