@@ -972,6 +972,17 @@
     },
     "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-setup.exe"
   },
+  "signal": {
+    "url": "https://api.github.com/repos/WhisperSystems/Signal-Desktop/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "regexp-version",
+        "filter": "tag_name.{3}v([0-9]*(?:\\.[0-9]+)*[a-z]?)",
+        "baselink": "https://updates.signal.org/desktop/signal-desktop-win-{{.version}}.exe"
+      }
+    },
+    "version_extractor": "tag_name.{3}v([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
   "sourcetree": {
     "url": "https://www.sourcetreeapp.com",
     "updater": {
