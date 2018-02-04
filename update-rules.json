@@ -1010,6 +1010,16 @@
     },
     "version_extractor": "tag_name.{3}v([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
+  "simplenote": {
+    "url": "https://api.github.com/repos/Automattic/simplenote-electron/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "Simplenote-windows-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
+  },
   "sourcetree": {
     "url": "https://www.sourcetreeapp.com",
     "updater": {
