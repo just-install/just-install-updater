@@ -744,6 +744,17 @@
     },
     "version_extractor": "^MySQL Workbench ([0-9]*(?:\\.[0-9]+)*)"
   },
+  "naps2": {
+    "url": "https://api.github.com/repos/cyanfish/naps2/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "setup\\.msi"
+      }
+    },
+    "version_extractor": "naps2-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
+  },
   "nextcloud": {
     "url": "https://nextcloud.com/install/#install-clients",
     "updater": {
