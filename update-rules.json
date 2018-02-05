@@ -551,12 +551,12 @@
       "x86": {
         "rule_type": "css-html-version",
         "selector": "h2",
-        "baselink": "https://handbrake.fr/mirror/HandBrake-{{.version}}-i686-Win_GUI.exe"
+        "baselink": "https://download.handbrake.fr/releases/{{.version}}/HandBrake-{{.version}}-i686-Win_GUI.exe"
       },
       "x86_64": {
         "rule_type": "css-html-version",
         "selector": "h2",
-        "baselink": "https://handbrake.fr/mirror/HandBrake-{{.version}}-x86_64-Win_GUI.exe"
+        "baselink": "https://download.handbrake.fr/releases/{{.version}}/HandBrake-{{.version}}-x86_64-Win_GUI.exe"
       }
     },
     "version_extractor": "^Current Version: ([0-9]*(?:\\.[0-9]+)*[a-z]?)"
