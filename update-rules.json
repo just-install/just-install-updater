@@ -218,7 +218,7 @@
         "rule_type": "advanced"
       }
     },
-    "version_extractor": "CrystalDiskMark([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
+    "version_extractor": "CrystalDiskMark([0-9]*(?:\\_[0-9]*)*[a-z]?)\\.exe"
   },
   "defraggler": {
     "url": "https://www.piriform.com/defraggler/download/standard",
