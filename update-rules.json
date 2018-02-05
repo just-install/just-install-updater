@@ -637,11 +637,11 @@
     "version_source": "page"
   },
   "keepass": {
-    "url": "https://sourceforge.net/projects/keepass/",
+    "url": "https://sourceforge.net/projects/keepass/files/",
     "updater": {
       "x86": {
         "rule_type": "css-html-version",
-        "selector": "#download_button small",
+        "selector": ".btn-set .sub-label",
         "baselink": "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/{{.version}}/KeePass-{{.version}}-Setup.exe"
       }
     },
