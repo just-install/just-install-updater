@@ -1230,11 +1230,11 @@
     "updater": {
       "x86": {
         "rule_type": "css-html-version",
-        "selector": "#files > div.download-bar",
+        "selector": ".btn-set .sub-label",
         "baselink": "https://sourceforge.net/projects/veracrypt/files/VeraCrypt {{.version}}/VeraCrypt Setup {{.version}}.exe/download"
       }
     },
-    "version_extractor": "VeraCrypt ([0-9]*(?:\\.[0-9]+)*[a-z]?)/"
+    "version_extractor": "VeraCrypt_([0-9]*(?:\\.[0-9]+)*[a-z]?).*"
   },
   "virtualbox": {
     "url": "https://www.virtualbox.org/wiki/Downloads",
