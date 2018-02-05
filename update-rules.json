@@ -1030,6 +1030,22 @@
     },
     "version_extractor": "Simplenote-windows-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
   },
+  "smplayer": {
+    "url": "https://sourceforge.net/projects/smplayer/files/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": ".btn-set .sub-label",
+        "baselink": "https://downloads.sourceforge.net/project/smplayer/SMPlayer/{{.version}}/smplayer-{{.version}}-win32.exe"
+      },
+      "x86_64": {
+        "rule_type": "css-html-version",
+        "selector": ".btn-set .sub-label",
+        "baselink": "https://downloads.sourceforge.net/project/smplayer/SMPlayer/{{.version}}/smplayer-{{.version}}-x64.exe"
+      }
+    },
+    "version_extractor": "([.\\d]+[.]\\d{1,5})"
+  },
   "sourcetree": {
     "url": "https://www.sourcetreeapp.com",
     "updater": {
