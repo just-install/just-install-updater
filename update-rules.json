@@ -571,6 +571,16 @@
     },
     "version_extractor": "HashCheckSetup-v([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
   },
+  "imageglass": {
+    "url": "https://api.github.com/repos/d2phap/ImageGlass/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "ImageGlass_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
+  },
   "inkscape": {
     "url": "https://inkscape.org/en/download/windows/",
     "updater": {
