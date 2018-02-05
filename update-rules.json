@@ -1256,6 +1256,20 @@
     },
     "version_extractor": "VirtualBox_Extension_Pack-([0-9]*(?:\\.[0-9]+)*)-.*\\.vbox-extpack$"
   },
+  "vivaldi": {
+    "url": "https://vivaldi.com/download/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='exe']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href$='x64.exe']"
+      }
+    },
+    "version_extractor": "Vivaldi.([0-9]*(?:\\.[0-9]+)*)\\."
+  },
   "vlc": {
     "url": "https://www.videolan.org/vlc/download-windows.html",
     "updater": {
