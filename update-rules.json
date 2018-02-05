@@ -662,7 +662,7 @@
     "version_extractor": "kicad-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
   "kodi": {
-    "url": "http://mirrors.kodi.tv/releases/win32/",
+    "url": "http://mirrors.kodi.tv/releases/windows/win32/",
     "updater": {
       "x86": {
         "rule_type": "css-link",
