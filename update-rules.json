@@ -377,6 +377,22 @@
     },
     "version_extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
   },
+  "etcher": {
+    "url": "https://api.github.com/repos/resin-io/etcher/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "x86\\.exe"
+      },
+      "x86_64": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "x64\\.exe"
+      }
+    },
+    "version_extractor": "Etcher-Setup-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
+  },
   "everything-search": {
     "url": "https://www.voidtools.com/downloads/",
     "updater": {
