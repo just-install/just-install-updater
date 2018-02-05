@@ -667,7 +667,7 @@
       "x86": {
         "rule_type": "css-link",
         "selector": "a[href$='.exe']",
-        "filter": "-[a-zA-Z]*\\.exe$"
+        "filter": "-x86\\.exe$"
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
