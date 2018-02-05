@@ -209,7 +209,7 @@
         "rule_type": "advanced"
       }
     },
-    "version_extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)-en\\.exe"
+    "version_extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)\\.exe"
   },
   "crystaldisk-mark": {
     "url": "https://osdn.jp/projects/crystaldiskmark/releases/",
