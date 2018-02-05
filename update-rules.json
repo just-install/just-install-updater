@@ -440,22 +440,6 @@
     },
     "version_extractor": "^([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
-  "freecad": {
-    "url": "https://www.freecadweb.org/wiki/Download",
-    "updater": {
-      "x86": {
-        "rule_type": "css-link",
-        "selector": "a.external",
-        "filter": "WIN-x86"
-      },
-      "x86_64": {
-        "rule_type": "css-link",
-        "selector": "a.external",
-        "filter": "WIN-x64"
-      }
-    },
-    "version_extractor": "FreeCAD.([0-9]+(?:\\.[0-9]+)*[a-z]?).*\\.exe$"
-  },
   "freefilesync": {
     "url": "http://www.freefilesync.org/download.php",
     "updater": {
