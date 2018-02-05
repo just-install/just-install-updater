@@ -1343,6 +1343,16 @@
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
+  "workflowy": {
+    "url": "https://api.github.com/repos/workflowy/desktop/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "download/v([0-9]*(?:\\.[0-9]+)*[a-z]?)/WorkFlowy.*\\.exe$"
+  },
   "ynab": {
     "url": "http://classic.youneedabudget.com/download",
     "updater": {
