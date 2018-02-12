@@ -674,6 +674,22 @@
     },
     "version_extractor": "KeePass-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip"
   },
+  "keepassxc": {
+    "url": "https://api.github.com/repos/keepassxreboot/keepassxc/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "Win32\\.exe"
+      },
+      "x86_64": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "Win64\\.exe"
+      }
+    },
+    "version_extractor": "KeePassXC-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
+  },
   "kicad": {
     "url": "http://kicad-pcb.org/download/windows/",
     "updater": {
