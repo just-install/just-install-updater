@@ -1057,21 +1057,20 @@
     "version_extractor": "rcsetup([0-9]{1})([0-9]{2})\\.exe$"
   },
   "ruby": {
-    "url": "https://rubyinstaller.org/downloads/",
-    "forceHTTPS": true,
+    "url": "https://api.github.com/repos/oneclick/rubyinstaller2/releases/latest",
     "updater": {
       "x86": {
-        "rule_type": "css-link",
-        "selector": "a[href$='.exe']",
-        "filter": "^.*rubyinstaller-(?:[0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "x86\\.exe"
       },
       "x86_64": {
-        "rule_type": "css-link",
-        "selector": "a[href$='.exe']",
-        "filter": "^.*rubyinstaller-(?:[0-9]*(?:\\.[0-9]+)*[a-z]?)-x64\\.exe"
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": "x64\\.exe"
       }
     },
-    "version_extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+    "version_extractor": "rubyinstaller-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
   "sharex": {
     "url": "https://api.github.com/repos/ShareX/ShareX/releases/latest",
