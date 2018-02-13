@@ -1129,6 +1129,17 @@
     },
     "version_extractor": "Simplenote-windows-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
   },
+  "sharpkeys": {
+    "url": "https://api.github.com/repos/randyrants/sharpkeys/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url",
+        "filter": ".msi"
+      }
+    },
+    "version_extractor": "download/v([0-9]*(?:\\.[0-9]+)*[a-z]?)/"
+  },
   "smplayer": {
     "url": "https://sourceforge.net/projects/smplayer/files/",
     "updater": {
