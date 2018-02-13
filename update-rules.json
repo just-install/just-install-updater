@@ -978,6 +978,20 @@
     },
     "version_extractor": "openvpn-install-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
+  "perl": {
+    "url": "http://strawberryperl.com/releases.html",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='32bit.msi']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href$='64bit.msi']"
+      }
+    },
+    "version_extractor": "strawberry-perl-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
+  },
   "plex-media-server": {
     "url": "https://plex.tv/api/downloads/1.json",
     "updater": {
