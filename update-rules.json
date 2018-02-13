@@ -1196,7 +1196,7 @@
     "version_extractor": "Sublime Text Build ([0-9]*)(?: x64)? Setup\\.exe$"
   },
   "sublime-text-dev": {
-    "url": "https://www.sublimetext.com/3",
+    "url": "https://www.sublimetext.com/3dev",
     "updater": {
       "x86": {
         "rule_type": "css-link",
