@@ -1048,7 +1048,7 @@
       "x86_64": {
         "rule_type": "css-html-version",
         "selector": "a[href^='/downloads/release/python-2']",
-        "baselink": "https://www.python.org/ftp/python/{{.version}}/python-{{.version}}-amd64.msi"
+        "baselink": "https://www.python.org/ftp/python/{{.version}}/python-{{.version}}.amd64.msi"
       }
     },
     "version_extractor": "Python ([0-9]*(?:\\.[0-9]+)*[a-z]?)"
