@@ -267,6 +267,22 @@
     },
     "version_extractor": "([.\\d]+[.]\\d){1,5}"
   },
+  "ditto": {
+    "url": "http://ditto-cp.sourceforge.net/index.php",
+	"updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+		"selector": "head > script",
+		"baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_{{.version_}}.exe"
+      },
+	  "x86_64": {
+		"rule_type": "css-html-version",
+		"selector": "head > script",
+		"baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_64bit_{{.version_}}.exe"
+	  }
+    },
+    "version_extractor": "\\d+(?:\\.\\d+)+"
+  },  
   "eac": {
     "url": "http://www.exactaudiocopy.de/en/index.php/weitere-seiten/download-from-alternative-servers-2/",
     "updater": {
@@ -907,6 +923,16 @@
     },
     "version_extractor": "npp\\.([0-9]*(?:\\.[0-9]+)*)\\."
   },
+  "notepad2-mod": {
+    "url": "https://api.github.com/repos/xhmikosr/notepad2-mod/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+		"selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "mod\\.([0-9]*(?:\\.[0-9]+)*)\\.exe"
+  },
   "npackd": {
     "url": "https://api.github.com/repos/tim-lebedkov/npackd-cpp/releases/latest",
     "updater": {
@@ -1456,6 +1482,22 @@
       }
     },
     "version_extractor": "WebTorrentSetup-v([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
+  "winrar": {
+    "url": "https://www.win-rar.com/download.html",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+		"selector": ".download-link",
+		"baselink": "https://rarlab.com/rar/wrar{{.version[0]}}{{.version[1]}}.exe"
+      },
+	  "x86_64": {
+		"rule_type": "css-html-version",
+		"selector": ".download-link",
+		"baselink": "https://rarlab.com/rar/winrar-x64-{{.version[0]}}{{.version[1]}}.exe"
+	  }
+    },
+    "version_extractor": "\\d+(?:\\.\\d+)+"
   },
   "winscp": {
     "url": "https://sourceforge.net/projects/winscp/files/",
