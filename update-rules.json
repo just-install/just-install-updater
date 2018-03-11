@@ -1435,7 +1435,7 @@
         "selector": "li > a[href$='.vbox-extpack']"
       }
     },
-    "version_extractor": "VirtualBox_Extension_Pack-([0-9]*(?:\\.[0-9]+)*)-.*\\.vbox-extpack$"
+    "version_extractor": "VirtualBox_Extension_Pack-([0-9]*(?:\\.[0-9]+)*).*\\.vbox-extpack$"
   },
   "vivaldi": {
     "url": "https://vivaldi.com/download/",
