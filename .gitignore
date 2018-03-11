@@ -8,6 +8,8 @@ registry_path
 # Access tokens
 githubAuth
 
+# Package lock
+package-lock.json
 
 ###### Nodejs standard ignore ######
 # Logs
