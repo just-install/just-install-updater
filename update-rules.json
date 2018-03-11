@@ -408,15 +408,14 @@
     "version_extractor": "([.\\d]+[.]\\d{1,5})(?:[-](\\d))?"
   },
   "enpass": {
-    "url": "https://www.enpass.io/release-notes/windowspc/",
+    "url": "https://www.enpass.io/downloads/",
     "updater": {
       "x86": {
-        "rule_type": "css-html-version",
-        "selector": "h2, h3",
-        "baselink": "https://dl.sinew.in/windows/setup/{{.version-}}/Enpass_Setup.exe"
+        "rule_type": "css-link",
+        "selector": "a[href$='Setup.exe']"
       }
     },
-    "version_extractor": "^Version ([0-9]*(?:\\.[0-9]+)*[a-z]?)$"
+    "version_extractor": "Enpass_([0-9]*(?:\\.[0-9]+)*[a-z]?)_"
   },
   "etcher": {
     "url": "https://api.github.com/repos/resin-io/etcher/releases/latest",
