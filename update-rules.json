@@ -129,7 +129,7 @@
     "version_extractor": "_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi$"
   },
   "classic-shell": {
-    "url": "http://www.classicshell.net/",
+    "url": "http://www.oldfoss.com/Classic-Shell.html",
     "updater": {
       "x86": {
         "rule_type": "css-link",
