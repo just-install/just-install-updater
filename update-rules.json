@@ -993,6 +993,16 @@
     },
     "version_extractor": "octave-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
+  "open-hardware-monitor": {
+    "url": "http://openhardwaremonitor.org/downloads/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='.zip']"
+      }
+    },
+    "version_extractor": "openhardwaremonitor-v([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
   "openssh": {
     "url": "https://www.mls-software.com/opensshd.html",
     "updater": {
