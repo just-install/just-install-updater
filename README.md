@@ -1,4 +1,8 @@
-# just-install-updater [![Build Status](https://travis-ci.org/just-install/just-install-updater.svg?branch=master)](https://travis-ci.org/just-install/just-install-updater)
+# just-install-updater
+
+[![Build Status](https://travis-ci.org/just-install/just-install-updater.svg?branch=master)](https://travis-ci.org/just-install/just-install-updater)
+[![License](http://img.shields.io/badge/license-GPL%203.0-blue.svg?style=flat)](http://choosealicense.com/licenses/gpl-3.0/)
+[![Gitter](https://img.shields.io/gitter/room/nwjs/nw.js.svg)](https://gitter.im/just-install/support)
 
 A nodejs script for updating the [just-install](https://github.com/just-install/just-install) registry links to the latest releases
 
