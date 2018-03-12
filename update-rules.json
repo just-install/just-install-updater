@@ -623,6 +623,16 @@
     },
     "version_extractor": "HashCheckSetup-v([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
   },
+  "heidisql": {
+    "url": "https://www.heidisql.com/download.php",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "li.button-highlight > a[href$='Setup.exe']"
+      }
+    },
+    "version_extractor": "HeidiSQL_([0-9]*(?:\\.[0-9]+)*[a-z]?)_"
+  },
   "imageglass": {
     "url": "https://api.github.com/repos/d2phap/ImageGlass/releases/latest",
     "updater": {
