@@ -2,22 +2,21 @@
 
 A nodejs script for updating the [just-install](https://github.com/just-install/just-install) registry links to the latest releases
 
-### Installation
+## Installation
 
 Make sure you have the latest NodeJS version installed on your system. Download just-install-updater from Github, and `npm install` from the directory where the files are located.
 
 Placing a [Github API access token](https://github.com/blog/1509-personal-api-tokens) in a file named `githubAuth` at the root of the development folder is also recommended (but not essential). This will ensure you avoid hitting the rate limit of 60 requests per hour for unauthenticated API calls.
 
-### Usage
+## Usage
 
 From the install directory:
 
-```
+```nodejs
 node jiup path [options] [packages]
 ```
 
-
-##### arguments
+### arguments
 
 * `path`: Absolute path to the [just-install registry](https://github.com/just-install/registry) folder on your PC.
 * `packages`: An optional space separated list of packages to update. By default, all packages are updated.
@@ -31,8 +30,10 @@ node jiup path [options] [packages]
   * `-v` : Verbose: Outputs additional info, best used for debugging a single package.
 
 Finally, starting the script with the following commands will perform a special task
- * `-h` or `-help` displays basic help.
- * `-todo` displays the just-install entries for which no update rules exist.
 
-### Contributing
+* `-h` or `-help` displays basic help.
+* `-todo` displays the just-install entries for which no update rules exist.
+
+## Contributing
+
 If you wish to contribute, please read the [documentation on the wiki](https://github.com/just-install/just-install-updater/wiki)
