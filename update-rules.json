@@ -1037,6 +1037,16 @@
     },
     "version_extractor": "strawberry-perl-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
+  "pia": {
+    "url": "https://www.privateinternetaccess.com/pages/downloads",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='.exe']"
+      }
+    },
+    "version_extractor": "pia-v([0-9]*(?:\\.[0-9]+)*[a-z]?)-installer-win\\.exe$"
+  },
   "plex-media-server": {
     "url": "https://plex.tv/api/downloads/1.json",
     "updater": {
