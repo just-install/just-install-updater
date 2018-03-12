@@ -269,20 +269,20 @@
   },
   "ditto": {
     "url": "http://ditto-cp.sourceforge.net/index.php",
-	"updater": {
+    "updater": {
       "x86": {
         "rule_type": "css-html-version",
-		"selector": "head > script",
-		"baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_{{.version_}}.exe"
+        "selector": "head > script",
+        "baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_{{.version_}}.exe"
       },
-	  "x86_64": {
-		"rule_type": "css-html-version",
-		"selector": "head > script",
-		"baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_64bit_{{.version_}}.exe"
-	  }
+      "x86_64": {
+        "rule_type": "css-html-version",
+        "selector": "head > script",
+        "baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_64bit_{{.version_}}.exe"
+      }
     },
     "version_extractor": "\\d+(?:\\.\\d+)+"
-  },  
+  },
   "eac": {
     "url": "http://www.exactaudiocopy.de/en/index.php/weitere-seiten/download-from-alternative-servers-2/",
     "updater": {
@@ -664,7 +664,12 @@
       "x86": {
         "rule_type": "regexp-link",
         "filter": ".*\\.exe",
-        "replace": [["x64","i586"]]
+        "replace": [
+          [
+            "x64",
+            "i586"
+          ]
+        ]
       },
       "x86_64": {
         "rule_type": "regexp-link",
@@ -937,7 +942,7 @@
     "updater": {
       "x86": {
         "rule_type": "json-link",
-		"selector": "browser_download_url"
+        "selector": "browser_download_url"
       }
     },
     "version_extractor": "mod\\.([0-9]*(?:\\.[0-9]+)*)\\.exe"
@@ -1527,14 +1532,14 @@
     "updater": {
       "x86": {
         "rule_type": "css-html-version",
-		"selector": ".download-link",
-		"baselink": "https://rarlab.com/rar/wrar{{.version[0]}}{{.version[1]}}.exe"
+        "selector": ".download-link",
+        "baselink": "https://rarlab.com/rar/wrar{{.version[0]}}{{.version[1]}}.exe"
       },
-	  "x86_64": {
-		"rule_type": "css-html-version",
-		"selector": ".download-link",
-		"baselink": "https://rarlab.com/rar/winrar-x64-{{.version[0]}}{{.version[1]}}.exe"
-	  }
+      "x86_64": {
+        "rule_type": "css-html-version",
+        "selector": ".download-link",
+        "baselink": "https://rarlab.com/rar/winrar-x64-{{.version[0]}}{{.version[1]}}.exe"
+      }
     },
     "version_extractor": "\\d+(?:\\.\\d+)+"
   },
