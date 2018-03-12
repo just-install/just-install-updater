@@ -598,20 +598,20 @@
     "version_extractor": "gvim([0-9])([0-9]{1,2})(?:-([0-9]*))?.exe"
   },
   "handbrake": {
-    "url": "https://handbrake.fr/downloads.php",
+    "url": "https://github.com/HandBrake/HandBrake/releases/latest",
     "updater": {
       "x86": {
         "rule_type": "css-html-version",
-        "selector": "h2",
+        "selector": "h1 > a",
         "baselink": "https://download.handbrake.fr/releases/{{.version}}/HandBrake-{{.version}}-i686-Win_GUI.exe"
       },
       "x86_64": {
         "rule_type": "css-html-version",
-        "selector": "h2",
+        "selector": "h1 > a",
         "baselink": "https://download.handbrake.fr/releases/{{.version}}/HandBrake-{{.version}}-x86_64-Win_GUI.exe"
       }
     },
-    "version_extractor": "^Current Version: ([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+    "version_extractor": "([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "hashcheck": {
     "url": "https://api.github.com/repos/gurnec/HashCheck/releases/latest",
