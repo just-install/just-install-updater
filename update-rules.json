@@ -1265,15 +1265,15 @@
     "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-setup.exe"
   },
   "signal": {
-    "url": "https://api.github.com/repos/WhisperSystems/Signal-Desktop/releases/latest",
+    "url": "https://updates.signal.org/desktop/latest.yml",
     "updater": {
       "x86": {
         "rule_type": "regexp-version",
-        "filter": "tag_name.{3}v([0-9]*(?:\\.[0-9]+)*[a-z]?)",
+        "filter": "version.{2}([0-9]*(?:\\.[0-9]+)*[a-z]?)",
         "baselink": "https://updates.signal.org/desktop/signal-desktop-win-{{.version}}.exe"
       }
     },
-    "version_extractor": "tag_name.{3}v([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+    "version_extractor": "version.{2}([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "simplenote": {
     "url": "https://api.github.com/repos/Automattic/simplenote-electron/releases/latest",
