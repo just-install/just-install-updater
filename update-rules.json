@@ -1197,20 +1197,19 @@
     "version_extractor": "Python ([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "qbittorrent": {
-    "url": "http://www.qbittorrent.org/download.php",
+    "url": "http://www.oldfoss.com/qBittorrent.html",
     "updater": {
       "x86": {
-        "rule_type": "css-html-version",
-        "selector": "a[href$='download.php']",
-        "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_setup.exe"
+        "rule_type": "css-link",
+        "selector": "a[href$='setup.exe']",
+        "filter": "^((?!x64).)*$"
       },
       "x86_64": {
-        "rule_type": "css-html-version",
-        "selector": "a[href$='download.php']",
-        "baselink": "https://downloads.sourceforge.net/project/qbittorrent/qbittorrent-win32/qbittorrent-{{.version}}/qbittorrent_{{.version}}_x64_setup.exe"
+        "rule_type": "css-link",
+        "selector": "a[href$='x64_setup.exe']"
       }
     },
-    "version_extractor": "Latest: v([0-9]*(?:\\.[0-9]+)*)"
+    "version_extractor": "qbittorrent_([0-9]*(?:\\.[0-9]+)*[a-z]?)_"
   },
   "rambox": {
     "url": "https://api.github.com/repos/saenzramiro/rambox/releases/latest",
