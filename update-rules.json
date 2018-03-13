@@ -1150,6 +1150,20 @@
     },
     "version_extractor": "Python ([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
+  "python2-yaml": {
+    "url": "https://pyyaml.org/download/pyyaml/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='win32-py2.7.exe']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href$='win-amd64-py2.7.exe']"
+      }
+    },
+    "version_extractor": "PyYAML-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
   "python2-win32": {
     "url": "https://api.github.com/repos/mhammond/pywin32/releases/latest",
     "updater": {
