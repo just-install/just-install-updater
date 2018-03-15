@@ -1443,16 +1443,6 @@
     },
     "version_extractor": "tightvnc-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
-  "tomahawk": {
-    "url": "https://www.tomahawk-player.org/",
-    "updater": {
-      "x86": {
-        "rule_type": "css-link",
-        "selector": "a[href$='.exe']"
-      }
-    },
-    "version_extractor": "tomahawk-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe$"
-  },
   "tortoisegit": {
     "url": "https://tortoisegit.org/download/",
     "updater": {
