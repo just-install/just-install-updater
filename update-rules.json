@@ -414,14 +414,14 @@
     "updater": {
       "x86": {
         "rule_type": "css-link",
-        "selector": "a[href$='i686-w64-mingw32.zip']"
+        "selector": "a[href$='i686.zip']"
       },
       "x86_64": {
         "rule_type": "css-link",
-        "selector": "a[href$='x86_64-w64-mingw32.zip']"
+        "selector": "a[href$='x86_64.zip']"
       }
     },
-    "version_extractor": "([.\\d]+[.]\\d{1,5})(?:[-](\\d))?"
+    "version_extractor": "emacs-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "enpass": {
     "url": "https://www.enpass.io/downloads/",
