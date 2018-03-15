@@ -895,22 +895,6 @@
     },
     "version_extractor": "mumble-([0-9]*(?:\\.[0-9]+)*)\\.msi$"
   },
-  "mysql-workbench": {
-    "url": "https://dev.mysql.com/downloads/workbench/",
-    "updater": {
-      "x86": {
-        "rule_type": "css-html-version",
-        "selector": "h1",
-        "baselink": "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-{{.version}}-win32.msi"
-      },
-      "x86_64": {
-        "rule_type": "css-html-version",
-        "selector": "h1",
-        "baselink": "https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community-{{.version}}-winx64.msi"
-      }
-    },
-    "version_extractor": "^MySQL Workbench ([0-9]*(?:\\.[0-9]+)*)"
-  },
   "naps2": {
     "url": "https://api.github.com/repos/cyanfish/naps2/releases/latest",
     "updater": {
