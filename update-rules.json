@@ -553,6 +553,16 @@
     },
     "version_extractor": "Git-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
   },
+  "gitextensions": {
+    "url": "https://api.github.com/repos/gitextensions/gitextensions/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "GitExtensions-([0-9]*(?:\\.[0-9]+)*[a-z]?)-Setup\\.msi"
+  },
   "git-lfs": {
     "url": "https://api.github.com/repos/git-lfs/git-lfs/releases/latest",
     "updater": {
