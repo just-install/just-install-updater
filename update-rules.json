@@ -711,16 +711,6 @@
     },
     "version_extractor": "[i,I]nkscape-([0-9]*(?:\\.[0-9]+)*).{0,4}\\.msi$"
   },
-  "innosetup": {
-    "url": "http://files.jrsoftware.org/is/5/",
-    "updater": {
-      "x86": {
-        "rule_type": "css-link",
-        "selector": "a[href$='-unicode.exe']"
-      }
-    },
-    "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)-unicode\\.exe$"
-  },
   "jdk": {
     "url": "https://lv.binarybabel.org/catalog-api/java/jdk8.txt?p=downloads.exe",
     "updater": {
