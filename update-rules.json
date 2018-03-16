@@ -182,6 +182,17 @@
     },
     "version_extractor": "download/v([0-9]*(?:\\.[0-9]+)*[a-z]?)/ConEmuSetup.*\\.exe$"
   },
+  "cpu-z": {
+    "url": "https://www.cpuid.com/softwares/cpu-z.html",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": "div > div.subtitle",
+        "baselink":"http://download.cpuid.com/cpu-z/cpu-z_{{.version}}-en.exe"
+      }
+    },
+    "version_extractor": "Version ([0-9]*(?:\\.[0-9]+)*[a-z]?) for"
+  },
   "crashplan": {
     "url": "https://www.crashplan.com/shared/js/cp.download.js",
     "updater": {
