@@ -76,6 +76,17 @@
     },
     "version_extractor": "BCUninstaller_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\_setup\\.exe$"
   },
+  "bleachbit": {
+    "url": "https://www.bleachbit.org/download/windows",
+    "updater": {
+      "x86": {
+        "rule_type": "css-html-version",
+        "selector": "div > p",
+        "baselink": "https://download.bleachbit.org/BleachBit-{{.version}}-setup.exe"
+      }
+    },
+    "version_extractor": "Download BleachBit ([0-9]*(?:\\.[0-9]+)*[a-z]?) for"
+  },
   "brackets": {
     "url": "https://api.github.com/repos/adobe/brackets/releases/latest",
     "updater": {
