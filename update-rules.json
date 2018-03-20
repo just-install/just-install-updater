@@ -1646,6 +1646,16 @@
     },
     "version_extractor": "Wox-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
   },
+  "yarn": {
+    "url": "https://api.github.com/repos/yarnpkg/yarn/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "yarn-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
+  },
   "ynab": {
     "url": "http://classic.youneedabudget.com/download",
     "updater": {
