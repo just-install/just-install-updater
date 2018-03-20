@@ -289,6 +289,16 @@
     },
     "version_extractor": "([.\\d]+[.]\\d){1,5}"
   },
+  "deskpins": {
+    "url": "https://efotinis.neocities.org/deskpins/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='setup.exe']"
+      }
+    },
+    "version_extractor": "DeskPins-([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
+  },
   "ditto": {
     "url": "http://ditto-cp.sourceforge.net/index.php",
     "updater": {
