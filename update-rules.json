@@ -76,6 +76,16 @@
     },
     "version_extractor": "BCUninstaller_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\_setup\\.exe$"
   },
+  "bitpay": {
+    "url": "https://api.github.com/repos/bitpay/copay/releases/latest",
+    "updater": {
+      "x86": {
+        "rule_type": "json-link",
+        "selector": "browser_download_url"
+      }
+    },
+    "version_extractor": "download/v([0-9]*(?:\\.[0-9]+)*[a-z]?)/BitPay\\.exe$"
+  },
   "bleachbit": {
     "url": "https://www.bleachbit.org/download/windows",
     "updater": {
