@@ -1217,22 +1217,6 @@
     },
     "version_extractor": "qbittorrent_([0-9]*(?:\\.[0-9]+)*[a-z]?)_"
   },
-  "rambox": {
-    "url": "https://api.github.com/repos/saenzramiro/rambox/releases/latest",
-    "updater": {
-      "x86": {
-        "rule_type": "json-link",
-        "selector": "browser_download_url",
-        "filter": "ia32\\.exe"
-      },
-      "x86_64": {
-        "rule_type": "json-link",
-        "selector": "browser_download_url",
-        "filter": "x64\\.exe"
-      }
-    },
-    "version_extractor": "Rambox.Setup.([0-9]*(?:\\.[0-9]+)*[a-z]?)-"
-  },
   "recuva": {
     "url": "https://www.piriform.com/recuva/download/standard",
     "forceHTTPS": true,
