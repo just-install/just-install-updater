@@ -103,19 +103,19 @@ function setArchSettings(){
 }
 
 //Shows which apps in just-install are still not covered by the updater
-function showTodo(){
+function showTodo() {
   var c = 0
   console.log('');
-  for(var app in registry.packages){
-    if(registry.packages[app].version != 'latest'){
-      c ++;
-      if(rules[app] == undefined){
+  for (var app in registry.packages) {
+    if (registry.packages[app].version.match(/^(?!latest).*$/)) {
+      c++;
+      if (rules[app] == undefined) {
         console.log(app);
       }
     }
   }
   console.log('=======================');
-  console.log(Math.round(Object.keys(rules).length*100/c)+'% coverage');
+  console.log(Math.round(Object.keys(rules).length * 100 / c) + '% coverage');
   rl.close();
 }
 
