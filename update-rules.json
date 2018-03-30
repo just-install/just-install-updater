@@ -892,7 +892,7 @@
         "baselink": "https://download.mp3tag.de/mp3tagv{{.version}}setup.exe"
       }
     },
-    "version_extractor": "mp3tagv([0-9]*(?:\\.[0-9]+)*)setup.exe"
+    "version_extractor": "mp3tagv([0-9]*(?:\\[0-9]+)*[a-z]?)setup.exe"
   },
   "mpc-hc": {
     "url": "https://mpc-hc.org/downloads/",
