@@ -785,7 +785,7 @@
       "x86": {
         "rule_type": "css-html-version",
         "selector": ".btn-set .sub-label",
-        "baselink": "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/{{.version}}/KeePass-{{.version}}-Setup.exe"
+        "baselink": "https://sourceforge.net/projects/keepass/files/KeePass%202.x/{{.version}}/KeePass-{{.version}}.msi/download"
       }
     },
     "version_extractor": "KeePass-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.zip"
