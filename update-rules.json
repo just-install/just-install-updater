@@ -315,6 +315,20 @@
     },
     "version_extractor": "\\d+(?:\\.\\d+)+"
   },
+  "doublecmd": {
+    "url": "https://sourceforge.net/p/doublecmd/wiki/Download/",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='i386-win32.msi/download']"
+      },
+      "x86_64": {
+        "rule_type":"css-link",
+        "selector":"a[href$='x86_64-win64.msi/download']"
+      }
+    },
+    "version_extractor": "doublecmd-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
   "eac": {
     "url": "http://www.exactaudiocopy.de/en/index.php/weitere-seiten/download-from-alternative-servers-2/",
     "updater": {
