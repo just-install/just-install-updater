@@ -1046,6 +1046,16 @@
     },
     "version_extractor": "-([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.msi"
   },
+  "nxlog": {
+    "url": "https://nxlog.co/products/nxlog-community-edition/download",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href$='.msi']"
+      }
+    },
+    "version_extractor": "nxlog-ce-([0-9]*(?:\\.[0-9]+)*[a-z]?)"
+  },
   "obs-studio": {
     "url": "https://obsproject.com/download",
     "updater": {
