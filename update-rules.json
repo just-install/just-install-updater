@@ -305,12 +305,12 @@
       "x86": {
         "rule_type": "css-html-version",
         "selector": "head > script",
-        "baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_{{.version_}}.exe"
+        "baselink": "https://sourceforge.net/projects/ditto-cp/files/Ditto/{{.version}}/DittoSetup_{{.version_}}.exe/download"
       },
       "x86_64": {
         "rule_type": "css-html-version",
         "selector": "head > script",
-        "baselink": "https://downloads.sourceforge.net/project/ditto-cp/Ditto/{{.version}}/DittoSetup_64bit_{{.version_}}.exe"
+        "baselink": "https://sourceforge.net/projects/ditto-cp/files/Ditto/{{.version}}/DittoSetup_64bit_{{.version_}}.exe/download"
       }
     },
     "version_extractor": "\\d+(?:\\.\\d+)+"
