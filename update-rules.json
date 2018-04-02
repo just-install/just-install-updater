@@ -1643,7 +1643,7 @@
       "x86": {
         "rule_type": "css-html-version",
         "selector": ".btn-set .sub-label",
-        "baselink": "https://downloads.sourceforge.net/project/winscp/WinSCP/{{.version}}/WinSCP-{{.version}}-Setup.exe"
+        "baselink": "https://sourceforge.net/projects/winscp/files/WinSCP/{{.version}}/WinSCP-{{.version}}-Setup.exe/download"
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
