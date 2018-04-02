@@ -508,15 +508,14 @@
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
   "filezilla-server": {
-    "url": "https://sourceforge.net/projects/filezilla/files/FileZilla%20Server/",
+    "url": "https://download.filezilla-project.org/server/",
     "updater": {
       "x86": {
-        "rule_type": "regexp-version",
-        "filter": "href=\"/projects/filezilla/files/FileZilla%20Server/[0-9]*(?:\\.[0-9]+)*[a-z]?/",
-        "baselink": "https://downloads.sourceforge.net/project/filezilla/FileZilla%20Server/{{.version}}/FileZilla_Server-{{.version_}}.exe"
+        "rule_type": "css-link",
+        "selector": "a[href$='.exe']"
       }
     },
-    "version_extractor": "Server/([0-9]*(?:\\.[0-9]+)*[a-z]?)/"
+    "version_extractor": "FileZilla_Server-([0-9]*(?:\\_[0-9]+)*[a-z]?)\\.exe$"
   },
   "flash-player": {
     "url": "https://www.adobe.com/software/flash/about/",
