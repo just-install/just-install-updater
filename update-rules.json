@@ -463,6 +463,20 @@
     },
     "version_extractor": "Enpass_([0-9]*(?:\\.[0-9]+)*[a-z]?)_"
   },
+  "erlang": {
+    "url": "http://www.erlang.org/downloads",
+    "updater": {
+      "x86": {
+        "rule_type": "css-link",
+        "selector": "a[href*='win32'][href$='.exe']"
+      },
+      "x86_64": {
+        "rule_type": "css-link",
+        "selector": "a[href*='win64'][href$='.exe']"
+      }
+    },
+    "version_extractor": "_([0-9]*(?:\\.[0-9]+)*[a-z]?)\\.exe"
+  },
   "etcher": {
     "url": "https://api.github.com/repos/resin-io/etcher/releases/latest",
     "updater": {
