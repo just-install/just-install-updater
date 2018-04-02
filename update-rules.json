@@ -1340,12 +1340,12 @@
       "x86": {
         "rule_type": "css-html-version",
         "selector": ".btn-set .sub-label",
-        "baselink": "https://downloads.sourceforge.net/project/smplayer/SMPlayer/{{.version}}/smplayer-{{.version}}-win32.exe"
+        "baselink": "https://sourceforge.net/projects/smplayer/files/SMPlayer/{{.version}}/smplayer-{{.version}}-win32.exe/download"
       },
       "x86_64": {
         "rule_type": "css-html-version",
         "selector": ".btn-set .sub-label",
-        "baselink": "https://downloads.sourceforge.net/project/smplayer/SMPlayer/{{.version}}/smplayer-{{.version}}-x64.exe"
+        "baselink": "https://sourceforge.net/projects/smplayer/files/SMPlayer/{{.version}}/smplayer-{{.version}}-x64.exe/download"
       }
     },
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
