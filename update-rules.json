@@ -1603,7 +1603,7 @@
         "selector": "a[href$='.exe']"
       }
     },
-    "version_extractor": "VPN_Unlimited_([0-9]*(?:\\_[0-9]+)*[a-z]?)_release"
+    "version_extractor": "VPN_Unlimited_v([0-9]*(?:\\.[0-9]+)*[a-z]?)"
   },
   "webtorrent": {
     "url": "https://api.github.com/repos/webtorrent/webtorrent-desktop/releases/latest",
