@@ -4,9 +4,5 @@
 
 exports.get_link = function (page, arch) {
   var data = JSON.parse(page);
-  if (arch == "x86") {
-    return data.PCC[0].downloads.windows.link;
-  } else {
-    return '';
-  }
+  return arch == "x86" ? data.PCC[0].downloads.windows.link : "";
 }
