@@ -19,5 +19,4 @@ exports.get_link = function (page, arch) {
     }
   });
   return `http://osdn.dl.osdn.jp/crystaldiskmark/${highestID}/CrystalDiskMark${highestVersion}.exe`;
-
 }
