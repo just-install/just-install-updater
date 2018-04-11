@@ -6,6 +6,7 @@ process.exit(main());
 
 function main() {
   if (argv.n && argv.s) argv.ns = true;
+  if (argv.t && argv.o && argv.d && argv.o) argv.todo = true;
   if (argv.v) console.dir(argv);
 
   if (argv.h || argv.help) {
@@ -40,7 +41,10 @@ function main() {
 function showHelp() {
   console.log(`
 USAGE:
-    node jiup [options] registry_dir [packages]
+    node jiup registry_dir [options] [packages]
+
+registry_dir:
+    Absolute path to the folder containing just-install.json.
 
 options:
     -c : Commit: Pulls the latest version of the registry and prompts to commit the registry file to Git.
@@ -49,9 +53,6 @@ options:
     -ns: No save: Changes to the registry file are not saved.
     -v : Verbose: Outputs additional info, best used for debugging a single package.
     -todo : Displays the just-install entries for which no update rules exist.
-
-registry_dir:
-    Absolute path to the folder containing just-install.json.
 
 packages:
     An optional space separated list of packages to update. By default, all packages are updated.`);

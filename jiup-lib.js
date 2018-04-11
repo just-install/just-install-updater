@@ -57,12 +57,11 @@ var regPath = '';
 var regFile = 'just-install.json';
 
 //This function is called by jiup.js to start the update process
-exports.init = function (path) {
-  regPath = path;
+exports.init = function (regPath) {
   if (args['-c']) {
     pull();
   }
-  registry = JSON.parse(fs.readFileSync(path.join(regPath + regFile)));
+  registry = JSON.parse(fs.readFileSync(path.join(regPath, regFile)));
   if (args['-todo']) {
     showTodo();
   } else {
@@ -117,7 +116,6 @@ function showTodo() {
   }
   console.log('=======================');
   console.log(Math.round(Object.keys(rules).length * 100 / c) + '% coverage');
-  rl.close();
 }
 
 //Removes packages that do not exist from the package list received in argument
@@ -545,7 +543,7 @@ function conclude() {
 
   if (!allUpToDate && args['-ns'] == false && updated.length != 0) {
     console.log('\n---- Saving changes to just-install.json ----');
-    fs.writeFileSync(path.join(regPath + regFile), JSON.stringify(registry, null, '  '));
+    fs.writeFileSync(path.join(regPath, regFile), JSON.stringify(registry, null, '  '));
     saved = true;
   }
 
