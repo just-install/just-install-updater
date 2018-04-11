@@ -1,12 +1,21 @@
 const jiup = require('./jiup-lib.js');
 const process = require('process');
-const argv = require('minimist')(process.argv.slice(2));
+const argv = process.argv.slice(2);
 
 process.exit(main());
 
 function main() {
-  if (argv.n && argv.s) argv.ns = true;
-  if (argv.t && argv.o && argv.d && argv.o) argv.todo = true;
+  let argv = {
+    "_": []
+  };
+  process.argv.slice(2).forEach(arg => {
+    if (arg.startsWith("-")) {
+      argv[arg.replace(/--?/, "")] = true;
+    } else {
+      argv._.push(arg);
+    }
+  });
+
   if (argv.v) console.dir(argv);
 
   if (argv.h || argv.help) {
@@ -23,7 +32,7 @@ function main() {
   let packages = argv._;
 
   jiup.appList = jiup.appList.concat(packages);
-  if (argv.v) console.dir(jiup.applist);
+  if (argv.v) console.dir(jiup.appList);
 
   Object.keys(argv).forEach(k => jiup.args[`-${k}`] = true);
   if (argv.v) console.dir(jiup.args);
