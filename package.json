@@ -22,6 +22,7 @@
 	"dependencies": {
 		"cheerio": ">=0.20.0",
 		"compare-version": "latest",
+		"minimist": "^1.2.0",
 		"ssl-root-cas": "latest"
 	},
 	"devDependencies": {

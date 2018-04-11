@@ -62,7 +62,7 @@ exports.init = function (path) {
   if (args['-c']) {
     pull();
   }
-  registry = JSON.parse(fs.readFileSync(regPath + regFile));
+  registry = JSON.parse(fs.readFileSync(path.join(regPath + regFile)));
   if (args['-todo']) {
     showTodo();
   } else {
@@ -545,7 +545,7 @@ function conclude() {
 
   if (!allUpToDate && args['-ns'] == false && updated.length != 0) {
     console.log('\n---- Saving changes to just-install.json ----');
-    fs.writeFileSync(regPath + regFile, JSON.stringify(registry, null, '  '));
+    fs.writeFileSync(path.join(regPath + regFile), JSON.stringify(registry, null, '  '));
     saved = true;
   }
 
