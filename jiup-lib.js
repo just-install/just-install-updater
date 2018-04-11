@@ -102,20 +102,14 @@ function setArchSettings() {
   }
 }
 
-//Shows which apps in just-install are still not covered by the updater
+// showTodo shows apps not covered by just-install-updater.
 function showTodo() {
-  var c = 0
-  console.log('');
-  for (var app in registry.packages) {
-    if (registry.packages[app].version.match(/^(?!latest).*$/)) {
-      c++;
-      if (rules[app] == undefined) {
-        console.log(app);
-      }
-    }
-  }
+  let packages = Object.entries(registry.packages);
+  let uncovered = packages.filter(package => !package[1].version.includes("latest")).map(package => package[0]).filter(package => rules[package] == null);
+  let coverage = Math.round((1 - uncovered.length / packages.length) * 100);
+  console.log(uncovered.join("\n"));
   console.log('=======================');
-  console.log(Math.round(Object.keys(rules).length * 100 / c) + '% coverage');
+  console.log(`${coverage}% coverage`);
 }
 
 //Removes packages that do not exist from the package list received in argument
