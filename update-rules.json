@@ -357,24 +357,6 @@
     "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
     "version_source": "page"
   },
-  "eclipse-cpp": {
-    "url": "https://eclipse.org/downloads/eclipse-packages/",
-    "append": "&r=1",
-    "updater": {
-      "x86": {
-        "rule_type": "css-link",
-        "selector": "a[href$='win32.zip']",
-        "filter": "eclipse-cpp"
-      },
-      "x86_64": {
-        "rule_type": "css-link",
-        "selector": "a[href$='win32-x86_64.zip']",
-        "filter": "eclipse-cpp"
-      }
-    },
-    "version_extractor": "<span id=\"descriptionText\">.*\\(([0-9]*(?:\\.[0-9]+)*[a-z]?)\\)",
-    "version_source": "page"
-  },
   "eclipse-java": {
     "url": "https://eclipse.org/downloads/eclipse-packages/",
     "append": "&r=1",
