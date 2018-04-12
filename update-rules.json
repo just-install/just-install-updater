@@ -219,22 +219,22 @@
     "version_extractor": "([.\\d]+[.]\\d{1,5})"
   },
   "crystaldisk-info": {
-    "url": "https://osdn.jp/projects/crystaldiskinfo/releases/",
+    "url": "https://osdn.net/projects/crystaldiskinfo/releases/",
     "updater": {
       "x86": {
         "rule_type": "advanced"
       }
     },
-    "version_extractor": "CrystalDiskInfo([0-9]*(?:\\_[0-9]*)*[a-z]?)\\.exe"
+    "version_extractor": "CrystalDiskInfo([0-9_]+)\\."
   },
   "crystaldisk-mark": {
-    "url": "https://osdn.jp/projects/crystaldiskmark/releases/",
+    "url": "https://osdn.net/projects/crystaldiskmark/releases/",
     "updater": {
       "x86": {
         "rule_type": "advanced"
       }
     },
-    "version_extractor": "CrystalDiskMark([0-9]*(?:\\_[0-9]*)*[a-z]?)\\.exe"
+    "version_extractor": "CrystalDiskMark([0-9_]+)\\."
   },
   "dbeaver": {
     "url": "https://api.github.com/repos/dbeaver/dbeaver/releases/latest",

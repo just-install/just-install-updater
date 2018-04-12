@@ -4,19 +4,17 @@ const cheerio = require("cheerio");
 const helpers = require('../helpers');
 
 exports.get_link = function (page, arch) {
-  var re_num = new RegExp('downloads/([0-9]*)/Crystal');
-  var re_ver = new RegExp('CrystalDiskInfo(.*)\.exe');
   var highestVersion = '0';
   var highestID = '';
   $ = cheerio.load(page);
-  $("a[href$='.exe/']").each(function (i, elem) {
+  $("a[href$='.zip/']").each(function (i, elem) {
     link = $(this).attr('href');
-    var thisID = link.match(re_num)[1];
-    var thisVersion = link.match(re_ver)[1];
+    var thisID = link.match(/downloads\/([0-9]*)\/CrystalDiskInfo/)[1];
+    var thisVersion = link.match(/CrystalDiskInfo([0-9_]+)/)[1];
     if (helpers.isVersionNewer(highestVersion, thisVersion)) {
       highestVersion = thisVersion;
       highestID = thisID;
     }
   });
-  return `http://osdn.dl.osdn.jp/crystaldiskinfo/${highestID}/CrystalDiskInfo${highestVersion}.exe`;
+  return `https://ftp.halifax.rwth-aachen.de/osdn/crystaldiskinfo/${highestID}/CrystalDiskInfo${highestVersion}.exe`;
 }
