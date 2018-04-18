@@ -895,7 +895,7 @@
       "x86": {
         "rule_type": "css-link",
         "selector": "a[href*='download.mono-project.com'][href$='.msi']",
-        "filter": "^((?!x64).)*$"
+        "filter": "^((?!x64-0).)*$"
       }
     },
     "version_extractor": "mono-([0-9]*(?:\\.[0-9]+)*)-"
